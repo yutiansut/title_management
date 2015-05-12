@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="1038" height="506">
+	<fx:Declarations>
+		<s:RadioButtonGroup id="radiogroup1"/>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:Panel includeIn="list" width="100%" height="500" title="Streamline Loan Processor Report" backgroundColor="#B7ABD6" chromeColor="#067DAF" focusColor="#4A9CE9">
+	
+	<!--Processor Drop Down List-->
+		<s:DropDownList x="133" y="52" width="148" prompt="Select Processor" id="processorName">
+	<!--Processor Data Provider goes here. List provided by SQL Server-->
+		<mx:ArrayCollection>
+			<fx:String>Processor 1</fx:String>
+			<fx:String>Processor 2</fx:String>
+			<fx:String>Processor 3</fx:String>
+			<fx:String>Processor 4</fx:String>
+		</mx:ArrayCollection>
+	</s:DropDownList>
+		
+	<!--End of Provider Component-->	
+	<mx:MenuBar width="100%" bottom="-5" height="30" x="1"></mx:MenuBar>
+	<s:Button x="10" y="108" label="Run Report"/>
+	<s:RadioButton x="10" y="27" label="All Processors" groupName="radiogroup1"/>
+	<s:RadioButton x="10" y="53" label="Single Processor:" groupName="radiogroup1"/>
+	<s:Label x="10" y="7" text="1. Select Processor:" fontWeight="bold" fontSize="12"/>
+		<s:Label x="351" y="7" text="2.Order Date:" fontWeight="bold" fontSize="12"/>
+		<mx:DateField x="392" y="27" width="131"/>
+		<mx:DateField x="392" y="58" width="131"/>
+		<s:Label x="351" y="38" text="From:"/>
+		<s:Label x="351" y="69" text="To:"/>
+		
+		<s:Label x="822" y="4" text="4. Busted Date:" fontWeight="bold" fontSize="12"/>
+		<mx:DateField x="628" y="26" width="131"/>
+		<mx:DateField x="628" y="58" width="131"/>
+		<s:Label x="822" y="37" text="From:"/>
+		<s:Label x="822" y="68" text="To:"/>
+		
+		<s:Label x="583" y="6" text="3. Closing Date:" fontWeight="bold" fontSize="12"/>
+		<mx:DateField x="860" y="26" width="131"/>
+		<mx:DateField x="860" y="57" width="131"/>
+		<s:Label x="587" y="38" text="From:"/>
+		<s:Label x="590" y="69" text="To:"/>
+		
+		<!--Reporting Data Grid-->
+		     <!--Report Data Grid Data Provider Goes here-->
+		     <!--Report Data Grid Provider Ends here-->
+		<mx:DataGrid x="16" y="244" width="1004" height="190">
+			<mx:columns>
+				<mx:DataGridColumn headerText="Report ID" dataField="col1"/>
+				<mx:DataGridColumn headerText="Processor" dataField="col2"/>
+				<mx:DataGridColumn headerText="Order Date" dataField="col3"/>
+				<mx:DataGridColumn headerText="Closing Date" dataField="col2"/>
+				<mx:DataGridColumn headerText="Busted Date" dataField="col2"/>
+			</mx:columns>
+		</mx:DataGrid>
+		<!--End of Reporting Data Grid-->
+		<!--Footer Label-->
+		<s:Label x="8" y="449" text="2015 First Title. All rights Reserved"/>
+	</s:Panel>
+</s:Group>
