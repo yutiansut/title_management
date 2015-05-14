@@ -3,6 +3,7 @@
         <title>First Title Reporting Assignment </title>
     </head>
     <body bgcolor="#CCCCCC">
+    <!---Shut off debugging--->
     <cfsetting showdebugoutput="no">
     <!---Employee List Query--->
     <cfquery name="getAvailableEmployees" datasource="First_Title_Main_Dev"> <!---This query selects employee names from the First_Admin table then concatenates the names.--->
@@ -77,7 +78,7 @@
              
 
 <!---Tabbed layout controller for all tabbed layout components ---> 
-<cflayout type="tab" tabheight="100" name="mytabs">							<!---Initialization for tab navigation layout--->
+<cflayout type="tab" tabheight="100" name="mytabs" height="500">							<!---Initialization for tab navigation layout--->
 <cflayoutarea title="Employee Perspective" name="t1"> 						<!---First Tab navigation pane initialization--->
 <cfform>																	<!---CF form initialization --->
     <cfgrid  																<!---CF datagrid initialization--->
@@ -105,7 +106,7 @@
     </cfform>
      </cflayoutarea>
      <cflayoutarea title="Reporting Perspective" name="t2"> 			    <!---First Tab navigation pane initialization--->
-<cfform>																	<!---CF form initialization --->
+ <cfform name="frm_datagrid" format="flash" skin="haloblue"	>				<!---CF form initialization --->
     <cfgrid  																<!---CF datagrid initialization--->
         name="ReportsToEmployees"                                           <!--- -------Attributes---------- --->
         align="Top" 														<!---            |               --->
@@ -126,10 +127,38 @@
         <cfgridcolumn name="Full_Name" header="Employee Name" 			    <!---Datagrid column. Mapped to the First and Last Names in the query--->
         display="yes" width="300" />
         <cfgridcolumn name="reportDescrip" header="Report Description"      <!---Datagrid column. Mapped to the First and Last Names in the query--->
-        dataalign="center" type="date" width="300" />       
+        dataalign="center" type="date" width="300" >       
     </cfgrid>
     </cfform>
      </cflayoutarea>
+     <!---Update Form Tab--->
+     <cflayoutarea title="Update/Remove Assignments" name="t3">
+     <cfform name="frm_updateAssignments" format="flash" skin="haloblue">
+     <cfformgroup type="panel" >
+     <cfformgroup type="horizontal">
+     <cfinput type="Text" name="FirstName" size="20"maxlength="35" label="First Name" value="First Name"> 
+	 <cfinput type="Text" name="LastName" size="20" maxlength="35" label="Last Name"value="Last Name">
+ 	 </cfformgroup>
+	<!--- Report Selection Dropdown box ---> 
+	<cfselect name="Reports" label="Reports" message="Select Report" required="yes">  			<!--- DB populated drop down box for reports. Required field. --->
+    <option value="Vendor Auto Routing">Vendor Auto Routing </option>							<!--- Values are static for testing. CFSELECT to be populated by query--->
+    <option value="Fee Copier">Fee Copier</option>
+    <option value="TSS SQL Search">TSS SQL Search </option>
+    <option value="Title Commitment Templates">Title Comittment Templates</option>
+    <option value="Dev To Production File Publisher"> Dev To Production</option>
+	</cfselect>  
+ 
+ 	
+	<!---Button Group--->
+    <cfformgroup type="horizontal">
+	<!--- Reset button. ---> 
+	<cfinput type="Reset" name="ResetForm" value="Clear Form">
+	<cfinput type="Submit" name="SubmitForm" value="Submit">
+	<!--- submit button ---></cfformgroup>
+    </cfformgroup>
+    </cfform>
+     
+    </cflayoutarea>
     </cflayout>
    
 
