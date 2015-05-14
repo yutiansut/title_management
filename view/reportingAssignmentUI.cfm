@@ -2,7 +2,7 @@
     <head>
         <title>First Title Reporting Assignment </title>
     </head>
-    <body bgcolor="#CCCCCC">
+    <body bgcolor="#CCCCCC" >
     <!---Shut off debugging--->
     <cfsetting showdebugoutput="no">
     <!---Employee List Query--->
@@ -34,40 +34,52 @@
      <!---This begins the visual component layout--->
      <div id="entire-page-div" style="position: relative; overflow: hidden; width:95%; margin-left:20px">
      <div id="left_module" style="position: relative; width: 30%; background-color:#CCC; float:left; margin-right:10px" >
-     <label for="reportsList">Available Employees:</label>                 <!---This is the available employees list. Returns employees not assigned to a report--->
-     <cfform name="assignedEmployees" action="getReport.cfm" width="20%">  <!---Form Initialization--->
+     <br/>												                   <!---This is the available employees list. Returns employees not assigned to a report--->
+     <cflayout type="tab">
+     <cflayoutarea title="Available Employees" name="availableEmp">
+     <cfform name="assignedEmployees" action="getReport.cfm" width="100%" height="220" format="flash">  <!---Form Initialization--->
      <cfselect name="employee" query="getAvailableEmployees"               <!---CFSELECT To populate form element from above Available Employee  query --->
      value="Full_Name" display="Full_Name" required="yes" size="10">       <!---CFSELECT To populate form element from above Available Employee  query --->
      </cfselect>
    	 </cfform>
+      </cflayoutarea>
+     </cflayout>
      </div>
            
 		   <!---     ---->
            <!---     ---->
            <!---     ---->
             
-     <div id="center_div" style="position: relative; width: 30%; background-color:#CCC; float:left;">
+     <div id="center_div" style="position: relative; width: 30%; background-color:#CCC; float:left; margin-left:20px">
      <!---Assigned Employees Module---> 
-	 <label for="reportsList">Assigned Employees:</label>
-     <cfform name="assignedEmployees" action="getReport.cfm" width="25%">    <!---Assigned Employee Form Initialization--->
-   	 <cfselect name="employee" query="getAssignedEmployees"                  <!---CFSELECT To populate form element from above Employee Assignment query --->
-     value="Full_Name" display="Full_Name" required="yes" size="10">		 <!---CFSELECT To populate form element from above Employee Assignment query --->
+     <br/>
+     <cflayout type="tab">
+     <cflayoutarea title="Assigned Employees" name="assignedEmp">
+     <cfform name="assignedEmployees" action="getReport.cfm" width="100%" height="220" format="flash">    <!---Assigned Employee Form Initialization--->
+   	 <cfselect name="employee" query="getAssignedEmployees"                  				<!---CFSELECT To populate form element from above Employee Assignment query --->
+     value="Full_Name" display="Full_Name" required="yes" size="10">		 				<!---CFSELECT To populate form element from above Employee Assignment query --->
      </cfselect>
    	 </cfform>
+     </cflayoutarea>
+     </cflayout>
      </div>
             
           <!---     ---->
           <!---     ---->
           <!---     ---->
           
-     <div id="right_div" style="position: relative; width: 25%; background-color:#CCC; float: left;">
+     <div id="right_div" style="position: relative; width: 30%; background-color:#CCC; float: left; margin-left:30px">
      <!---Report List Module --->											
-     <label for="reportsList">Reports List:</label>
-     <cfform name="assignedEmployees" action="getReport.cfm" width="20%">	<!---Report List Form Initialization--->
+      <br/>
+     <cflayout type="tab">
+     <cflayoutarea title="Reports List" name="ReportsList">
+     <cfform action="getReport.cfm" name="assignedEmployees" format="flash" height="220" width="100%" skin="haloblue">	<!---Report List Form Initialization--->
      <cfselect name="employee" query="getReports" 							<!---CFSELECT To populate form element from above Get Report query--->
      value="Report_Name" display="Report_Name" required="yes" size="10">    <!---CFSELECT To populate form element from above Get Report query--->
      </cfselect>
    	 </cfform>
+     </cflayoutarea>
+     </cflayout>
      </div>            
      </div>
     <br/>
@@ -157,11 +169,36 @@
 	<!--- submit button ---></cfformgroup>
     </cfformgroup>
     </cfform>
-     
+    </cflayoutarea>
+    
+    <!---Reporting Updates ---->
+    <!---Update Form Tab--->
+     <cflayoutarea title="Edit Master List" name="t4">
+     <cfform name="frm_updateReportsMaster" format="flash" skin="haloblue">
+     <cfformgroup type="panel" >
+     <cfformgroup type="horizontal">
+     <cfinput type="Text" name="FirstName" size="20"maxlength="35" label="First Name" value="Report Name"> 
+	 <cfinput type="Text" name="LastName" size="20" maxlength="35" label="Last Name"value="Report Category">
+ 	 </cfformgroup>
+	<!--- Report Selection Dropdown box ---> 
+	<cfselect name="Reports" label="Reports" message="Select Report" required="yes">  			<!--- DB populated drop down box for reports. Required field. --->
+    <option value="Vendor Auto Routing">Vendor Auto Routing </option>							<!--- Values are static for testing. CFSELECT to be populated by query--->
+    <option value="Fee Copier">Fee Copier</option>
+    <option value="TSS SQL Search">TSS SQL Search </option>
+    <option value="Title Commitment Templates">Title Comittment Templates</option>
+    <option value="Dev To Production File Publisher"> Dev To Production</option>
+	</cfselect>  
+ 
+	<!---Button Group--->
+    <cfformgroup type="horizontal">
+	<!--- Reset button. ---> 
+	<cfinput type="Reset" name="ResetForm" value="Ureate New Report">
+	<cfinput type="Submit" name="SubmitForm" value="Update Report">
+	<!--- submit button ---></cfformgroup>
+    </cfformgroup>
+    </cfform>
     </cflayoutarea>
     </cflayout>
-   
-
 </div>
 </body>
 </html>
