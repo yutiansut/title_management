@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:mx="library://ns.adobe.com/flex/mx" layout="absolute" width="1194" height="600" backgroundColor="#3B3838">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<!-- Place non-visual elements (e.g., services, value objects) here -->	
+	<mx:TabNavigator y="120" width="100%" height="443" x="0">
+		<s:NavigatorContent label="Main View" width="100%" height="100%" backgroundColor="#0F68A6" id="NavContentBox" >
+			<mx:MenuBar y="-8" chromeColor="#A39797" width="100%" height="34" x="0"></mx:MenuBar>
+			<mx:ViewStack x="8" y="31" id="viewstack1" width="1179" height="308">
+				<s:NavigatorContent label="All Employees" width="100%" height="100%">
+					<mx:DataGrid x="10" y="10" width="100%" height="265" contentBackgroundColor="#201818" chromeColor="#868181" color="#010000" id="mainProjectPerspectiveDG">
+						<mx:columns>
+							<mx:DataGridColumn headerText="Project Name" dataField="" />
+							<mx:DataGridColumn headerText="Description" dataField="" />
+							<mx:DataGridColumn headerText="Project Manager" dataField="" />
+							<mx:DataGridColumn headerText="Date Initiated" dataField="" />
+							<mx:DataGridColumn headerText="Completion Date" dataField="" />
+							<mx:DataGridColumn headerText="Department Assignemt" dataField="" />
+							<mx:DataGridColumn headerText="Days Remaining" />
+							<mx:DataGridColumn headerText="Anticipated Timeliness" dataField="" />
+							<mx:DataGridColumn headerText="Description" dataField="" />
+						</mx:columns>
+					</mx:DataGrid>
+				</s:NavigatorContent>
+				
+				<s:NavigatorContent label="Selected Employees" width="100%" height="100%">
+					<mx:DataGrid x="10" y="30" width="100%" height="265" contentBackgroundColor="#201818" chromeColor="#868181" color="#000000" id="employeePerspectiveDG2">
+						<mx:columns>
+							<mx:DataGridColumn headerText="Report Name" dataField="reportName"/>
+							<mx:DataGridColumn headerText="Assigned Date" dataField="dateCreated"/>
+						</mx:columns>
+					</mx:DataGrid>
+					<s:Label x="15" y="5" text="Available Employees:" width="155" fontWeight="bold" fontSize="13" color="#DAD2D2"/>
+					<s:DropDownList x="165" y="0" width="164" prompt="Select Employee" id="employeeComboBox" toolTip="Select employee to see reports assigned to them." dataProvider="{activeEmployeeListDP}" labelField="employeeName" change="populateEmployeePerspectiveDG();"></s:DropDownList>
+				</s:NavigatorContent>
+			</mx:ViewStack>
+			<s:ButtonBar x="8" y="0" dataProvider="{viewstack1}"/>
+			<s:Button x="249" y="0" label="+ New Assignment" id="newAssignBtn" enabled="true" click="newAssignment();"/>
+			<s:Button x="386" y="0" label="- Remove Assignment" id="removeAssignBtn" enabled="true" click="removeAssignmentWindowFunc();"/>
+			<s:Button x="542" y="0" label="Refresh Data" click="populateComponents();"/>
+		</s:NavigatorContent>
+		
+		<s:NavigatorContent label="Project Snapshot" width="100%" height="100%" backgroundColor="#0F68A6" >
+			<mx:MenuBar y="-8" chromeColor="#A39797" width="100%" height="34" x="0"></mx:MenuBar>
+			<s:Button x="542" y="0" label="Refresh Data" click="populateComponents();" id="btn_Refresh2"/>
+			<s:ButtonBar x="8" y="0" dataProvider="{projectSnapshotStack}"/>
+			<mx:ViewStack x="2" y="31" id="projectSnapshotStack" width="1180" height="330">		
+				<s:NavigatorContent label="All Projects" width="100%" height="100%">
+					<mx:DataGrid x="8" y="30" width="100%" height="265" contentBackgroundColor="#201818" chromeColor="#868181" color="#000000" id="reportingPerspectiveDG">
+						<mx:columns>
+							<mx:DataGridColumn headerText="Report Name" dataField="reportName"/>
+							<mx:DataGridColumn headerText="Employee Name" dataField="employeeName"/>
+							<mx:DataGridColumn headerText="Assigned Date" dataField="dateCreated"/>
+						</mx:columns>
+					</mx:DataGrid>
+				</s:NavigatorContent>
+				<s:NavigatorContent label="Projects By Manager" width="100%" height="100%">
+					<mx:DataGrid x="8" y="30" width="1168" height="265" contentBackgroundColor="#201818" chromeColor="#868181" color="#010000"  id="prjAssignedToManager" dataProvider="">
+						<mx:columns>
+							<mx:DataGridColumn headerText="Project Name" dataField=""/>
+							<mx:DataGridColumn headerText="Description" dataField=""/>
+							<mx:DataGridColumn headerText="Start Date" dataField="" />
+							<mx:DataGridColumn headerText="On Time Indicator" dataField="" />
+						</mx:columns>
+					</mx:DataGrid>
+					<s:DropDownList x="145" y="0" width="164" prompt="Select Report" id="selectedReportComboBox" labelField="reportName" dataProvider="{reportsCurrentlyAssignedComboDP}" change="displayAssignedEmployees();" enabled="true"></s:DropDownList>
+					<s:Label x="23" y="5" text="Select Manager:" width="112" fontWeight="bold" fontSize="13" color="#DAD2D2"/>
+				</s:NavigatorContent>
+			</mx:ViewStack>
+			<s:Button x="249" y="0" label="+ New Assignment" click="newAssignment();"/>
+			<s:Button x="386" y="0" label="- Remove Assignment" click="removeAssignmentWindowFunc();"/>
+		</s:NavigatorContent>
+		
+		<s:NavigatorContent label="Task Perspective" width="100%" height="100%" backgroundColor="#0F68A6" id="reportComboBox">
+			<mx:MenuBar y="-8" chromeColor="#A39797" width="100%" height="34" x="0"></mx:MenuBar>
+			<s:NavigatorContent label="All Tasks" width="100%" height="100%">
+				<mx:ViewStack x="2" y="34" id="taskSnapshotStack" width="1184" height="329">		
+					<s:NavigatorContent label="All Tasks" width="100%" height="100%">
+						<mx:DataGrid x="8" y="30" width="100%" height="265" contentBackgroundColor="#201818" chromeColor="#868181" color="#000000" id="reportingPerspectiveDG1">
+							<mx:columns>
+								<mx:DataGridColumn headerText="Report Name" dataField="reportName"/>
+								<mx:DataGridColumn headerText="Employee Name" dataField="employeeName"/>
+								<mx:DataGridColumn headerText="Assigned Date" dataField="dateCreated"/>
+							</mx:columns>
+						</mx:DataGrid>
+						<s:Button x="8" y="300" label="Expanded View" width="109"/>
+						<s:Button x="130" y="300" label="Set Reminder" width="109"/>
+						<s:Label x="10" y="5" text="Sort By:" width="60" fontWeight="bold" fontSize="13" color="#DAD2D2" textDecoration="underline"/>
+						<s:DropDownList x="80" y="0" width="164" prompt="Select Date Range" id="selectedReportComboBox4" labelField="reportName" dataProvider="{reportsCurrentlyAssignedComboDP}" change="displayAssignedEmployees();" enabled="true"></s:DropDownList>
+						<s:Label x="273" y="5" text="From:" width="60" fontWeight="bold" fontSize="13" color="#DAD2D2" textDecoration="underline"/>
+						<mx:DateField x="325" y="1" width="101"/>
+						<s:Label x="453" y="5" text="To:" width="38" fontWeight="bold" fontSize="13" color="#DAD2D2" textDecoration="underline"/>
+						<mx:DateField x="491" y="1" width="102"/>
+						<s:Label x="622" y="7" text="Task Status:" width="85" fontWeight="bold" fontSize="13" color="#DAD2D2" textDecoration="underline"/>
+						<s:DropDownList x="714" y="3" width="110" prompt="Select Status" id="selectedReportComboBox5" labelField="reportName" dataProvider="{reportsCurrentlyAssignedComboDP}" change="displayAssignedEmployees();" enabled="true"></s:DropDownList>
+					</s:NavigatorContent>
+					<s:NavigatorContent label="Tasks By Project" width="100%" height="100%">
+						<mx:DataGrid x="8" y="30" width="1168" height="265" contentBackgroundColor="#201818" chromeColor="#868181" color="#010000"  id="prjAssignedToManager0" dataProvider="">
+							<mx:columns>
+								<mx:DataGridColumn headerText="Project Name" dataField=""/>
+								<mx:DataGridColumn headerText="Description" dataField=""/>
+								<mx:DataGridColumn headerText="Start Date" dataField="" />
+								<mx:DataGridColumn headerText="On Time Indicator" dataField="" />
+							</mx:columns>
+						</mx:DataGrid>
+						<s:DropDownList x="145" y="0" width="164" prompt="Select Report" id="selectedReportComboBox0" labelField="reportName" dataProvider="{reportsCurrentlyAssignedComboDP}" change="displayAssignedEmployees();" enabled="true"></s:DropDownList>
+						<s:Label x="23" y="5" text="Select Project:" width="112" fontWeight="bold" fontSize="13" color="#DAD2D2"/>
+						<s:Label x="332" y="5" text="Sort By:" width="60" fontWeight="bold" fontSize="13" color="#DAD2D2" textDecoration="underline"/>
+						<s:DropDownList x="402" y="0" width="164" prompt="Select Date Range" id="selectedReportComboBox1" labelField="reportName" dataProvider="{reportsCurrentlyAssignedComboDP}" change="displayAssignedEmployees();" enabled="true"></s:DropDownList>
+						<s:Label x="595" y="5" text="From:" width="60" fontWeight="bold" fontSize="13" color="#DAD2D2" textDecoration="underline"/>
+						<mx:DateField x="647" y="1" width="101"/>
+						<s:Label x="775" y="5" text="To:" width="38" fontWeight="bold" fontSize="13" color="#DAD2D2" textDecoration="underline"/>
+						<mx:DateField x="813" y="1" width="102"/>
+						<s:Label x="944" y="7" text="Task Status:" width="85" fontWeight="bold" fontSize="13" color="#DAD2D2" textDecoration="underline"/>
+						<s:DropDownList x="1032" y="2" width="110" prompt="Select Status" id="selectedReportComboBox2" labelField="reportName" dataProvider="{reportsCurrentlyAssignedComboDP}" change="displayAssignedEmployees();" enabled="true"></s:DropDownList>
+						<s:Button x="8" y="300" label="Expanded View" width="109"/>
+						<s:Button x="130" y="300" label="Set Reminder" width="109"/>
+					</s:NavigatorContent>
+				</mx:ViewStack>
+			</s:NavigatorContent>
+			<s:ButtonBar x="8" y="0" dataProvider="{taskSnapshotStack}"/>
+		</s:NavigatorContent>
+		<s:NavigatorContent label="Project Analytics" width="100%" height="100%">
+			<s:NavigatorContent label="Task Perspective" width="100%" height="100%" backgroundColor="#0F68A6" id="reportComboBox0">
+				<s:Panel x="6" y="46" width="391" height="333">
+					<mx:LineChart y="0" id="linechart1" height="234" width="369" horizontalCenter="-1">
+						<mx:series>
+							<mx:LineSeries displayName="Series 1" yField=""/>
+						</mx:series>
+					</mx:LineChart>
+					<mx:Legend dataProvider="{linechart1}" x="10" y="242" width="134"/>
+				</s:Panel>
+				<s:Panel x="405" y="46" width="391" height="333">
+					<mx:LineChart y="0" id="linechart0" height="234" width="369" horizontalCenter="-1">
+						<mx:series>
+							<mx:LineSeries displayName="Series 1" yField=""/>
+						</mx:series>
+					</mx:LineChart>
+					<mx:Legend dataProvider="{linechart0}" x="10" y="242" width="134"/>
+				</s:Panel>
+			</s:NavigatorContent>
+		</s:NavigatorContent>
+	</mx:TabNavigator>
+	<mx:MenuBar width="100%" height="30" x="0" y="-1"></mx:MenuBar>
+	<s:Label y="11" text="First Vision Project Management" x="10" width="268" fontWeight="bold" fontSize="12"/>
