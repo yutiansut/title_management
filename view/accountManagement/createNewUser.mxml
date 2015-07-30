@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="760" height="558">
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.ResultEvent;
+			import mx.controls.Alert;
+			
+			//close createNewUser Window
+			//close window function
+			private function closeWindow():void {
+				PopUpManager.removePopUp(this);
+			}
+			
+				
+			//function initiates the remote object call to complete the new employee add process.
+			
+			private function RegisterNewEmployee():void{
+				//remote object and method delcared here. 
+				//Pass form field values within paranthesis ahead of method name
+				
+			}
+			//Result Handler of create createNewEmployee Remote Object method
+			private function createNewEmployeeResultHandler(e:ResultEvent):void{
+				Alert.show('New Employee Successfully Added');
+				
+			}
+			
+				
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<s:RemoteObject id="roCreateNewUser" source="ColdFusion" destination="controller.employeeAccountManagement.createNewEmployeeController" showBusyCursor="true">
+			<mx:method name="createNewEmplpoyeeProfile" result="createNewEmployeeResultHandler(event)" fault="mx.controls.Alert.show(event.fault.faultString)" />
+		</s:RemoteObject>
+
+	</fx:Declarations>
+	<s:TitleWindow width="100%" height="558" title="New User Account Creation" close="closeWindow();">
+		<mx:Form y="10" width="100%" height="277">
+			<s:HGroup width="556" height="56" gap="15">
+				<mx:FormItem label="First Name" width="235" height="27" fontSize="12" color="#000000">
+					<s:TextInput width="148"/>
+				</mx:FormItem>
+				<mx:FormItem label="Last Name" width="279" height="27" horizontalAlign="left" fontSize="12" color="#000000">
+					<s:TextInput width="178"/>
+				</mx:FormItem>
+			</s:HGroup>
+			<s:HGroup width="726" height="59">
+				<mx:FormItem label="Username:" fontSize="12" textAlign="left" width="290" color="#000000">
+					<s:TextInput width="179"/>
+				</mx:FormItem>
+				<mx:FormItem label="Username:" fontSize="12" textAlign="left" width="214" color="#000000">
+					<s:TextInput width="121"/>
+				</mx:FormItem>
+				<mx:FormItem label="Access Level:" width="182" color="#000000">
+					<s:DropDownList width="60"></s:DropDownList>
+				</mx:FormItem>
+			</s:HGroup>
+			<s:HGroup width="431" height="37">
+				<mx:FormItem label="Email: " fontSize="12" width="185" horizontalAlign="left" color="#000000">
+					<s:TextInput/>
+				</mx:FormItem>
+				<s:Label text="@&#xd;&#xd;&#xd;" fontSize="16" width="19" height="21" color="#000000"/>
+				<s:ComboBox color="#000000">
+					<s:dataProvider>
+						<mx:ArrayList>
+							<fx:String>firsttitleservices.com</fx:String>
+							<fx:String>streamlinetitle.com</fx:String>
+						</mx:ArrayList>
+					</s:dataProvider>
+				</s:ComboBox>
+			</s:HGroup>
+			<s:HGroup width="565" height="45">
+				<mx:FormItem label="Position:" fontSize="12" color="#000000">
+					<s:TextInput/>
+				</mx:FormItem>
+				<mx:FormItem label="Phone:" fontSize="12" color="#000000">
+					<s:TextInput/>
+				</mx:FormItem>
+				<mx:FormItem label="Fax:" fontSize="12" color="#000000">
+					<s:TextInput/>
+				</mx:FormItem>
+			</s:HGroup>
+		</mx:Form>
+		<s:TileGroup x="19" y="295" width="731" height="183">
+			<s:CheckBox label="Manager?" fontSize="12"/>
+			<s:CheckBox label="Streamline Employee" fontSize="12"/>
+			<s:CheckBox label="Michigan Employee" fontSize="12"/>
+			<s:CheckBox label="Michigan Admin" fontSize="12"/>
+			<s:CheckBox label="Closing Emails" fontSize="12"/>
+			<s:CheckBox label="VA Employee" fontSize="12"/>
+			<s:CheckBox label="VA Admin" fontSize="12"/>
+			<s:CheckBox label="Vendor Admin" fontSize="12"/>
+			<s:CheckBox label="Fairfax Admin" fontSize="12"/>
+			<s:CheckBox label="Processor" fontSize="12"/>
+			<s:CheckBox label="VA Temp Employee" fontSize="12"/>
+			<s:CheckBox label="VA Employee BK" fontSize="12"/>
+			<s:CheckBox label="VA Temp Admin" fontSize="12"/>
+			<s:CheckBox label="Fairfax Temp Admin" fontSize="12"/>
+			<s:CheckBox label="TX Employee" fontSize="12"/>
+			<s:CheckBox label="TX Admin" fontSize="12"/>
+			<s:CheckBox label="FT Fairfax Employee" fontSize="12"/>
+			<s:CheckBox label="FT Fairfax Admin" fontSize="12"/>
+			<s:CheckBox label="MI Flushing Employee" fontSize="12"/>
+			<s:CheckBox label="MI Flushing Admin" fontSize="12"/>
+			<s:CheckBox label="MO Employee" fontSize="12"/>
+			<s:CheckBox label="MO Admin" fontSize="12"/>
+		</s:TileGroup>
+	</s:TitleWindow>
+</s:Group>
