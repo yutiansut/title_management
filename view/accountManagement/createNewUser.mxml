@@ -156,29 +156,37 @@
 				</mx:FormItem>
 			</s:HGroup>
 		</mx:Form>
-		<s:TileGroup x="19" y="258" width="735" height="124" color="#FFFFFF">
-			<s:CheckBox label="Streamline Employee" fontSize="12" id="fm_StreamlineEmployee"/>
-			<s:CheckBox label="Michigan Employee" fontSize="12" id="fm_michiganEmployee"/>
-			<s:CheckBox label="Michigan Admin" fontSize="12" id="fm_michiganAdmin"/>
-			<s:CheckBox label="Closing Emails" fontSize="12" id="fm_closingEmails"/>
-			<s:CheckBox label="VA Employee" fontSize="12" id="fm_virginiaEmployee"/>
-			<s:CheckBox label="VA Admin" fontSize="12" id="fm_virginiaAdmin"/>
-			<s:CheckBox label="Vendor Admin" fontSize="12" id="fm_vendorAdmin"/>
-			<s:CheckBox label="Fairfax Admin" fontSize="12" id="fm_fairfaxAdmin"/>
-			<s:CheckBox label="Processor" fontSize="12" id="fm_processor"/>
-			<s:CheckBox label="VA Temp Employee" fontSize="12" id="fm_virginiaEmployeeTemp"/>
-			<s:CheckBox label="VA Employee BK" fontSize="12"/>
-			<s:CheckBox label="VA Temp Admin" fontSize="12" id="fm_virginiaAdminTemp"/>
-			<s:CheckBox label="Fairfax Temp Admin" fontSize="12" id="fm_fairfaxAdminTemp"/>
-			<s:CheckBox label="TX Employee" fontSize="12" id="fm_TXEmployee"/>
-			<s:CheckBox label="TX Admin" fontSize="12" id="fm_TXAdmin"/>
-			<s:CheckBox label="FT Fairfax Employee" fontSize="12" id="fm_ftFairfaxEmployee"/>
-			<s:CheckBox label="FT Fairfax Admin" fontSize="12" id="fm_ftFairfaxAdmin"/>
-			<s:CheckBox label="MI Flushing Employee" fontSize="12" id="fm_MIFlushingEmployee"/>
-			<s:CheckBox label="MI Flushing Admin" fontSize="12" id="fm_MIFlushingAdmin"/>
-			<s:CheckBox label="MO Employee" fontSize="12"/>
-			<s:CheckBox label="MO Admin" fontSize="12"/>
-		</s:TileGroup>
-		<s:Button x="23" y="390" label="Register New Employee" width="165" height="29" fontSize="12" fontWeight="bold" textDecoration="none"  click="RegisterNewEmployee()"/>
+		<s:Button x="23" y="410" label="Register New Employee" width="165" height="29" fontSize="12" fontWeight="bold" textDecoration="none"  click="RegisterNewEmployee()"/>
+		<mx:ViewStack x="0" y="259" id="viewstack1" width="100%" height="152">
+			<s:NavigatorContent label="manualAssign" width="100%" height="150">
+				<s:TileGroup y="0" width="735" height="134" color="#FFFFFF" horizontalCenter="0">
+					<s:CheckBox label="Streamline Employee" fontSize="12" id="fm_StreamlineEmployee"/>
+					<s:CheckBox label="Michigan Employee" fontSize="12" id="fm_michiganEmployee"/>
+					<s:CheckBox label="Michigan Admin" fontSize="12" id="fm_michiganAdmin"/>
+					<s:CheckBox label="Closing Emails" fontSize="12" id="fm_closingEmails"/>
+					<s:CheckBox label="VA Employee" fontSize="12" id="fm_virginiaEmployee"/>
+					<s:CheckBox label="VA Admin" fontSize="12" id="fm_virginiaAdmin"/>
+					<s:CheckBox label="Vendor Admin" fontSize="12" id="fm_vendorAdmin"/>
+					<s:CheckBox label="Fairfax Admin" fontSize="12" id="fm_fairfaxAdmin"/>
+					<s:CheckBox label="Processor" fontSize="12" id="fm_processor"/>
+					<s:CheckBox label="VA Temp Employee" fontSize="12" id="fm_virginiaEmployeeTemp"/>
+					<s:CheckBox label="VA Employee BK" fontSize="12"/>
+					<s:CheckBox label="VA Temp Admin" fontSize="12" id="fm_virginiaAdminTemp"/>
+					<s:CheckBox label="Fairfax Temp Admin" fontSize="12" id="fm_fairfaxAdminTemp"/>
+					<s:CheckBox label="TX Employee" fontSize="12" id="fm_TXEmployee"/>
+					<s:CheckBox label="TX Admin" fontSize="12" id="fm_TXAdmin"/>
+					<s:CheckBox label="FT Fairfax Employee" fontSize="12" id="fm_ftFairfaxEmployee"/>
+					<s:CheckBox label="FT Fairfax Admin" fontSize="12" id="fm_ftFairfaxAdmin"/>
+					<s:CheckBox label="MI Flushing Employee" fontSize="12" id="fm_MIFlushingEmployee"/>
+					<s:CheckBox label="MI Flushing Admin" fontSize="12" id="fm_MIFlushingAdmin"/>
+					<s:CheckBox label="MO Employee" fontSize="12"/>
+					<s:CheckBox label="MO Admin" fontSize="12"/>
+				</s:TileGroup>
+			</s:NavigatorContent>
+			<s:NavigatorContent label="mirrorProfile" width="100%" height="40" id="vs_mirrorProfile">
+				<s:Label x="10" y="16" text="Select Profile To Mirror:" color="#FFFFFF" fontSize="12" fontWeight="bold"/>
+				<s:ComboBox x="150" y="10" width="160"/>
+			</s:NavigatorContent>
+		</mx:ViewStack>
 	</s:TitleWindow>
 </s:Group>
