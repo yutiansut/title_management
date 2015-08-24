@@ -25,10 +25,11 @@
 
 <!--- Concatenate email and domain --->
 <cfset emailString = #arguments.fm_emailAddress#&"@"&#arguments.fm_domainField# >
-<!--- Hash password before storing it. --->
-<cfset variables.salt = HASH(GenerateSecretKey("AES"), "SHA-512") />
-    <cfset variables.hashedPassword = HASH(#arguments.fm_password# & variable.salt, "SHA-512") />
-    <!--- Insert hashed  password and salt into database table --->
+<!---Hash the user password --->
+<cfset variables.hashedPassword = Hash(#arguments.fm_password#, "SHA-512") />
+<!--- Iterate over the hash 1,000 times --->
+<cfset variables.numIterarions = 1000 />
+
 
 
 <!--- Query Submits New Employee Information into the database to successfully create the new employee account --->
@@ -66,4 +67,3 @@ INSERT INTO [First_Title_Services_Dev].[dbo].[Dev_First_Admin]
 </cfquery>
 </cffunction>
 
-</component>
