@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" width="775" height="490">
+<?xml version="1.0" encoding="utf-8"?> 
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="1600" minHeight="1200"  width="906" height="768"> 
+
 	<fx:Script>
 		<![CDATA[
 			import mx.controls.Alert;
@@ -22,15 +23,34 @@
 			private function RegisterNewEmployee():void{
 				//remote object and method delcared here. 
 				//Pass form field values within parenthesis ahead of method name
-				roCreateNewUser.createNewEmployeeProfile(fm_FName.text, fm_LName.text, fm_userName.text, fm_password.text,
-					fm_emailAddress.text, fm_domainField.selectedItem, fm_accessLevel.selectedItem, fm_position.text, fm_roleID.selectedItem, fm_phone.text,  
-					fm_fax.text, fm_report.selectedItem);
+				roCreateNewUser.createNewEmployeeProfile(fm_FName.text, fm_LName.text, fm_userName.text, fm_password.text
+				);
 				
 				
 			}
 			//Result Handler of create createNewEmployee Remote Object method
 			private function createNewEmployeeResultHandler(e:ResultEvent):void{
 				Alert.show('New Employee Successfully Added');
+				
+			}
+			
+			//Clear Form after submission
+			private function clearForm():void{
+				fm_FName.text = '';
+				fm_LName.text = '';
+				fm_userName.text = '';
+				fm_password.text = '';
+				fm_accessLevel.selectedIndex = -1;
+				fm_emailAddress.text = '';
+				fm_domainField.selectedIndex = -1;
+				fm_position.text = '';
+				fm_phone.text = '';
+				fm_fax.text = '';
+				fm_report.selectedIndex = -1;
+				fm_roleID.selectedIndex = -1;
+				fm_roleManager.selectedIndex = -1;
+				fm_Status.selectedIndex = -1; 
+				fm_parentUserID.selectedIndex = -1;
 				
 			}
 		]]>
@@ -53,7 +73,7 @@
 		<mx:PhoneNumberValidator id="faxValidator" required="true" property="text" source="{fm_fax}" allowedFormatChars="()-.+ x xt" minDigits="10" wrongLengthError="Fax number entered is too short to be a valid fax number." invalidCharError="Your fax number contains invalid characters." />
 	</fx:Declarations>
 	
-	<s:TitleWindow width="775" height="488" title="New User Account Creation"  enabled="true" y="0" horizontalCenter="0" close="closeWindow();">
+	<s:TitleWindow width="775" height="488" title="New User Account Creation"  enabled="true" y="55" horizontalCenter="0" close="closeWindow();">
 		<mx:Form y="10" width="100%" height="241">
 			<s:HGroup width="556" height="39" gap="15">
 				<mx:FormItem label="First Name" width="235" height="27" fontSize="12" color="#FFFFFF" required="true">
@@ -65,10 +85,10 @@
 			</s:HGroup>
 			<s:HGroup width="726" height="38">
 				<mx:FormItem label="Username:" fontSize="12" textAlign="left" width="290" color="#FFFFFF" required="true">
-					<s:TextInput width="179" color="#000000" id="fm_userName"/>
+					<s:TextInput width="179" color="#000000" id="fm_userName" text="{fm_emailAddress.text}"/>
 				</mx:FormItem>
 				<mx:FormItem label="Password:" fontSize="12" textAlign="left" width="214" color="#FFFFFF" required="true">
-					<s:TextInput width="121" color="#000000" id="fm_password"/>
+					<s:TextInput width="121" color="#000000" id="fm_password" displayAsPassword="true"/>
 				</mx:FormItem>
 				<mx:FormItem label="Access Level:" width="182" color="#FFFFFF" required="false">
 					<s:DropDownList width="60" color="#FFFFFF" id="fm_accessLevel">
@@ -83,7 +103,7 @@
 			</s:HGroup>
 			<s:HGroup width="431" height="32">
 				<mx:FormItem label="Email: " fontSize="12" width="173" horizontalAlign="left" color="#FFFFFF" required="false">
-					<s:TextInput color="#000000" id="fm_emailAddress"/>
+					<s:TextInput color="#000000" id="fm_emailAddress" text="{fm_userName.text}"/>
 				</mx:FormItem>
 				<s:Label text="@&#xd;&#xd;&#xd;" fontSize="14" width="15" height="21" color="#FEFEFE"/>
 				<s:ComboBox color="#FFFFFF" id="fm_domainField" height="22" enabled="true">
@@ -108,7 +128,7 @@
 					<s:TextInput color="#000000" id="fm_fax"/>
 				</mx:FormItem>
 				<mx:FormItem label="Report:" width="134" color="#FFFFFF">
-					<s:DropDownList width="60" color="#000000" id="fm_report">
+					<s:DropDownList width="60" color="#FFFFFF" id="fm_report">
 						<s:dataProvider>
 							<mx:ArrayList>
 								<fx:String>1</fx:String>
@@ -121,7 +141,7 @@
 			</s:HGroup>
 			<s:HGroup width="703" height="33">
 				<mx:FormItem label="Role ID:" width="134" color="#FFFFFF">
-					<s:DropDownList width="60" color="#000000" id="fm_roleID">
+					<s:DropDownList width="60" color="#FFFFFF" id="fm_roleID">
 						<s:dataProvider>
 							<mx:ArrayList>
 								<fx:String>23</fx:String>
@@ -152,41 +172,35 @@
 					</s:DropDownList>
 				</mx:FormItem>
 				<mx:FormItem label="Parent ID:" width="134" color="#FFFFFF">
-					<s:DropDownList width="60" color="#000000" id="fm_parentUserID"></s:DropDownList>
+					<s:DropDownList width="60" color="#FFFFFF" id="fm_parentUserID"></s:DropDownList>
 				</mx:FormItem>
 			</s:HGroup>
 		</mx:Form>
-		<s:Button x="23" y="410" label="Register New Employee" width="165" height="29" fontSize="12" fontWeight="bold" textDecoration="none"  click="RegisterNewEmployee()"/>
-		<mx:ViewStack x="0" y="259" id="viewstack1" width="100%" height="152">
-			<s:NavigatorContent label="manualAssign" width="100%" height="150">
-				<s:TileGroup y="0" width="735" height="134" color="#FFFFFF" horizontalCenter="0">
-					<s:CheckBox label="Streamline Employee" fontSize="12" id="fm_StreamlineEmployee"/>
-					<s:CheckBox label="Michigan Employee" fontSize="12" id="fm_michiganEmployee"/>
-					<s:CheckBox label="Michigan Admin" fontSize="12" id="fm_michiganAdmin"/>
-					<s:CheckBox label="Closing Emails" fontSize="12" id="fm_closingEmails"/>
-					<s:CheckBox label="VA Employee" fontSize="12" id="fm_virginiaEmployee"/>
-					<s:CheckBox label="VA Admin" fontSize="12" id="fm_virginiaAdmin"/>
-					<s:CheckBox label="Vendor Admin" fontSize="12" id="fm_vendorAdmin"/>
-					<s:CheckBox label="Fairfax Admin" fontSize="12" id="fm_fairfaxAdmin"/>
-					<s:CheckBox label="Processor" fontSize="12" id="fm_processor"/>
-					<s:CheckBox label="VA Temp Employee" fontSize="12" id="fm_virginiaEmployeeTemp"/>
-					<s:CheckBox label="VA Employee BK" fontSize="12"/>
-					<s:CheckBox label="VA Temp Admin" fontSize="12" id="fm_virginiaAdminTemp"/>
-					<s:CheckBox label="Fairfax Temp Admin" fontSize="12" id="fm_fairfaxAdminTemp"/>
-					<s:CheckBox label="TX Employee" fontSize="12" id="fm_TXEmployee"/>
-					<s:CheckBox label="TX Admin" fontSize="12" id="fm_TXAdmin"/>
-					<s:CheckBox label="FT Fairfax Employee" fontSize="12" id="fm_ftFairfaxEmployee"/>
-					<s:CheckBox label="FT Fairfax Admin" fontSize="12" id="fm_ftFairfaxAdmin"/>
-					<s:CheckBox label="MI Flushing Employee" fontSize="12" id="fm_MIFlushingEmployee"/>
-					<s:CheckBox label="MI Flushing Admin" fontSize="12" id="fm_MIFlushingAdmin"/>
-					<s:CheckBox label="MO Employee" fontSize="12"/>
-					<s:CheckBox label="MO Admin" fontSize="12"/>
-				</s:TileGroup>
-			</s:NavigatorContent>
-			<s:NavigatorContent label="mirrorProfile" width="100%" height="40" id="vs_mirrorProfile">
-				<s:Label x="10" y="16" text="Select Profile To Mirror:" color="#FFFFFF" fontSize="12" fontWeight="bold"/>
-				<s:ComboBox x="150" y="10" width="160"/>
-			</s:NavigatorContent>
-		</mx:ViewStack>
+		<s:TileGroup x="19" y="258" width="735" height="124" color="#FFFFFF">
+			<s:CheckBox label="Streamline Employee" fontSize="12" id="fm_StreamlineEmployee"/>
+			<s:CheckBox label="Michigan Employee" fontSize="12" id="fm_michiganEmployee"/>
+			<s:CheckBox label="Michigan Admin" fontSize="12" id="fm_michiganAdmin"/>
+			<s:CheckBox label="Closing Emails" fontSize="12" id="fm_closingEmails"/>
+			<s:CheckBox label="VA Employee" fontSize="12" id="fm_virginiaEmployee"/>
+			<s:CheckBox label="VA Admin" fontSize="12" id="fm_virginiaAdmin"/>
+			<s:CheckBox label="Vendor Admin" fontSize="12" id="fm_vendorAdmin"/>
+			<s:CheckBox label="Fairfax Admin" fontSize="12" id="fm_fairfaxAdmin"/>
+			<s:CheckBox label="Processor" fontSize="12" id="fm_processor"/>
+			<s:CheckBox label="VA Temp Employee" fontSize="12" id="fm_virginiaEmployeeTemp"/>
+			<s:CheckBox label="VA Employee BK" fontSize="12"/>
+			<s:CheckBox label="VA Temp Admin" fontSize="12" id="fm_virginiaAdminTemp"/>
+			<s:CheckBox label="Fairfax Temp Admin" fontSize="12" id="fm_fairfaxAdminTemp"/>
+			<s:CheckBox label="TX Employee" fontSize="12" id="fm_TXEmployee"/>
+			<s:CheckBox label="TX Admin" fontSize="12" id="fm_TXAdmin"/>
+			<s:CheckBox label="FT Fairfax Employee" fontSize="12" id="fm_ftFairfaxEmployee"/>
+			<s:CheckBox label="FT Fairfax Admin" fontSize="12" id="fm_ftFairfaxAdmin"/>
+			<s:CheckBox label="MI Flushing Employee" fontSize="12" id="fm_MIFlushingEmployee"/>
+			<s:CheckBox label="MI Flushing Admin" fontSize="12" id="fm_MIFlushingAdmin"/>
+			<s:CheckBox label="MO Employee" fontSize="12"/>
+			<s:CheckBox label="MO Admin" fontSize="12"/>
+		</s:TileGroup>
+		<s:Button x="23" y="390" label="Register New Employee" width="165" height="29" fontSize="12" fontWeight="bold" textDecoration="none"  click="RegisterNewEmployee();clearForm();"/>
 	</s:TitleWindow>
-</s:Group>
+	
+		
+</s:Application>
