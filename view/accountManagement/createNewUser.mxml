@@ -26,7 +26,7 @@
 				roCreateNewUser.createNewEmployeeProfile(fm_FName.text, fm_LName.text, fm_userName.text, fm_password.text
 					,fm_accessLevel.selectedItem, fm_emailAddress.text, fm_domainField.selectedItem, fm_position.text, 
 					fm_phone.text, fm_fax.text, fm_report.selectedIndex, fm_roleID.selectedIndex, fm_roleManager.selectedItem, fm_Status.selectedItem,
-					fm_parentUserID.value);
+					fm_parentUserID.value, fm_StreamlineEmployee.selected<cfargument name="fm_StreamlineEmployee" type="boolean" >);
 			}
 			//Result Handler of create createNewEmployee Remote Object method
 			private function createNewEmployeeResultHandler(e:ResultEvent):void{
@@ -189,7 +189,7 @@
 			<s:CheckBox label="Fairfax Admin" fontSize="12" id="fm_fairfaxAdmin"/>
 			<s:CheckBox label="Processor" fontSize="12" id="fm_processor"/>
 			<s:CheckBox label="VA Temp Employee" fontSize="12" id="fm_virginiaEmployeeTemp"/>
-			<s:CheckBox label="VA Employee BK" fontSize="12"/>
+			<s:CheckBox label="VA Employee BK" fontSize="12" id="fm_virginiaEmployeeBK"/>
 			<s:CheckBox label="VA Temp Admin" fontSize="12" id="fm_virginiaAdminTemp"/>
 			<s:CheckBox label="Fairfax Temp Admin" fontSize="12" id="fm_fairfaxAdminTemp"/>
 			<s:CheckBox label="TX Employee" fontSize="12" id="fm_TXEmployee"/>
