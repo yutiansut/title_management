@@ -24,9 +24,9 @@
 				//remote object and method delcared here. 
 				//Pass form field values within parenthesis ahead of method name
 				roCreateNewUser.createNewEmployeeProfile(fm_FName.text, fm_LName.text, fm_userName.text, fm_password.text
-				);
-				
-				
+					,fm_accessLevel.selectedItem, fm_emailAddress.text, fm_domainField.selectedItem, fm_position.text, 
+					fm_phone.text, fm_fax.text, fm_report.selectedIndex, fm_roleID.selectedIndex, fm_roleManager.selectedItem, fm_Status.selectedItem,
+					fm_parentUserID.value);
 			}
 			//Result Handler of create createNewEmployee Remote Object method
 			private function createNewEmployeeResultHandler(e:ResultEvent):void{
@@ -35,30 +35,30 @@
 			}
 			
 			//Clear Form after submission
-			private function clearForm():void{
-				fm_FName.text = '';
-				fm_LName.text = '';
-				fm_userName.text = '';
-				fm_password.text = '';
-				fm_accessLevel.selectedIndex = -1;
-				fm_emailAddress.text = '';
-				fm_domainField.selectedIndex = -1;
-				fm_position.text = '';
-				fm_phone.text = '';
-				fm_fax.text = '';
-				fm_report.selectedIndex = -1;
-				fm_roleID.selectedIndex = -1;
-				fm_roleManager.selectedIndex = -1;
-				fm_Status.selectedIndex = -1; 
-				fm_parentUserID.selectedIndex = -1;
+			//private function clearForm():void{
+			//	fm_FName.text = '';
+			//	fm_LName.text = '';
+			//	fm_userName.text = '';
+			//	fm_password.text = '';
+			//	fm_accessLevel.selectedIndex = -1;
+			//	fm_emailAddress.text = '';
+			//	fm_domainField.selectedIndex = -1;
+			//	fm_position.text = '';
+			//	fm_phone.text = '';
+			//	fm_fax.text = '';
+			//	fm_report.selectedIndex = -1;
+			//	fm_roleID.selectedIndex = -1;
+			//	fm_roleManager.selectedIndex = -1;
+			//	fm_Status.selectedIndex = -1; 
+			//	fm_parentUserID.value = 0;
 				
-			}
+		//	}
 		]]>
 	</fx:Script>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 		<s:RemoteObject id="roCreateNewUser" destination="ColdFusion" source="testingFolder.testingApp.cfc.createNewEmployeeController" fault="mx.controls.Alert.show(event.fault.faultString)">
-			<mx:method name="createNewEmplpoyeeProfile" fault="mx.controls.Alert.show(event.fault.faultString)" result= "mx.controls.Alert.show('Profile successfully created!')" />
+			<mx:method name="createNewEmplpoyeeProfile" fault="mx.controls.Alert.show(event.fault.faultString)" result= "createNewEmployeeResultHandler(event)" />
 			
 		</s:RemoteObject>
 		
@@ -67,7 +67,7 @@
 		<mx:StringValidator id="lastNameValidator" required="true" property="text" source="{fm_LName}" minLength="3" maxLength="20" tooLongError="Length exceeds maximum allowed for last name." tooShortError="Length too short to be a valid last name." />
 		<mx:StringValidator id="userNameValidator" required="true" property="text" source="{fm_userName}" tooLongError="Length exceeds maximum allowed for a username." maxLength="15" tooShortError="Length too short to be a valid username." minLength="5"/>
 		<mx:StringValidator id="passwordValidator" required="true" property="text" source="{fm_password}" tooLongError="Length exceeds maximum allowed for a valid password." maxLength="25" tooShortError="Length too short to be a valid password." minLength="8" />
-		<mx:StringValidator id="emailValidator" required="true" property="text" source="{fm_password}" tooLongError="Length exceeds maximum allowed for a valid email address." maxLength="25" tooShortError="Length too short to be a valid email address." minLength="5" />
+		<mx:StringValidator id="emailValidator" required="true" property="text" source="{fm_emailAddress}" tooLongError="Length exceeds maximum allowed for a valid email address." maxLength="25" tooShortError="Length too short to be a valid email address." minLength="5" />
 		<mx:StringValidator id="positionValidator" required="true" property="text" source="{fm_position}" tooLongError="Length exceeds maximum allowed for a valid position name." maxLength="25" tooShortError="Length too short to be a valid position name." minLength="5" />
 		<mx:PhoneNumberValidator id="phoneValidator" required="true" property="text" source="{fm_phone}" allowedFormatChars="()-.+ x xt" minDigits="10" wrongLengthError="Phone number entered is too short to be a valid phone number." />
 		<mx:PhoneNumberValidator id="faxValidator" required="true" property="text" source="{fm_fax}" allowedFormatChars="()-.+ x xt" minDigits="10" wrongLengthError="Fax number entered is too short to be a valid fax number." invalidCharError="Your fax number contains invalid characters." />
@@ -91,11 +91,11 @@
 					<s:TextInput width="121" color="#000000" id="fm_password" displayAsPassword="true"/>
 				</mx:FormItem>
 				<mx:FormItem label="Access Level:" width="182" color="#FFFFFF" required="false">
-					<s:DropDownList width="60" color="#FFFFFF" id="fm_accessLevel">
-						<s:dataProvider>
-							<mx:ArrayList>
-								<fx:String>0</fx:String>
-								<fx:String>1</fx:String>
+					<s:DropDownList width="60" color="#FFFFFF" id="fm_accessLevel" >
+						<s:dataProvider >
+							<mx:ArrayList id="accessLevelList">
+								<fx:String>9</fx:String>
+								<fx:String>44</fx:String>
 							</mx:ArrayList>
 						</s:dataProvider>
 					</s:DropDownList>
@@ -108,11 +108,10 @@
 				<s:Label text="@&#xd;&#xd;&#xd;" fontSize="14" width="15" height="21" color="#FEFEFE"/>
 				<s:ComboBox color="#FFFFFF" id="fm_domainField" height="22" enabled="true">
 					<s:dataProvider>
-						<mx:ArrayList>
+						<mx:ArrayList id="domainList">
 							<fx:String>abstractsusa.com</fx:String>
 							<fx:String>firsttitleservices.com</fx:String>
 							<fx:String>streamlinetitle.com</fx:String>
-							
 						</mx:ArrayList>
 					</s:dataProvider>
 				</s:ComboBox>
@@ -131,9 +130,10 @@
 					<s:DropDownList width="60" color="#FFFFFF" id="fm_report">
 						<s:dataProvider>
 							<mx:ArrayList>
-								<fx:String>1</fx:String>
-								<fx:String>2</fx:String>
-								<fx:String>3</fx:String>
+								<fx:Number>0</fx:Number>
+								<fx:Number>1</fx:Number>
+								<fx:Number>2</fx:Number>
+								<fx:Number>3</fx:Number>
 							</mx:ArrayList>
 						</s:dataProvider>
 					</s:DropDownList>
@@ -144,9 +144,10 @@
 					<s:DropDownList width="60" color="#FFFFFF" id="fm_roleID">
 						<s:dataProvider>
 							<mx:ArrayList>
-								<fx:String>23</fx:String>
-								<fx:String>24</fx:String>
-								<fx:String>25</fx:String>
+								<fx:Number>23</fx:Number>
+								<fx:Number>24</fx:Number>
+								<fx:Number>25</fx:Number>
+								<fx:Number>26</fx:Number>
 							</mx:ArrayList>
 						</s:dataProvider>
 					</s:DropDownList>
@@ -155,8 +156,8 @@
 					<s:DropDownList width="60" color="#FFFFFF" id="fm_roleManager">
 						<s:dataProvider>
 							<mx:ArrayList>
-								<fx:String>Yes</fx:String>
-								<fx:String>No</fx:String>
+								<fx:Number>0</fx:Number>
+								<fx:Number>1</fx:Number>
 							</mx:ArrayList>
 						</s:dataProvider>
 					</s:DropDownList>
@@ -165,14 +166,15 @@
 					<s:DropDownList width="60" color="#FFFFFF" id="fm_Status">
 						<s:dataProvider>
 							<mx:ArrayList>
-								<fx:String>0</fx:String>
-								<fx:String>1</fx:String>
+								<fx:Number>0</fx:Number>
+								<fx:Number>1</fx:Number>
+								
 							</mx:ArrayList>
 						</s:dataProvider>
 					</s:DropDownList>
 				</mx:FormItem>
 				<mx:FormItem label="Parent ID:" width="134" color="#FFFFFF">
-					<s:DropDownList width="60" color="#FFFFFF" id="fm_parentUserID"></s:DropDownList>
+					<s:NumericStepper x="124" y="5" id="fm_parentUserID"/>
 				</mx:FormItem>
 			</s:HGroup>
 		</mx:Form>
@@ -199,7 +201,7 @@
 			<s:CheckBox label="MO Employee" fontSize="12"/>
 			<s:CheckBox label="MO Admin" fontSize="12"/>
 		</s:TileGroup>
-		<s:Button x="23" y="390" label="Register New Employee" width="165" height="29" fontSize="12" fontWeight="bold" textDecoration="none"  click="RegisterNewEmployee();clearForm();"/>
+		<s:Button x="23" y="390" label="Register New Employee" width="165" height="29" fontSize="12" fontWeight="bold" textDecoration="none"  click="RegisterNewEmployee();"/>
 	</s:TitleWindow>
 	
 		
