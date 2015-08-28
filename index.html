@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" pageTitle="First Title &amp; Escrow - First Vision" backgroundColor="#8DAAC6"  width="100%" height="100%">
+	<fx:Style source="index_1.css"/>
+	<fx:Style source="index.css"/>
+	<s:states>
+		<s:State name="State1"/>
+		<s:State name="administrator"/>
+	</s:states>
+	<fx:Script>
+		<![CDATA[
+			import flash.utils.flash_proxy;
+			import mx.collections.ArrayCollection;
+			import mx.collections.ArrayList;
+			import mx.containers.TitleWindow;
+			import mx.controls.Alert;
+			import mx.core.mx_internal;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.ResultEvent;
+			import spark.components.Group;
+			import spark.components.Panel;
+			import spark.components.TitleWindow;
+			import view.accountManagement.createNewUser;
+			import view.accountManagement.suspendEmployeeProfile;
+			
+			//call the add new employee popup window
+			private function callCreateNewUser():void{
+				// variable newCreateNewUser typed as instance of new user creation component.
+				var newCreateNewUserWindow:createNewUser = 
+					PopUpManager.createPopUp(this,createNewUser, true) as createNewUser;
+					PopUpManager.centerPopUp(newCreateNewUserWindow);
+			}
+			
+			//call the suspend employee popup window
+			private function callSuspendEmployeeProfile():void{
+			//variable newSuspendEmployeeProfile typed as instance of suspend employee account component
+				var newSuspendEmployeeProfile:suspendEmployeeProfile;
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:controlBarContent>
+		<s:Label text="First Vision Title Management" fontWeight="normal" textDecoration="underline" fontFamily="Verdana"/>
+		<mx:Spacer height="13" width="90%"/>
+		<s:Button label="Settings" height="15" color="#000000" fontSize="10"/>
+		<s:Button label="Logout" height="15" color="#000000" fontSize="10"/>
+	
+	</s:controlBarContent>
+	<s:layout.administrator>
+		<s:BasicLayout/>
+	</s:layout.administrator>
+	<mx:TabNavigator x="9.7" width="243" height="475" y="80" includeIn="administrator">
+		<s:NavigatorContent label="Profile" width="100%" height="100%">
+		</s:NavigatorContent>
+		<s:NavigatorContent label="Account Management" width="100%" height="100%">
+		</s:NavigatorContent>
+		<s:NavigatorContent label="Settings" width="100%" height="100%">
+		</s:NavigatorContent>
+	</mx:TabNavigator>
+	<mx:MenuBar x="0" styleName="footerBar" bottom="0" width="100%" height="30"></mx:MenuBar>
+	<s:Label text="2015 Copyright. All Rights Reserved. First Title &amp; Escrow Inc." color="#020202" fontWeight="normal" fontFamily="Verdana" bottom="5" left="5"/>
+	<mx:Image y="0" source="assets/logo.png" width="463" height="90" left="0" source.State1="assets/FTLogo.png"/>
+	<mx:TabNavigator includeIn="administrator" y="81.35" width="876.3" height="477" cornerRadius="8" right="200">
+		<s:NavigatorContent label="Dashboard" width="100%" height="100%">
+			<s:TileGroup y="21" width="880" height="437" horizontalCenter.State1="113" x="10">
+				<s:Panel width="267" height="187" title="First Vision" skinClass="spark.skins.spark.PanelSkin">
+					<s:Button x="80" y="10" label="Launch First Vision" cornerRadius="15"/>
+					<s:Button click="callCreateNewUser();" width="110" label="+ Add New User" x="10" y="43" cornerRadius="15"/>
+					<s:Button x="149" y="43" label="- Remove User" width="108" cornerRadius="15"/>
+					<s:Button x="61" y="75" label="Suspend User Account" width="151" cornerRadius="15"/>
+					<s:Button x="76" y="109" label="Report Assignment" cornerRadius="15"/>
+				</s:Panel>
+				<s:Panel width="250" height="200" title="Encompass">
+				</s:Panel>
+				<s:Panel width="250" height="200" title="TSS-Title Express">
+					<s:Button y="62" label="Launch TSS" horizontalCenter="0"/>
+				</s:Panel>
+				<s:Panel width="224" height="200" title="Misc.">
+					<s:Button x="66" y="10" label="Report Assignment"/>
+					<s:Button x="6" y="43" label="+ New Report" width="108" click="callCreateNewUser();"/>
+					<s:Button x="149" y="43" label="- Remove User" width="108"/>
+					<s:Button x="61" y="75" label="Suspend User Account" width="138"/>
+				</s:Panel>
+				<s:Panel width="250" height="200" title="Quickbooks">
+					<s:Button label="Launch Quickbooks" x="64" y="50"/>
+				</s:Panel>
+				<s:Panel width="250" height="200">
+				</s:Panel>
+			</s:TileGroup>
+		</s:NavigatorContent>
+		<s:NavigatorContent label="Admin Functions" width="100%" height="100%">
+			<mx:Form x="0" y="0" width="100%" height="58">
+				<mx:FormItem label="Select Function" color="#FFFFFF">
+					<s:ComboBox/>
+				</mx:FormItem>
+			</mx:Form>
+		</s:NavigatorContent>
+	</mx:TabNavigator>
+	<s:TileGroup y="99" height="459" includeIn="State1" right="200" horizontalCenter="0" width="843">
+		<s:Panel width="267" height="187" title="First Vision" skinClass="spark.skins.spark.PanelSkin">
+			<s:Button x="79" y="59" label="Launch First Vision" cornerRadius="15"/>
+		</s:Panel>
+		<s:Panel width="250" height="200" title="Sales &amp; Customer Relations">
+			<s:controlBarContent>
+				<s:Button label="Administer" chromeColor="#FFFFFF" cornerRadius="10"/>
+			
+			</s:controlBarContent>
+			<s:Button y="62" label="Launch CRM Dashboard" horizontalCenter="0"/>
+		</s:Panel>
+		<s:Panel width="250" height="200" title="TSS-Title Express">
+			<s:controlBarContent>
+				<s:Button label="Administer" chromeColor="#FFFFFF" cornerRadius="10"/>
+			
+			</s:controlBarContent>
+			<s:Button y="62" label="Launch TSS" horizontalCenter="0"/>
+		</s:Panel>
+		<s:Panel width="224" height="200" title="Misc.">
+			<s:controlBarContent>
+			
+			</s:controlBarContent>
+			<s:Button x="66" y="10" label="Report Assignment"/>
+			<s:Button x="6" y="43" label="+ New Report" width="108" click="callCreateNewUser();"/>
+			<s:Button x="149" y="43" label="- Remove User" width="108"/>
+			<s:Button x="61" y="75" label="Suspend User Account" width="138"/>
+		</s:Panel>
+		<s:Panel width="250" height="200" title="Project Management">
+			<s:controlBarContent>
+				<s:Button label="Administer" chromeColor="#FFFFFF" cornerRadius="10"/>
+			
+			</s:controlBarContent>
+			<s:Button y="63" label="Launch CRM Dashboard" horizontalCenter="-1"/>
+		</s:Panel>
+		<s:Panel width="250" height="200" title="Human Resources">
+			<s:controlBarContent>
+				<s:Button label="Administer" chromeColor="#FFFFFF" cornerRadius="10"/>
+			
+			</s:controlBarContent>
+			<s:Button y="10" label="Add New Employee" cornerRadius="15" horizontalCenter="0" click="callCreateNewUser();"/>
+			<s:Button y="109" label="Report Assignment" cornerRadius="15" horizontalCenter="0"/>
+			<s:Button y="62" label="Launch HR Dashboard" horizontalCenter="0"/>
+		</s:Panel>
+	</s:TileGroup>
+	<s:Panel includeIn="State1" x="0" y="98" width="221" height="422" cornerRadius="15" title="Quick Links">
+		<s:controlBarContent>
+		
+		</s:controlBarContent>
+		<s:Button click="callCreateNewUser();" width="110" label="+ Add New User" x="51" y="27" cornerRadius="15"/>
+		<s:Button x="51" y="56" label="- Remove User" width="108" cornerRadius="15"/>
+		<s:Button x="39" y="86" label="Suspend User Account" width="133" cornerRadius="15"/>
+		<s:Button x="56" y="115" label="Report Assignment" cornerRadius="15"/>
+	</s:Panel>
+	<s:Button label="Administer" chromeColor="#FFFFFF" cornerRadius="10" includeIn="State1"/>
+	<s:Button label="Administer" chromeColor="#FFFFFF" cornerRadius="10" includeIn="State1"/>
+	<s:Button label="Administer" chromeColor="#FFFFFF" cornerRadius="10" includeIn="State1"/>
+</s:Application>
