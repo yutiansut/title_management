@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="1160" height="700" title="Search Results for file # " close="closeWindow();">
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			//Module variables receiving data from main application. 
+			[Bindable]
+			public var fileGridDP;
+			
+			
+			//Upload files method
+			private function uploadFiles():void{
+				
+			}
+			//close search window
+			private function closeWindow():void{
+				PopUpManager.removePopUp(this);
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:controlBarContent>
+		<s:Label text="(C) 2015 First Title &amp; Escrow Inc. All Rights Reserved." color="#000000" fontWeight="bold" fontSize="12" height="23" paddingTop="6"/>
+		<s:Button label="Upload Files" color="#000000" height="21" y="18"/>
+	
+	</s:controlBarContent>
+	<mx:AdvancedDataGrid y="34" id="searchResultGrid" designViewDataType="flat" width="100%" height="100%">
+		<mx:columns>
+			<mx:AdvancedDataGridColumn headerText="Order Date" dataField="col1" width="95"/>
+			<mx:AdvancedDataGridColumn headerText="Order Num" dataField="col2" width="95"/>
+			<mx:AdvancedDataGridColumn headerText="Borrower 1" dataField="col3" width="200"/>
+			<mx:AdvancedDataGridColumn headerText="Client" dataField="col3" width="200"/>
+			<mx:AdvancedDataGridColumn headerText="Due Date" dataField="col3" />
+			<mx:AdvancedDataGridColumn headerText="Status" dataField="col3" width="170"/>
+			<mx:AdvancedDataGridColumn headerText="Comments" dataField="col3" />
+			
+		</mx:columns>
+	</mx:AdvancedDataGrid>
+</s:TitleWindow>

@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="950" height="3372" xmlns:projectManagement="view.projectManagement.*" xmlns:reportManagement="view.reportManagement.*">
+	<fx:Declarations>
+		<s:RadioButtonGroup id="ALTARadioGroup"/>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		
+		
+		
+		
+		
+		
+		
+		
+	</fx:Declarations>
+	<s:BorderContainer width="100%" height="3364" backgroundColor="#08375B" horizontalCenter="0">
+		<s:BorderContainer width="80%" height="100%" horizontalCenter="0" dropShadowVisible="true" borderColor="#B3D8F8" borderWeight="3" backgroundColor="#DDDDDD">
+
+			<s:HGroup y="26" width="100%" height="200" contentBackgroundAlpha="1.0" chromeColor="#05315E" horizontalCenter="0">
+				<s:SkinnableContainer width="100%" height="100%" backgroundColor="#798590">
+					<s:HGroup x="0" y="10" width="734" height="180" verticalAlign="middle" contentBackgroundColor="#164372">
+						<s:SkinnableContainer width="84" height="105" backgroundColor="#F9F5F5" backgroundAlpha="0.0" contentBackgroundColor="#F2FAF4">
+							<s:Button x="10" y="6" label="Order" styleName="btnStyleWhite" chromeColor="#265F9A"/>
+							<s:Button x="10" y="30" label="Misc.-Docs" styleName="btnStyleWhite" chromeColor="#265F9A"/>
+							<s:Button x="10" y="54" label="Typing" styleName="btnStyleWhite" chromeColor="#265F9A"/>
+						</s:SkinnableContainer>
+						<s:SkinnableContainer width="91" height="110" backgroundColor="#EDEBEB" backgroundAlpha="0.0">
+							<s:Button x="10" y="6" label="Abstract" styleName="btnStyleWhite" chromeColor="#265F9A"/>
+							<s:Button x="10" y="30" label="Vendor- a" styleName="btnStyleWhite" chromeColor="#0F569E"/>
+							<s:Button x="10" y="54" label="Tax Data" styleName="btnStyleWhite" chromeColor="#265F9A"/>
+							<s:Button x="10" y="78" label="Vendors" styleName="btnStyleWhite" chromeColor="#265F9A"/>
+						</s:SkinnableContainer>
+						<s:SkinnableContainer width="89" height="129" backgroundColor="#EDEBEB" backgroundAlpha="0.0">
+							<s:Button y="6" label="Payoff -1" styleName="btnStyleWhite" chromeColor="#265F9A" horizontalCenter="0"/>
+							<s:Button y="30" label="Payoff - 2" styleName="btnStyleWhite" chromeColor="#0F569E" horizontalCenter="0"/>
+							<s:Button y="54" label="p/o upload" styleName="btnStyleWhite" chromeColor="#265F9A" horizontalCenter="0"/>
+							<s:Button y="78" label="Deed Prep" styleName="btnStyleWhite" chromeColor="#265F9A" horizontalCenter="0"/>
+							<s:Button y="102" label="Comt Review" styleName="btnStyleWhite" chromeColor="#265F9A" horizontalCenter="0"/>
+						</s:SkinnableContainer>
+						<s:SkinnableContainer width="90" height="110" backgroundColor="#EDEBEB" backgroundAlpha="0.0">
+							<s:Button x="10" y="6" label="Abstract" styleName="btnStyleWhite" chromeColor="#265F9A"/>
+							<s:Button x="10" y="30" label="Vendor- a" styleName="btnStyleWhite" chromeColor="#0F569E"/>
+							<s:Button x="10" y="54" label="Tax Data" styleName="btnStyleWhite" chromeColor="#265F9A"/>
+							<s:Button x="10" y="78" label="Vendors" styleName="btnStyleWhite" chromeColor="#265F9A"/>
+						</s:SkinnableContainer>
+						<s:SkinnableContainer width="95" height="110" backgroundColor="#EDEBEB" backgroundAlpha="0.0">
+							<s:Button y="6" label="Abstract" styleName="btnStyleWhite" chromeColor="#265F9A" horizontalCenter="0"/>
+							<s:Button y="30" label="Vendor- a" styleName="btnStyleWhite" chromeColor="#0F569E" horizontalCenter="0"/>
+							<s:Button y="54" label="Tax Data" styleName="btnStyleWhite" chromeColor="#265F9A" horizontalCenter="0"/>
+							<s:Button y="79" label="Vendors" styleName="btnStyleWhite" chromeColor="#265F9A" horizontalCenter="0"/>
+						</s:SkinnableContainer>
+					</s:HGroup>
+				</s:SkinnableContainer>
+			</s:HGroup>
+			<s:BorderContainer y="283" width="648" height="100%" horizontalCenter="0" contentBackgroundColor="#32669B" contentBackgroundAlpha="1.0" backgroundColor="#F1F3F5">
+				<s:Label y="5" text="Client Information" horizontalCenter="-4" width="109" fontSize="12" fontWeight="bold" textDecoration="underline"/>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="30" width="100%" horizontalCenter="0" height="25">
+					<s:Label text="Order Number:" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="middle" textAlign="center"/>
+					<s:Label text="{orderNumber.text}" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="normal" verticalAlign="middle" textAlign="center"/>
+					
+				</mx:Box>
+				<mx:DataGrid x="-1" y="57" height="59" width="647" verticalAlign="middle">
+					<mx:columns>
+						<mx:DataGridColumn headerText="Order Date" dataField="col1" width="150" backgroundColor="#B5B5B5"/>
+						<mx:DataGridColumn headerText="Due Date" dataField="col2" width="300" backgroundColor="#B5B5B5" />
+						<mx:DataGridColumn headerText="Status" dataField="col3" width="150" backgroundColor="#B5B5B5"/>
+					</mx:columns>
+				</mx:DataGrid>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="120" width="100%" horizontalCenter="0" height="25">
+					<s:Label text="Unit No./Loan Officer:&#xd;" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="179"/>
+					<mx:Spacer height="9" width="135"/>
+					<s:Label text="Unit No. /Loan Processor:" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="middle" textAlign="center"/>
+					
+				</mx:Box>
+				<s:BorderContainer y="144" width="100%" height="127" horizontalCenter="0" backgroundColor="#B5B5B5">
+					<s:HGroup width="100%" height="100%" horizontalCenter="0">
+						<s:VGroup width="71" height="121" paddingTop="5">
+							<s:Label text="Name:" width="62" height="15"/>
+							<s:Label text="Phone No.:" width="62" height="15"/>
+							<s:Label text="Ext:" width="62" height="15"/>
+							<s:Label text="Fax:" width="62" height="15"/>
+							<s:Label text="Email:" width="62" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="40%" height="100%">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+						<s:VGroup width="10%" height="121" paddingTop="5">
+							<s:Label text="Name:" width="62" height="15"/>
+							<s:Label text="Phone Num:" width="62" height="15"/>
+							<s:Label text="Ext:" width="62" height="15"/>
+							<s:Label text="Fax:" width="62" height="15"/>
+							<s:Label text="Email:" width="62" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="40%" height="100%">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+				</s:BorderContainer>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="276" width="100%" horizontalCenter="0" height="25">
+					<s:Label text="Internal Processor:" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="179"/>
+					<mx:Spacer height="9" width="135"/>
+					
+				</mx:Box>
+				<s:BorderContainer y="301" width="100%" height="127" horizontalCenter="1" backgroundColor="#B5B5B5">
+					<s:HGroup width="100%" height="100%" horizontalCenter="0">
+						<s:VGroup width="71" height="121" paddingTop="5">
+							<s:Label text="Name:" width="62" height="15"/>
+							<s:Label text="Phone:" width="62" height="15"/>
+							<s:Label text="Ext:" width="62" height="15"/>
+							<s:Label text="Fax:" width="62" height="15"/>
+							<s:Label text="Email:" width="62" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="40%" height="100%">
+						</s:VGroup>
+					</s:HGroup>
+				</s:BorderContainer>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="275" width="100%" horizontalCenter="0" height="25">
+					<s:Label text="Internal Processor:" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="179"/>
+					<mx:Spacer height="9" width="135"/>
+					
+				</mx:Box>
+				<s:BorderContainer y="301" width="100%" height="127" horizontalCenter="0" backgroundColor="#B5B5B5">
+					<s:HGroup width="100%" height="100%" horizontalCenter="0">
+						<s:VGroup width="71" height="121" paddingTop="5">
+							<s:Label text="Name:" width="62" height="15"/>
+							<s:Label text="Phone:" width="62" height="15"/>
+							<s:Label text="Ext:" width="62" height="15"/>
+							<s:Label text="Fax:" width="62" height="15"/>
+							<s:Label text="Email:" width="62" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="40%" height="100%">
+							<s:Label text="processorName.text}" width="137" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="processorPhone.text}" width="142" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="processorExt.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{processorFax.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{processorEmail.text}" width="134" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+				</s:BorderContainer>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="432" width="100%" horizontalCenter="0" height="25">
+					<s:Label text="Realtors/Lenders:" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="179"/>
+					<mx:Spacer height="9" width="135"/>
+					
+				</mx:Box>
+				<s:BorderContainer y="457" width="100%" height="127" horizontalCenter="0" backgroundColor="#B5B5B5">
+					<s:HGroup width="100%" height="100%" horizontalCenter="0">
+						<s:VGroup width="71" height="121" paddingTop="5">
+							<s:Label text="Name:" width="62" height="15"/>
+							<s:Label text="Phone:" width="62" height="15"/>
+							<s:Label text="Ext:" width="62" height="15"/>
+							<s:Label text="Fax:" width="62" height="15"/>
+							<s:Label text="Email:" width="62" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="40%" height="100%">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorPhone.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorExtension.text}" width="149" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorFax.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorEmail.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+				</s:BorderContainer>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="587" width="100%" horizontalCenter="0" height="38">
+					<mx:Spacer height="9" width="158"/>
+					<s:Label text="Third Party Access Request" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="311"/>
+					
+				</mx:Box>
+				<s:BorderContainer y="624" width="100%" height="93" horizontalCenter="0" backgroundColor="#B5B5B5" toolTip="Allows you to give order access to third parties.">
+					<s:HGroup width="100%" height="81" horizontalCenter="0">
+						<s:VGroup width="90" height="106" paddingTop="5">
+							<s:Label text="Selected Parties: " width="100" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="414" height="100%">
+						</s:VGroup>
+					</s:HGroup>
+				</s:BorderContainer>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="719" width="100%" horizontalCenter="0" height="25">
+					<s:Label text="Borrower's Info:" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="179"/>
+					<mx:Spacer height="9" width="135"/>
+					
+				</mx:Box>
+				<s:BorderContainer y="745" width="100%" height="224" horizontalCenter="0" backgroundColor="#B5B5B5">
+					<s:HGroup width="100%" height="212" horizontalCenter="0">
+						<mx:AdvancedDataGrid id="adg1" designViewDataType="tree" width="100%" height="211">
+							<mx:columns>
+								<mx:AdvancedDataGridColumn headerText="Borrower" dataField="col1"/>
+								<mx:AdvancedDataGridColumn headerText="Last Name" dataField="col2"/>
+								<mx:AdvancedDataGridColumn headerText="First Name" dataField="col3"/>
+								<mx:AdvancedDataGridColumn headerText="M.I." dataField="col1"/>
+								<mx:AdvancedDataGridColumn headerText="Social Security No." dataField="col2"/>
+								<mx:AdvancedDataGridColumn headerText="Home Phone" dataField="col3"/>
+								<mx:AdvancedDataGridColumn headerText="Work Phone" dataField="col1"/>
+								<mx:AdvancedDataGridColumn headerText="Ext." dataField="col2"/>
+								<mx:AdvancedDataGridColumn headerText="Marital Status" dataField="col3"/>
+								
+							</mx:columns>
+						</mx:AdvancedDataGrid>
+					</s:HGroup>
+				</s:BorderContainer>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="972" width="100%" horizontalCenter="0" height="25">
+					<s:Label text="Seller's Info:" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="165"/>
+					<mx:Spacer height="9" width="135"/>
+					
+				</mx:Box>
+				<s:BorderContainer y="998" width="100%" height="224" horizontalCenter="0" backgroundColor="#B5B5B5">
+					<s:HGroup width="100%" height="212" horizontalCenter="0">
+						<mx:AdvancedDataGrid id="adg0" designViewDataType="tree" width="100%" height="211">
+							<mx:columns>
+								<mx:AdvancedDataGridColumn headerText="Borrower" dataField="col1"/>
+								<mx:AdvancedDataGridColumn headerText="Last Name" dataField="col2"/>
+								<mx:AdvancedDataGridColumn headerText="First Name" dataField="col3"/>
+								<mx:AdvancedDataGridColumn headerText="M.I." dataField="col1"/>
+								<mx:AdvancedDataGridColumn headerText="Social Security No." dataField="col2"/>
+								<mx:AdvancedDataGridColumn headerText="Home Phone" dataField="col3"/>
+								<mx:AdvancedDataGridColumn headerText="Work Phone" dataField="col1"/>
+								<mx:AdvancedDataGridColumn headerText="Ext." dataField="col2"/>
+								<mx:AdvancedDataGridColumn headerText="Company Name" dataField="col3"/>
+								<mx:AdvancedDataGridColumn headerText="Company Address" dataField="col3"/>
+								<mx:AdvancedDataGridColumn headerText="Tax ID" dataField="col3"/>
+								
+							</mx:columns>
+						</mx:AdvancedDataGrid>
+					</s:HGroup>
+				</s:BorderContainer>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="1226" width="100%" height="25" x="0">
+					<mx:Spacer height="9" width="208"/>
+					<s:Label text="Property Address" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="179"/>
+					
+				</mx:Box>
+				<s:BorderContainer y="1251" width="100%" height="127" backgroundColor="#B5B5B5" x="0">
+					<s:HGroup width="100%" height="100%" horizontalCenter="0">
+						<mx:Spacer height="22" width="119"/>
+						<s:VGroup width="103" height="121" paddingTop="5">
+							<s:Label text="Street Address:" width="85" height="15"/>
+							<s:Label text="City, State, Zip" width="93" height="15"/>
+							<s:Label text="County" width="62" height="15"/>
+							<s:Label text="Legal Description:" width="88" height="15"/>
+							<s:Label text="Property Use:" width="101" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="40%" height="100%">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorPhone.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorExtension.text}" width="149" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorFax.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorEmail.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+					<mx:Spacer x="-1" y="75"/>
+				</s:BorderContainer>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="1381" width="100%" height="25" horizontalCenter="0">
+					<mx:Spacer height="9" width="208"/>
+					<s:Label text="Mailing Address" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="179"/>
+					
+				</mx:Box>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="1802" width="100%" height="25" horizontalCenter="0">
+					<mx:Spacer height="9" width="208"/>
+					<s:Label text="Payoff Information" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="179"/>
+					
+				</mx:Box>
+				<s:BorderContainer y="1827" width="100%" height="55" backgroundColor="#B5B5B5" horizontalCenter="0">
+					<s:HGroup width="100%" height="54" horizontalCenter="0">
+						<s:VGroup width="103" height="48" paddingTop="5">
+							<s:Label text="First Lander:" width="85" height="15"/>
+							<s:Label text="Second Lender:" width="93" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="107" height="41">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorPhone.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+						<s:VGroup width="92" height="41" paddingTop="5">
+							<s:Label text="Account Number:" width="85" height="15"/>
+							<s:Label text="Second Lender:" width="93" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="107" height="41">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorPhone.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+						<s:VGroup width="92" height="45" paddingTop="5">
+							<s:Label text="Phone Number:" width="85" height="15"/>
+							<s:Label text="Phone Number:" width="93" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="107" height="41">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorPhone.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+					<mx:Spacer x="-1" y="75"/>
+				</s:BorderContainer>
+				<s:BorderContainer y="1406" width="100%" height="127" backgroundColor="#B5B5B5" horizontalCenter="0">
+					<s:HGroup width="100%" height="100%" horizontalCenter="0">
+						<mx:Spacer height="22" width="119"/>
+						<s:VGroup width="103" height="121" paddingTop="5">
+							<s:Label text="Street Address:" width="85" height="15"/>
+							<s:Label text="City, State, Zip" width="93" height="15"/>
+							<s:Label text="County" width="62" height="15"/>
+							<s:Label text="Legal Description:" width="88" height="15"/>
+							<s:Label text="Property Use:" width="101" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="40%" height="100%">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorPhone.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorExtension.text}" width="149" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorFax.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorEmail.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+					<mx:Spacer x="-1" y="75"/>
+				</s:BorderContainer>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="1536" width="100%" height="25" horizontalCenter="0">
+					<mx:Spacer height="9" width="208"/>
+					<s:Label text="Loan Number" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="179"/>
+					
+				</mx:Box>
+				<s:BorderContainer id="loanNumBox" y="1561" width="100%" height="47" backgroundColor="#B5B5B5" horizontalCenter="0">
+					<s:HGroup width="620" height="38" horizontalCenter="-1">
+						<mx:Spacer height="22" width="119"/>
+						<s:VGroup width="103" height="29" paddingTop="5">
+							<s:Label text="Street Address:" width="85" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="40%" height="26">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+					<mx:Spacer x="-1" y="75"/>
+				</s:BorderContainer>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="1612" width="100%" height="25" horizontalCenter="0">
+					<mx:Spacer height="9" width="208"/>
+					<s:Label text="REO Number" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="179"/>
+					
+				</mx:Box>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="1708" width="100%" height="25" horizontalCenter="0">
+					<mx:Spacer height="9" width="208"/>
+					<s:Label text="Comments" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="179"/>
+					
+				</mx:Box>
+				<s:BorderContainer id="loanNumBox1" y="1732" width="100%" height="68" backgroundColor="#B5B5B5" horizontalCenter="0">
+					<s:HGroup width="100%" height="65" horizontalCenter="0">
+					</s:HGroup>
+					<mx:Spacer x="-1" y="75"/>
+				</s:BorderContainer>
+				<s:BorderContainer id="loanNumBox0" y="1637" width="100%" height="68" backgroundColor="#B5B5B5" horizontalCenter="0">
+					<s:HGroup width="100%" height="65" horizontalCenter="0">
+						<mx:Spacer height="22" width="178"/>
+						<s:VGroup width="127" height="60" paddingTop="5">
+							<s:Label text="REO Number:" width="85" height="15"/>
+							<s:Label text="Type of HUD Selected:" width="122" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="40%" height="58">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+					<mx:Spacer x="-1" y="75"/>
+				</s:BorderContainer>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="1884" width="100%" height="25" horizontalCenter="0">
+					<mx:Spacer height="9" width="208"/>
+					<s:Label text="Subordination Inofrmation" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="264"/>
+					
+				</mx:Box>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="2402" width="100%" height="25" horizontalCenter="0">
+					<mx:Spacer height="9" width="208"/>
+					<s:Label text="Verify Order Was Received" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="264"/>
+					
+				</mx:Box>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="2570" width="100%" horizontalCenter="0">
+					<mx:Spacer height="9" width="208"/>
+					<s:Label text="Request Copy of Final Report" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="264"/>
+					
+				</mx:Box>
+				<s:BorderContainer y="2594" width="100%" backgroundColor="#B5B5B5" horizontalCenter="0" height="57">
+					<mx:Spacer x="-1" y="75"/>
+					<s:HGroup y="24" width="570" height="22" horizontalCenter="-1">
+						<s:VGroup width="137" height="22" paddingTop="5">
+							<s:Label text="Your Email:" width="121" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="215" height="26">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+					<s:VGroup width="624" height="27" paddingTop="5" paddingLeft="20">
+						<s:Label text="If you would like to receive a copy of the final report, please provide us with an email address." width="599" height="15"/>
+					</s:VGroup>
+				</s:BorderContainer>
+				<s:BorderContainer y="2426" width="100%" height="142" backgroundColor="#B5B5B5" horizontalCenter="0">
+					<s:HGroup width="100%" height="32" horizontalCenter="-1" y="70">
+						<s:VGroup width="624" height="27" paddingTop="5" paddingLeft="20">
+							<s:Label text="You may also have verification sent to up to two other email addresses. " width="568" height="15"/>
+						</s:VGroup>
+					</s:HGroup>
+					<mx:Spacer x="-1" y="75"/>
+					<s:HGroup y="32" width="570" height="32" horizontalCenter="-1">
+						<s:VGroup width="137" height="22" paddingTop="5">
+							<s:Label text="Your Email:" width="121" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="215" height="26">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+					<s:VGroup width="624" height="27" paddingTop="5" paddingLeft="20">
+						<s:Label text="By providing us with an email address, you will receive a confirmation email of your order having been received by us." width="599" height="15"/>
+					</s:VGroup>
+					<s:HGroup width="570" height="42" x="37" y="97">
+						<s:VGroup width="137" height="41" paddingTop="5">
+							<s:Label text="Other Email:" width="121" height="15"/>
+							<s:Label text="Other Email:" width="121" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="215" height="43">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+				</s:BorderContainer>
+				<s:BorderContainer y="1909" width="100%" height="42" backgroundColor="#B5B5B5" horizontalCenter="0">
+					<s:HGroup width="100%" height="32" horizontalCenter="0">
+						<s:VGroup width="103" height="29" paddingTop="5">
+							<s:Label text="First Lander:" width="85" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="107" height="26">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+						<s:VGroup width="92" height="25" paddingTop="5">
+							<s:Label text="Account Number:" width="85" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="107" height="24">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+						<s:VGroup width="92" height="27" paddingTop="5">
+							<s:Label text="Phone Number:" width="85" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="107" height="26">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+					<mx:Spacer x="-1" y="75"/>
+				</s:BorderContainer>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="1954" width="100%" horizontalCenter="0">
+					<mx:Spacer height="9" width="208"/>
+					<s:Label text="Title Insurance Information" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="264"/>
+					
+				</mx:Box>
+				<s:BorderContainer y="1978" width="100%" backgroundColor="#B5B5B5" horizontalCenter="0" height="422">
+					<s:HGroup width="100%" height="182" horizontalCenter="0">
+						<s:VGroup width="175" height="173" paddingTop="5">
+							<s:Label text="Transaction Type" width="85" height="15"/>
+							<s:Label text="Proposed Insured" width="85" height="15"/>
+							<s:Label text="Loan Amount" width="85" height="15"/>
+							<s:Label text="Current Loan Balances" width="91" height="25"/>
+							<s:Label text="Purchase Price" width="91" height="14"/>
+							<s:Label text="Loan Amount" width="91" height="14"/>
+							<s:Label text="Current Loan Balances" width="161" height="14"/>
+							<s:Label text="Purchase Price" width="91" height="14"/>
+						</s:VGroup>
+						<s:VGroup width="107" height="177">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="17" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="22" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+						<s:VGroup width="92" height="25" paddingTop="5">
+							<s:Label text="Deed Transfer" width="85" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="107" height="24">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+					<mx:Spacer x="-1" y="75"/>
+					<s:BorderContainer y="1978" width="100%" backgroundColor="#B5B5B5" horizontalCenter="0" height="197">
+						<s:HGroup width="100%" height="191" horizontalCenter="0">
+							<s:VGroup width="175" height="173" paddingTop="5">
+								<s:Label text="Transaction Type" width="85" height="15"/>
+								<s:Label text="Proposed Insured" width="85" height="15"/>
+								<s:Label text="Loan Amount" width="85" height="15"/>
+								<s:Label text="Current Loan Balances" width="91" height="25"/>
+								<s:Label text="Purchase Price" width="91" height="14"/>
+								<s:Label text="Loan Amount" width="91" height="14"/>
+								<s:Label text="Current Loan Balances" width="161" height="14"/>
+								<s:Label text="Purchase Price" width="91" height="14"/>
+							</s:VGroup>
+							<s:VGroup width="107" height="177">
+								<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+								<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+								<s:Label text="{realtorName.text}" width="95" height="17" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+								<s:Label text="{realtorName.text}" width="95" height="22" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+								<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+								<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+								<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+								<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							</s:VGroup>
+							<s:VGroup width="92" height="25" paddingTop="5">
+								<s:Label text="Deed Transfer" width="85" height="15"/>
+							</s:VGroup>
+							<s:VGroup width="107" height="24">
+								<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							</s:VGroup>
+						</s:HGroup>
+						<mx:Spacer x="-1" y="75"/>
+					</s:BorderContainer>
+					
+					<s:HGroup x="0" y="182" width="100%" height="66">
+						<s:VGroup width="344" height="61" paddingTop="5">
+							<s:Label text="Will there be a piggyback second mortgage closed with the above loan?" width="357" height="15"/>
+							<s:Label text="Will title insurance be required on this piggyback loan?" width="316" height="15"/>
+							<s:Label text="What is the loan amount of this second mortgage loan?" width="325" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="107" height="61">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="17" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+					
+					<s:HGroup y="251" width="260" height="52" horizontalCenter="15">
+						<s:VGroup width="137" height="45" paddingTop="5">
+							<s:Label text="Loan Type" width="65" height="15"/>
+							<s:Label text="Loan Program" width="120" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="107" height="45">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+					<s:HGroup y="303" width="382" height="114" horizontalCenter="76">
+						<s:Label text="Include Alta Endorsements" width="138" height="15"/>
+						<s:VGroup width="192" height="112">
+							<s:CheckBox label="ALTA 4.1 Endorsement Fee"/>
+							<s:CheckBox label="ALTA 5.1 Endorsement Fee"/>
+							<s:CheckBox label="ALTA 7 Endorsement Fee"/>
+							<s:CheckBox label="ALTA 8.1 Endorsement Fee"/>
+							<s:CheckBox label="ALTA 9 Endorsement Fee"/>
+						</s:VGroup>
+					</s:HGroup>
+				</s:BorderContainer>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="2654" width="100%" horizontalCenter="0">
+					<mx:Spacer height="9" width="208"/>
+					<s:Label text="Title Commitment to be Issued By:" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="264"/>
+					
+				</mx:Box>
+				<s:BorderContainer y="2678" width="100%" backgroundColor="#B5B5B5" horizontalCenter="1" height="33">
+					<mx:Spacer x="-1" y="75"/>
+					<s:HGroup y="6" width="570" height="22" horizontalCenter="0">
+						<s:VGroup width="137" height="22" paddingTop="5">
+							<s:Label text="Title Company:" width="121" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="215" height="26">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+				</s:BorderContainer>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="2714" width="100%" horizontalCenter="0">
+					<mx:Spacer height="9" width="208"/>
+					<s:Label text="Title Commitment to be Issued By:" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="264"/>
+					
+				</mx:Box>
+				<s:BorderContainer y="2738" width="100%" backgroundColor="#B5B5B5" height="33" horizontalCenter="0">
+					<mx:Spacer x="-1" y="75"/>
+					<s:HGroup y="6" width="570" height="22" horizontalCenter="0">
+						<s:VGroup width="137" height="22" paddingTop="5">
+							<s:Label text="Title Company:" width="121" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="215" height="26">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+				</s:BorderContainer>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="2774" width="100%" horizontalCenter="0">
+					<mx:Spacer height="9" width="208"/>
+					<s:Label text="Revenue:" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="264"/>
+					
+				</mx:Box>
+				<s:BorderContainer y="2798" width="100%" backgroundColor="#B5B5B5" height="33" horizontalCenter="0">
+					<mx:Spacer x="-1" y="75"/>
+					<s:HGroup y="6" width="570" height="22" horizontalCenter="0">
+						<s:VGroup width="137" height="22" paddingTop="5">
+							<s:Label text="Title Company:" width="121" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="215" height="26">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+				</s:BorderContainer>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="2834" width="100%" horizontalCenter="0">
+					<mx:Spacer height="9" width="208"/>
+					<s:Label text="Original Revenue Earned:" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="264"/>
+					
+				</mx:Box>
+				<s:BorderContainer y="2858" width="100%" backgroundColor="#B5B5B5" height="33" horizontalCenter="0">
+					<mx:Spacer x="-1" y="75"/>
+					<s:HGroup y="6" width="570" height="22" horizontalCenter="0">
+						<s:VGroup width="140" height="22" paddingTop="5">
+							<s:Label text="Original Revenue Entered: $" width="148" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="215" height="26">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+				</s:BorderContainer>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="2894" width="100%" x="0">
+					<mx:Spacer height="9" width="208"/>
+					<s:Label text="Subordination Fee:" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="264"/>
+					
+				</mx:Box>
+				<s:BorderContainer y="2918" width="100%" backgroundColor="#B5B5B5" height="33" x="0">
+					<mx:Spacer x="-1" y="75"/>
+					<s:HGroup y="6" width="570" height="22" horizontalCenter="0">
+						<s:VGroup width="140" height="22" paddingTop="5">
+							<s:Label text="Subordination Fee: $" width="148" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="215" height="26">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+				</s:BorderContainer>
+				<mx:Box direction="horizontal" paddingLeft="10" paddingRight="10" paddingTop="10" backgroundColor="#446DD5" y="2954" width="100%" horizontalCenter="0">
+					<mx:Spacer height="9" width="208"/>
+					<s:Label text="Title Grade" styleName="formItemLabel" color="#FFFFFF" fontSize="15" fontWeight="bold" verticalAlign="top" textAlign="center" width="264"/>
+					
+				</mx:Box>
+				<s:BorderContainer y="2978" width="100%" backgroundColor="#B5B5B5" height="33" horizontalCenter="0">
+					<mx:Spacer x="-1" y="75"/>
+					<s:HGroup y="6" width="570" height="22" horizontalCenter="0">
+						<s:VGroup width="140" height="22" paddingTop="5">
+							<s:Label text="Title Grade:" width="148" height="15"/>
+						</s:VGroup>
+						<s:VGroup width="215" height="26">
+							<s:Label text="{realtorName.text}" width="95" height="15" paddingTop="5" paddingRight="5" paddingBottom="5" paddingLeft="5"/>
+						</s:VGroup>
+					</s:HGroup>
+				</s:BorderContainer>
+			</s:BorderContainer>
+			<mx:MenuBar y="0" horizontalCenter="0" width="100%" chromeColor="#030F1C" height="28"></mx:MenuBar>
+			<s:Label x="0" y="3" text="Title Report" color="#FFFBFB" paddingLeft="5" paddingTop="5" paddingBottom="5" paddingRight="5" width="182" fontSize="12" fontWeight="bold" textDecoration="underline"/>
+		</s:BorderContainer>
+	</s:BorderContainer>
+</s:Group>

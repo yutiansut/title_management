@@ -1,0 +1,22 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+
+global
+{
+	font-size: 10;
+}
+mx|FormItem.formItemLabel
+{
+	color: #FFFFFF;
+}
+s|Button.defaultBtnStyle
+{
+	fontSize: 12;
+}
+s|Button.btnStyleWhite
+{
+	color: #FFFFFF;
+}
+	

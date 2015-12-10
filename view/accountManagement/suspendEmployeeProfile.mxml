@@ -8,6 +8,8 @@
 		<![CDATA[
 			import flash.events.Event;
 			import mx.collections.ArrayCollection;
+			import mx.managers.PopUpManager;
+			import mx.controls.Alert;
 			
 			//populate the all data components on start by executing all data retrieval functions
 			private function loadData():void{
@@ -24,13 +26,18 @@
 			private function suspendAccount():void{
 				//remote object call to pass selected employee name into CF suspend method in the controller
 				
+				Alert.show('Account Successfully Suspended.');
+				
 			}
 			
 			//variable cast as the data provider for the currently suspend account datagrid.
 			[Bindable]
 			private var suspendedAcctDGProvider:ArrayCollection;
 			
-			
+			//close window function
+			private function closeWindow():void {
+				PopUpManager.removePopUp(this);
+			}
 		]]>
 	</fx:Script>
 	
@@ -38,7 +45,7 @@
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-<s:Panel width="437" height="283" title="Account Suspension">
+<s:TitleWindow width="437" height="283" title="Account Suspension" close="closeWindow();">
 
 	<mx:TabNavigator x="10.7" y="0.35" width="415" height="239">
 <!-- Account Suspension Tab -->
@@ -56,16 +63,16 @@
 
 <!-- Account Reactivation Tab-->
 <s:NavigatorContent label="Suspended Accounts" width="100%" height="100%">
-<mx:DataGrid width="100%" height="80%">
+<mx:DataGrid width="100%" height="80%" contentBackgroundColor="#000000" chromeColor="#757575">
 <mx:columns>
-<mx:DataGridColumn headerText="Employee Name" dataField="col1" backgroundColor="#897892"/>
-<mx:DataGridColumn headerText="Profile" dataField="col2" backgroundColor="#897892"/>
+<mx:DataGridColumn headerText="Employee Name" dataField="col1" backgroundColor="#75A3FF"/>
+<mx:DataGridColumn headerText="Profile" dataField="col2" backgroundColor="#75A3FF"/>
 </mx:columns>
 </mx:DataGrid>
 <s:Button y="183" label="Reactivate"/>
-<s:Button y="183" label="Permanently Terminate Account" x="75" width="234" color="#E3FE00"/>
+<s:Button y="183" label="Permanently Terminate Account" x="75" width="234" color="#A21616"/>
 </s:NavigatorContent>
 </mx:TabNavigator>
 
-</s:Panel>
+</s:TitleWindow>
 </s:Group>

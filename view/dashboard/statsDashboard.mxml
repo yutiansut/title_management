@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minHeight="1080" minWidth="1920" width="100%" height="100%" title="First Vision Statistics Dashboard" backgroundColor="#5A7B9C" close="closeWindow();">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.managers.PopUpManager;
+			//notify user no profile passed in 
+			private function noUserDefined():void{
+				Alert.show("User profile not imported. Contact administrator.",'Dashboard Load Error');
+			}
+			//Set user role passed from main application into dashboard
+			public var user:String = 'manager'
+			
+			//set default state of the dashboard on initialization
+			private function initDashboard():void{
+				if (user == 'manager') {
+					currentState = 'State1' }
+						
+				else if (user == 'processor') {
+					currentState = 'processorStats'}
+				
+				else if (user == 'funding') {
+					currentState = 'fundingStats' }
+
+				else if (user == null) {
+					noUserDefined();
+				}
+			}
+			
+			
+			//~~~~~~~~~~~~~~~~~~~~~Expand Components~~~~~~~~~~~~~~~~~~~~~~//
+			
+			
+			//Expand order flow stats window
+			private function expandOrderflowWin(c:MouseEvent):void{
+				
+				//Set the data windows to not visible
+				dataWin1.visible = false;
+				dataWin1.includeInLayout = false;
+				dataWin2.visible = false;
+				dataWin2.includeInLayout = false;
+				dataWin3.visible = false;
+				dataWin3.includeInLayout = false;
+				dataWin4.visible = false;
+				dataWin4.includeInLayout = false;
+				dataWin5.visible = false;
+				dataWin5.includeInLayout = false;
+				//On button click, expand the panel to scale the right half of the screen
+				win_OrderStats.height = 500;
+				win_OrderStats.width = 400;
+				win_OrderStats.horizontalCenter = 0;
+			}
+			
+			//Minimize order flow stats window
+			private function minimizeOrderflowWin(d:MouseEvent):void{
+				//On click, return window to its original dimensions. 
+				win_OrderStats.horizontalCenter = '';
+				win_OrderStats.right = 20; 
+				win_OrderStats.width = 323;
+				win_OrderStats.height = 200;
+				
+				//Set the data windows to not visible
+				dataWin1.visible = true;
+				dataWin1.includeInLayout = true;
+				dataWin2.visible = true;
+				dataWin2.includeInLayout = true;
+				dataWin3.visible = true;
+				dataWin3.includeInLayout = true;
+				dataWin4.visible = true;
+				dataWin4.includeInLayout = true;
+				dataWin5.visible = true;
+				dataWin5.includeInLayout = true;
+				
+			}
+			
+			//Expand YTD Annual Order Flow chart
+			private function expandOrderflowChart(e:MouseEvent):void{
+				//On Click of the chart, expand its dimensions to half of user screen.
+				
+				
+			}
+			
+			//Expand Top Chart
+			private function expandTopChart(evt:MouseEvent):void{
+				
+				topStack.height = 400;
+				hBox1.y = 200;
+			}
+			//Close Dashboard
+			private function closeWindow():void{
+				PopUpManager.removePopUp(this);
+			
+			}
+		
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:controlBarContent>
+		<s:Label text="(C) 2015 First Title Services.  All Rights Reserved." color="#000000" fontWeight="bold" fontSize="12"/>
+	
+	</s:controlBarContent>
+	<mx:MenuBar x="0" y="0" chromeColor="#363232" width="100%" height="36"></mx:MenuBar>
+	<s:HGroup y="128" width="90%" height="200" left="4" id="hBox1"  >
+		<s:BorderContainer width="12%" height="100%" backgroundColor="#F9F9F9" dropShadowVisible="true" borderColor="#F3F3F3" backgroundAlpha="0.95">
+			<s:Label y="10" text="OVERVIEW" color="#000000" fontSize="14" fontWeight="bold" textDecoration="underline" width="83" horizontalCenter="0"/>
+			<s:Button y="35" label="Total Closings" color="#000000" chromeColor="#A59582" cornerRadius="10" horizontalCenter="-1" width="104"/>
+			<s:Button y="64" color="#000000" chromeColor="#A59582" cornerRadius="10" horizontalCenter="-1" label="Order Trends" width="106"/>
+			<s:Button y="93" color="#000000" chromeColor="#A59582" cornerRadius="10" horizontalCenter="-2" label="Turnover Trends" width="108"/>
+		</s:BorderContainer>
+		<mx:ViewStack id="viewstack1" width="1299" height="100%">
+			<s:NavigatorContent label="View 1" width="100%" height="100%" backgroundColor="#C0C0C0">
+				<mx:LineChart id="linechart1" width="100%" height="100%" y="5" horizontalCenter="0">
+					<mx:series>
+						<mx:LineSeries displayName="Series 1" yField=""/>
+					</mx:series>
+				</mx:LineChart>
+			</s:NavigatorContent>
+			<s:NavigatorContent label="orderTrends" width="100%" height="100%">
+				<mx:BubbleChart y="0" id="bubblechart1" horizontalCenter="0" height="100%" width="100%">
+					<mx:series>
+						<mx:BubbleSeries displayName="Series 1" yField="" radiusField=""/>
+					</mx:series>
+				</mx:BubbleChart>
+			</s:NavigatorContent>
+		</mx:ViewStack>
+	</s:HGroup>
+	<s:ComboBox x="140" y="7" toolTip="Select Range"/>
+	<s:HGroup y="37" width="100%" height="90" left="0">
+		<mx:ViewStack id="topStack" width="100%" height="100%">
+			<s:NavigatorContent label="View 1" width="100%" height="100%" backgroundColor="#02628E">
+				<mx:AreaChart x="0" y="0" id="chrt_YtdOrderFlow" height="90%" width="100%" toolTip="Annual Order Flow" doubleClick="expandTopChart(event);">
+					<mx:series>
+						<mx:AreaSeries displayName="Series 1" yField=""/>
+					</mx:series>
+				</mx:AreaChart>
+			</s:NavigatorContent>
+		</mx:ViewStack>
+	</s:HGroup>
+	<s:TitleWindow y="129" width="20%" height="200" backgroundColor="#E2E2E7" backgroundAlpha="0.65" title=" 30 Day Orderflow Statistics" cornerRadius="5" right="20" id="win_OrderStats">
+		<s:controlBarContent>
+			<s:Button label="+" width="30" cornerRadius="20" height="29" chromeColor="#7E062B" y="6" fontSize="12" click="expandOrderflowWin(event);"/>
+			<s:Button label="-" width="30" cornerRadius="20" height="29" chromeColor="#7E062B" y="6" fontSize="12" click="minimizeOrderflowWin(event);"/>
+			<s:ComboBox contentBackgroundColor="#6891BA" chromeColor="#09294B"/>
+		
+		</s:controlBarContent>
+		<s:Label x="10" y="10" text="Total Order (Last 30 days):"/>
+		<s:Label x="10" y="32" text="Total Closed ( Last 30 days):"/>
+		<s:Label x="10" y="50" text="Open Orders:"/>
+	</s:TitleWindow>
+	<s:Button y="9" label="Reset" right="10"/>
+	<s:Label x="51" y="13" text="Date Range:" fontWeight="bold" fontSize="12"/>
+	<s:HSlider x="400" y="12" width="147"/>
+	<s:DropDownList y="7" horizontalCenter="-200" width="154"></s:DropDownList>
+	<s:Label x="593" y="13" text="Perspective" fontSize="12" textDecoration="underline" fontWeight="bold"/>
+	<s:TileGroup y="397" width="1503" height="200" left="10">
+		<s:Panel width="200" height="200" title="Sales" chromeColor="#221E1E" x="6" y="403" cornerRadius="20" id="dataWin1" visible="true">
+			<s:controlBarContent>
+				<s:Button label="+" width="30" cornerRadius="20" height="29" chromeColor="#7E062B" fontSize="12" click="expandOrderflowWin(event);"/>
+				<s:Button label="-" width="30" cornerRadius="20" height="29" chromeColor="#7E062B" fontSize="12" click="minimizeOrderflowWin(event);"/>
+			
+			</s:controlBarContent>
+			<mx:LineChart y="0" id="quarterlySales" horizontalCenter="0" width="100%" height="100%">
+				<mx:series>
+					<mx:LineSeries displayName="Series 1" yField=""/>
+				</mx:series>
+			</mx:LineChart>
+		</s:Panel>
+		<s:Panel width="250" height="200" title="Quarter End Closings" chromeColor="#221E1E" x="297" y="445" cornerRadius="20" id="dataWin2" visible="true">
+			<s:controlBarContent>
+				<s:Button label="+" width="30" cornerRadius="20" height="29" chromeColor="#7E062B" fontSize="12" click="expandOrderflowWin(event);"/>
+				<s:Button label="-" width="30" cornerRadius="20" height="29" chromeColor="#7E062B" fontSize="12" click="minimizeOrderflowWin(event);"/>
+			
+			</s:controlBarContent>
+			<mx:ColumnChart y="0" id="qrtClosingChart" horizontalCenter="0" width="100%" height="100%">
+				<mx:series>
+					<mx:ColumnSeries displayName="Series 1" yField=""/>
+				</mx:series>
+			</mx:ColumnChart>
+		</s:Panel>
+		<s:Panel width="250" height="200" title="Projections" chromeColor="#221E1E" x="536" y="357" cornerRadius="20" id="dataWin3">
+			<s:controlBarContent>
+				<s:Button label="+" width="30" cornerRadius="20" height="29" chromeColor="#7E062B" fontSize="12" click="expandOrderflowWin(event);"/>
+				<s:Button label="-" width="30" cornerRadius="20" height="29" chromeColor="#7E062B" fontSize="12" click="minimizeOrderflowWin(event);"/>
+			
+			</s:controlBarContent>
+			<mx:BubbleChart id="bubblechart2" width="100%" height="100%">
+				<mx:series>
+					<mx:BubbleSeries displayName="Series 1" yField="" radiusField=""/>
+				</mx:series>
+			</mx:BubbleChart>
+		</s:Panel>
+		<s:Panel width="250" height="200" title="Quarter End File Issues" chromeColor="#221E1E" x="800" y="357" cornerRadius="20" id="dataWin4">
+			<s:controlBarContent>
+				<s:Button label="+" width="30" cornerRadius="20" height="29" chromeColor="#7E062B" fontSize="12" click="expandOrderflowWin(event);"/>
+				<s:Button label="-" width="30" cornerRadius="20" height="29" chromeColor="#7E062B" fontSize="12" click="minimizeOrderflowWin(event);"/>
+			
+			</s:controlBarContent>
+			<mx:PieChart id="piechart1" horizontalCenter="0" width="100%" height="100%">
+				<mx:series>
+					<mx:PieSeries displayName="Series 1" field=""/>
+				</mx:series>
+			</mx:PieChart>
+			
+		</s:Panel>
+		<s:Panel width="250" height="200" title="TSS-Title Express" chromeColor="#221E1E" x="1058" y="357" cornerRadius="20" id="dataWin5">
+			<s:controlBarContent>
+				<s:Button label="+" width="30" cornerRadius="20" height="29" chromeColor="#7E062B" fontSize="12" click="expandOrderflowWin(event);"/>
+				<s:Button label="-" width="30" cornerRadius="20" height="29" chromeColor="#7E062B" fontSize="12" click="minimizeOrderflowWin(event);"/>
+			
+			</s:controlBarContent>
+		</s:Panel>
+	</s:TileGroup>
+</s:TitleWindow>

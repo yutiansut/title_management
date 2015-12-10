@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:mx="library://ns.adobe.com/flex/mx" layout="absolute" width="1452" height="716">
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.AdvancedDataGrid;
+			import mx.events.DataGridEvent;
+			import mx.binding.utils.BindingUtils;
+			import mx.managers.PopUpManager;
+			import view.reportManagement.assignmentDelete;
+			import view.reportManagement.employeeAssign;
+			import com.adobe.viewsource.ViewSource;
+			import spark.components.Button;
+			import spark.components.ComboBox;
+			import mx.controls.Alert;
+			import mx.rpc.events.ResultEvent;
+			
+		    // ALL DATA INITIALIZATION METHODS GO HERE
+			
+			//Initialize All Components in the Reporting Module on load
+			private function initializeComps():void{
+				//set remote object data retrieval calls.
+			}
+			
+			//~~~~~~ END OF DATA INITIALIZATION BLOCK~~~~~~//
+			
+			//All APPLICATION IN USE REMOTE OBJECT CALLS GOES HERE
+			
+			//function to 
+			
+			//ALL RESULT EVENT AND DATA PROVIDER FUNCTIONS AND VARIABLES GO HERE
+			
+			
+			
+			
+			// ALL CALLS TO POPUP WINDOWS GO HERE
+			
+		
+			//function to call assignment creation window for new assignment creation
+			private function newAssignment():void{         
+				//call title window
+				var newWindow:employeeAssign =					                              //variable typed as the employeeAssign component.   
+					PopUpManager.createPopUp(this,employeeAssign, false) as employeeAssign;  //new instance of the employeeAssign component is called into the PopUpManager 
+				PopUpManager.centerPopUp(newWindow);                                        // sets the new instance of the employeeAssign component as centered in the application. 
+			}
+			
+			//function to call assignment deletion window.
+			private function removeAssignmentWindowFunc():void{
+				//call assignment removal window
+				var newAssignmentRemovalWindow:assignmentDelete = PopUpManager.createPopUp(this, assignmentDelete, true) as assignmentDelete;
+				PopUpManager.centerPopUp(newAssignmentRemovalWindow);
+			}
+			
+			//ALL MISC FUNCTIONS GO HERE
+			
+			//FormReset Function
+			private function clearForm():void{
+				
+				fmReportName.text = ""
+				fmReportCategory.text = ""
+				fmReportDescrip.text = ""
+				fmReportDescrip.text = "" 
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:TitleWindow x="0" width="1451" height="1000" id="reportingWindow" title="Report Management Console" backgroundColor="#5F6D73">
+		<mx:Accordion x="10" y="20" width="230" height="600" id="reportAccordionPanel" chromeColor="#032C59">
+			<s:NavigatorContent label="Corporate Reports" width="100%" height="100%" chromeColor="#13447B">
+			</s:NavigatorContent>
+			<s:NavigatorContent label="Funding Reports &amp; Documents" width="100%" height="100%">
+			</s:NavigatorContent>
+			<s:NavigatorContent label="Misc. Reports &amp; Documents" width="100%" height="100%">
+			</s:NavigatorContent>
+			<s:NavigatorContent label="Management Reports" width="100%" height="100%">
+			</s:NavigatorContent>
+			<s:NavigatorContent label="Vendor Management Reports" width="100%" height="100%">
+			</s:NavigatorContent>
+			<s:NavigatorContent label="Administrative Reports" width="100%" height="100%">
+			</s:NavigatorContent>
+			<s:NavigatorContent label="Streamline Reports" width="100%" height="100%">
+			</s:NavigatorContent>
+			<s:NavigatorContent label="Abstract USA Reports" width="100%" height="100%">
+			</s:NavigatorContent>
+		</mx:Accordion>
+		<s:HGroup x="267" y="5" width="357" height="35">
+			<mx:ToggleButtonBar dataProvider="{ReportViewStackDash}">
+			</mx:ToggleButtonBar>
+		</s:HGroup>
+		<mx:ViewStack x="262" y="48" id="ReportViewStackDash" width="964" height="625">
+			<s:NavigatorContent label="Main View" width="100%" height="100%">
+				<s:TileGroup x="0" y="0" width="100%" height="100%">
+					<s:Panel width="818" height="200" cornerRadius="15" title="Frequently Used Links">
+					</s:Panel>
+					<s:Panel width="818" height="200" cornerRadius="15" title="Reporting Snapshot">
+					</s:Panel>
+					<s:Panel width="818" height="200" cornerRadius="15" title="Frequently Used Links">
+					</s:Panel>
+				</s:TileGroup>
+			</s:NavigatorContent>
+			<s:NavigatorContent label="Report Assignments" width="100%" height="100%" color="#BC0F0F">
+				<mx:TabNavigator y="48.35" width="100%" height="438" x="5.7" color="#39DB00">
+					<s:NavigatorContent label="Employee Perspective" width="100%" height="100%" backgroundColor="#0F68A6" id="NavContentBox" >
+						<mx:MenuBar y="-8" chromeColor="#A39797" width="100%" height="34" x="0"></mx:MenuBar>
+						<mx:ViewStack x="8" y="31" id="viewstack1" width="935" height="308">
+							<s:NavigatorContent label="All Employees" width="100%" height="100%">
+								<mx:DataGrid x="10" y="10" width="905" height="265" contentBackgroundColor="#201818" chromeColor="#868181" color="#010000" id="employeePerspectiveDG">
+									<mx:columns>
+										<mx:DataGridColumn headerText="Employee Name" dataField="employeeName" />
+										<mx:DataGridColumn headerText="Report Name" dataField="reportName" />
+										<mx:DataGridColumn headerText="Report Description" dataField="reportDescrip" />
+									</mx:columns>
+								</mx:DataGrid>
+							</s:NavigatorContent>
+							
+							<s:NavigatorContent label="Selected Employees" width="100%" height="100%">
+								<mx:DataGrid x="10" y="30" width="100%" height="265" contentBackgroundColor="#201818" chromeColor="#868181" color="#000000" id="employeePerspectiveDG2">
+									<mx:columns>
+										<mx:DataGridColumn headerText="Report Name" dataField="reportName"/>
+										<mx:DataGridColumn headerText="Assigned Date" dataField="dateCreated"/>
+									</mx:columns>
+								</mx:DataGrid>
+								<s:Label x="15" y="5" text="Available Employees:" width="155" fontWeight="bold" fontSize="13" color="#020000"/>
+								<s:DropDownList x="165" y="0" width="164" prompt="Select Employee" id="employeeComboBox" toolTip="Select employee to see reports assigned to them."  labelField="employeeName" ></s:DropDownList>
+							</s:NavigatorContent>
+						</mx:ViewStack>
+						<s:ButtonBar x="8" y="0" dataProvider="{viewstack1}"/>
+						<s:Button x="249" y="0" label="+ New Assignment" id="newAssignBtn" enabled="true" click="newAssignment();"/>
+						<s:Button x="386" y="0" label="- Remove Assignment" id="removeAssignBtn" enabled="true" click="removeAssignmentWindowFunc();"/>
+						<s:Button x="542" y="0" label="Refresh Data" />
+					</s:NavigatorContent>
+					
+					<s:NavigatorContent label="Report Perspective" width="100%" height="100%" backgroundColor="#0F68A6" >
+						<mx:MenuBar y="-8" chromeColor="#A39797" width="100%" height="34" x="0"></mx:MenuBar>
+						<s:Button x="542" y="0" label="Refresh Data" id="btn_Refresh2"/>
+						<s:ButtonBar x="8" y="0" dataProvider="{reportStack}"/>
+						<mx:ViewStack x="8" y="31" id="reportStack" width="946" height="305">		
+							<s:NavigatorContent label="All Reports" width="100%" height="100%">
+								<mx:DataGrid x="10" y="10" width="921" height="265" contentBackgroundColor="#201818" chromeColor="#868181" color="#000000" id="reportingPerspectiveDG">
+									<mx:columns>
+										<mx:DataGridColumn headerText="Report Name" dataField="reportName"/>
+										<mx:DataGridColumn headerText="Employee Name" dataField="employeeName"/>
+										<mx:DataGridColumn headerText="Assigned Date" dataField="dateCreated"/>
+									</mx:columns>
+								</mx:DataGrid>
+							</s:NavigatorContent>
+							<s:NavigatorContent label="Report By Employee" width="100%" height="100%">
+								<mx:DataGrid x="10" y="30" width="100%" height="265" contentBackgroundColor="#201818" chromeColor="#868181" color="#010000"  id="reportingPerspectiveDG2" >
+									<mx:columns>
+										<mx:DataGridColumn headerText="Employees Assigned" dataField="employeeName"/>
+										<mx:DataGridColumn headerText="Assigned Date" dataField="dateCreated"/>
+									</mx:columns>
+								</mx:DataGrid>
+								<s:DropDownList x="145" y="0" width="164" prompt="Select Report" id="selectedReportComboBox" labelField="reportName" enabled="true"></s:DropDownList>
+								<s:Label x="15" y="5" text="Available Reports:" width="125" fontWeight="bold" fontSize="13" color="#010000"/>
+							</s:NavigatorContent>
+						</mx:ViewStack>
+						<s:Button x="249" y="0" label="+ New Assignment" click="newAssignment();"/>
+						<s:Button x="386" y="0" label="- Remove Assignment" click="removeAssignmentWindowFunc();"/>
+					</s:NavigatorContent>
+				</mx:TabNavigator>
+			</s:NavigatorContent>
+			<s:NavigatorContent label="Report Management" width="100%" height="100%">
+				<s:HGroup y="0" width="448" height="45" horizontalCenter="-4">
+					<s:Button label="Create Report" height="24" click="reportManagementViewStack.selectedChild=creationViewStack"/>
+					<s:Button label="Update Report" click="reportManagementViewStack.selectedChild=updateReportStack" height="24"/>
+					<s:Button label="Delete Report" click="reportManagementViewStack.selectedChild=DeletionViewStack" height="24"/>
+					<s:Button label="Suspend Report" height="24"/>
+				</s:HGroup>
+				<mx:ViewStack y="60" id="reportManagementViewStack" width="100%" height="100%" horizontalCenter="0">
+					<s:NavigatorContent id="creationViewStack" label="creationViewStack" width="100%" height="100%">
+						<s:Panel y="57" width="531" height="327" title="Create Report" horizontalCenter="-3">
+							<mx:Form width="100%" height="294" backgroundColor="#6F6565">
+							<mx:FormItem label="Report Name">
+							<s:TextInput id="fmReportName"/>
+							</mx:FormItem>
+							<mx:FormItem label="Category">
+							<s:TextInput id="fmReportCategory"/>
+							</mx:FormItem>
+							<mx:FormItem label="Report Description" width="420" height="126">
+							<s:TextArea height="123" width="295" id="fmReportDescrip"/>
+							</mx:FormItem>
+							</mx:Form>
+						</s:Panel>
+					</s:NavigatorContent>
+					<s:NavigatorContent id="updateReportStack" label="updateReportStack" width="100%" height="100%">
+						<s:HGroup x="50" y="0" width="350" height="56">
+							<mx:Form width="293" height="100%">
+								<mx:FormItem label="Select Report" color="#000000">
+									<s:ComboBox/>
+								</mx:FormItem>
+							</mx:Form>
+						</s:HGroup>
+						<s:Panel y="94" width="531" height="353" title="Update Report" horizontalCenter="-3" chromeColor="#093D78">
+							<s:Button x="10" label="Update Report" width="108" fontWeight="bold" bottom="10"/>
+							<mx:Form width="100%" height="241" backgroundColor="#6F6565">
+							<mx:FormItem label="Report Name">
+							<s:TextInput id="fmReportName0"/>
+							</mx:FormItem>
+							<mx:FormItem label="Category">
+							<s:TextInput id="fmReportCategory0"/>
+							</mx:FormItem>
+							<mx:FormItem label="Report Description" width="420" height="126">
+							<s:TextArea height="123" width="295" id="fmReportDescrip0"/>
+							</mx:FormItem>
+							</mx:Form>
+						</s:Panel>
+					</s:NavigatorContent>
+					<s:NavigatorContent id="DeletionViewStack" label="DeletionViewStack" width="100%" height="100%">
+						<mx:DataGrid x="206" y="62" width="559" height="292">
+							<mx:columns>
+								<mx:DataGridColumn headerText="Column 1" dataField="col1"/>
+								<mx:DataGridColumn headerText="Column 2" dataField="col2"/>
+								<mx:DataGridColumn headerText="Column 3" dataField="col3"/>
+							</mx:columns>
+						</mx:DataGrid>
+					</s:NavigatorContent>
+				</mx:ViewStack>
+			</s:NavigatorContent>
+		</mx:ViewStack>
+	</s:TitleWindow>
+</mx:Module>

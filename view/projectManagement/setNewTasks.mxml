@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="516" height="448">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.rpc.events.ResultEvent;
+				 //Import all required libraries and resources
+			
+			
+			//initalize comboboxes and populate them
+			private function initModule():void {
+				//initialize remote object to retrieve data
+				
+			}
+			
+			//Task Creation function passes the new task values into the DB and sets a new task assignment
+			//bound to the selected project and person on the project.
+			
+			private function setNewTaskAssignment():void {
+				//pass values through remote object call to Coldfusion here. 	
+			}
+			//Result events for databinding to data Provider variables are below.
+			
+			[Bindable]
+			//employee name data provider variable
+			private var setEmployeeName:String;
+			
+			[Bindable]
+			//project name data provider variable
+			private var setProjectName:String;
+			//Result event function. Assigned the result to the dataProvider variable. 
+			private function setTaskResult(event:ResultEvent):void {
+				//set project member data provider on the line below.
+				
+				//set the project name data provider on the line below.
+				
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<mx:RemoteObject id="roSetNewTask" showBusyCursor="true" destination="ColdFusion" source="controllers.projectManagement.taskSetter" >
+			<s:method name="newTaskMethod" fault="mx.controls.Alert.show(event.fault.faultString)" result="mx.controls.Alert.show('Task Successfully Created.')" />
+		</mx:RemoteObject>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:TitleWindow width="100%" height="444" title="Create New Task" y="0" x="0">
+		<mx:Form width="100%" horizontalCenter="-1" height="384" y="1">
+			<mx:FormItem label="Task Name" direction="vertical" required="true" styleName="formItemLabel" color="#FFFFFF" width="243">
+				<s:TextInput direction="ltr" width="100%"/>
+			</mx:FormItem>
+			<mx:FormItem label="Assigned To" styleName="formItemLabel" width="244" toolTip="Employee task is assigned to." required="true">
+				<s:ComboBox width="100%"/>
+			</mx:FormItem>
+			<mx:FormItem label="Select Project" styleName="formItemLabel" width="244" toolTip="Project task is associated to." required="true">
+				<s:ComboBox width="100%"/>
+			</mx:FormItem>
+			<mx:FormItem label="Task Category" styleName="formItemLabel" width="244" toolTip="Project task is associated to." required="true">
+				<s:ComboBox width="100%"/>
+			</mx:FormItem>
+			<s:HGroup width="456" height="29">
+				<mx:FormItem label="Start Date:" color="#FFFFFF">
+					<mx:DateField width="106"/>
+				</mx:FormItem>
+				<mx:FormItem label="End Date:" color="#FFFFFF">
+					<mx:DateField width="110"/>
+				</mx:FormItem>
+			</s:HGroup>
+			<mx:FormItem label="Urgent?" styleName="formItemLabel" width="154" id="fm_Urgent">
+				<s:CheckBox label="Yes"/>
+			</mx:FormItem>
+			<s:VGroup width="478" height="173" toolTip="Task description here.">
+				<mx:FormItem label="Task Description" width="485" styleName="formItemLabel" required="true" height="17">
+				</mx:FormItem>
+				<s:TextArea width="100%" height="147" id="taskDescrip"/>
+				
+			</s:VGroup>
+			
+		
+		</mx:Form>
+		<s:Button label="Create Task" styleName="defaultBtnStyle" x="10" bottom="5"/>
+		<s:Button label="Clear Form" fontSize="12" x="112" bottom="5"/>
+	</s:TitleWindow>
+</s:Group>

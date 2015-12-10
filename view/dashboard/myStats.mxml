@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="550" height="380" title="Your Latest Stats {myStats.fName)" close="closeWindow()">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			//close the component
+			private function closeWindow():void{
+				PopUpManager.removePopUp(this);
+				
+			}
+			
+			//update employee stats
+			private function updateStats():void{
+				//remote object call to update the stats
+				//Connects to the stats.cfc controller
+				
+			}
+
+			protected function statsRO_faultHandler(event:FaultEvent):void
+			{
+				//Notify user of failed Remote Object call
+				Alert.show('Remote object call failed. Please contact system administrator');
+				notifyAdmin();
+			}
+			
+			//call this method if the remote object call fails.
+			protected function notifyAdmin():void{
+				//remote object call to notify admin of failed remote object call.
+				//connects to stats.cfc controller, notifyadmin method.
+				
+			}
+			
+			//Bindable variable to result handler event
+			private var myStatsDP:Object;
+			//Get Stats result handler method
+			private function getStats_ResultHandler(event:ResultEvent):void{
+				//Returned result is comprised of a struct with an array of objects.
+				//Bind returned result event to the myStatsDP variable
+				myStatsDP = event.result;
+				
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:RemoteObject name="statsRO" concurrency="multiple" destination="ColdFusion" fault="statsRO_faultHandler(event)" source="controller.stats.statsController" >
+	       <s:method name="getStats" concurrency="multiple" fault="mx.controls.Alert.show(event.fault.faultString)" result="" />
+		</s:RemoteObject>
+		<s:RadioButtonGroup id="myStatsRG"/>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:controlBarContent>
+		<s:Button label="Export PDF" color="#000000"/>
+		<s:Button label="Update" color="#000000"/>
+		<s:RadioButton label="Report" groupName="myStatsRG" chromeColor="#727272" color="#000000"/>
+		<s:RadioButton label="Graph" groupName="myStatsRG" chromeColor="#727272" color="#000000"/>
+	
+	</s:controlBarContent>
+</s:TitleWindow>

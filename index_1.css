@@ -1,0 +1,17 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+
+global
+{
+	chrome-color: #8BB6E2;
+	color: #FFFFFF;
+	content-background-color: #80A3C6;
+}
+s|Button.btnIconSkin
+{
+	chromeColor: #092645;
+	icon: "assets/add.fw.png";
+}
+	
