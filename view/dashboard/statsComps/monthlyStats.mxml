@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="800" height="800" title="Monthly Stats Scorecard" creationComplete="initComp">
+	<fx:Script>
+		<![CDATA[
+			import mx.rpc.events.ResultEvent;
+			
+			//Component initialization function
+			private function initComp(a:MouseEvent):void{
+				//invoke the remote object method.
+				loadData();
+			}
+			//remote object method to populate component
+			private function loadData():void{
+				//remote object call.
+			}
+			//set data provicer variable
+			[Bindable]
+			private var compDP:Object;
+			
+			//Remote object method result event
+			private function loadData_ResultHandler(e:ResultEvent):void{
+				
+			}
+			
+			//Close the component
+			private function closeWindow():void{
+				PopUpManager.removePopUp(this);
+				
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<s:RemoteObject id="mStatsRO" concurrency="multiple" destination="ColdFusion" fault="mx.controls.Alert.show(event.fault.faultString)" >
+			<s:method name="loadData" concurrency="multiple" fault="mx.controls.Alert.show(event.fault.faultString)" result=""			
+		</s:RemoteObject>
+	</fx:Declarations>
+	<s:Panel width="268" height="200" chromeColor="#221E1E" title="Closings" y="312">
+		<s:controlBarContent>
+			<s:DropDownList chromeColor="#034E94"></s:DropDownList>
+		
+		</s:controlBarContent>
+		<s:Label x="10" y="10" text="This Month:"/>
+		<s:Label x="10" y="28" text="Prior Month:"/>
+		<s:Label x="10" y="49" text="Same Month Last Year:"/>
+		<s:Label x="11" y="71" text="YTD:"/>
+	</s:Panel>
+	<mx:LineChart id="monthlyStatsChart" height="250" width="100%">
+		<mx:series>
+			<mx:LineSeries displayName="Series 1" yField=""/>
+		</mx:series>
+	</mx:LineChart>
+	<mx:ControlBar width="462" height="63" color="#984300" y="250" >
+		<mx:Legend dataProvider="{monthlyStatsChart}" width="218" direction="horizontal"/>
+		<s:Label text="Weeks" color="#FFCEA7"/>
+		<s:HSlider/>
+	</mx:ControlBar>
+	<s:Panel width="268" height="200" chromeColor="#221E1E" title="Issue Files" y="314" x="280">
+		<s:controlBarContent>
+			<s:DropDownList chromeColor="#034E94"></s:DropDownList>
+		
+		</s:controlBarContent>
+		<s:Label x="10" y="10" text="This Month:"/>
+		<s:Label x="10" y="28" text="Prior Month:"/>
+		<s:Label x="10" y="49" text="Same Month Last Year:"/>
+		<s:Label x="11" y="71" text="YTD:"/>
+	</s:Panel>
+</s:TitleWindow>

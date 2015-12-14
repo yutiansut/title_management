@@ -2,7 +2,7 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" pageTitle="First Title &amp; Escrow - First Vision" backgroundColor="#8DAAC6"  width="100%" height="100%" currentState="login" height.managers="100%"
-			   xmlns:view="*" xmlns:reportAssignment="view.reportAssignment.*" height.processor="100%" creationComplete="initApplication();">
+			   xmlns:view="*" xmlns:reportAssignment="view.reportAssignment.*" height.processor="100%" creationComplete="initApplication();" height.clientRelations="100%">
 	<fx:Style source="index_1.css"/>
 	<fx:Style source="index.css"/>
 	<s:states>
@@ -12,12 +12,12 @@
 		<s:State name="managers"/>
 		<s:State name="loggedOut"/>
 		<s:State name="processor"/>
+		<s:State name="clientRelations"/>
 	</s:states>
 	<fx:Script>
 		<![CDATA[
 			import flash.events.MouseEvent;
 			import flash.utils.flash_proxy;
-			
 			import mx.collections.ArrayCollection;
 			import mx.collections.ArrayList;
 			import mx.containers.TitleWindow;
@@ -28,14 +28,14 @@
 			import mx.managers.PopUpManager;
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
-			
 			import spark.components.Group;
 			import spark.components.Panel;
 			import spark.components.TitleWindow;
-			
 			import view.accountManagement.createNewUser;
 			import view.accountManagement.suspendEmployeeProfile;
 			import view.dashboard.*;
+			import view.dashboard.statsComps.monthlyClosingStats;
+			import view.dashboard.statsComps.teamStats;
 			import view.projectManagement.projectManagementLoader;
 			
 			
@@ -246,7 +246,8 @@
 			//My Stats Method
 			private function openMyStats(event:MouseEvent):void{
 			//Open the my stats panel
-				var newMyStats = PopUpManager.createPopUp(this, myStats, true) as myStats;
+				var newMyStats:myStats = PopUpManager.createPopUp(this,myStats, true) as myStats;
+				PopUpManager.centerPopUp(newMyStats);
 				
 			}
 			//Launch Statistics Module
@@ -255,6 +256,20 @@
 				var newStatsWin:statsDashboard = PopUpManager.createPopUp(this,statsDashboard, true) as statsDashboard;
 				PopUpManager.centerPopUp(newStatsWin);
 				
+			}
+			
+			//Monthly stats	component
+			private function launchMStats(event:MouseEvent):void{
+				//cast new instance of the monthly stats component.
+				var newMStatsWin:monthlyClosingStats = PopUpManager.createPopUp(this, monthlyClosingStats, true) as monthlyClosingStats;
+				PopUpManager.centerPopUp(newMStatsWin);
+			}
+			
+			//Team Stats Component
+			private function launchTStats(event:MouseEvent):void{
+				//Cast new instance of the team stats component.
+				var newTStatsWin:teamStats = PopUpManager.createPopUp(this, teamStats, true) as teamStats;
+				PopUpManager.centerPopUp(teamStats);
 			}
 			
 			
@@ -290,12 +305,12 @@
 	</fx:Declarations>
 	
 	<s:controlBarContent>
-		<s:Label text="First Vision Title Management" fontWeight="normal" textDecoration="underline" fontFamily="Verdana" color.login="#000000" text.login="First Vision Employee Portal" fontWeight.login="bold" fontSize.login="11" color.administrator="#000000" fontWeight.administrator="bold" fontSize.administrator="11" color.managers="#000000" fontSize.managers="11" fontWeight.managers="bold" color.loggedOut="#000000" fontSize.loggedOut="11" fontWeight.loggedOut="bold" text.loggedOut="First Vision Employee Portal" color.processor="#000000" fontSize.processor="11" fontWeight.processor="bold"/>
+		<s:Label text="First Vision Title Management" fontWeight="normal" textDecoration="underline" fontFamily="Verdana" color.login="#000000" text.login="First Vision Employee Portal" fontWeight.login="bold" fontSize.login="11" color.administrator="#000000" fontWeight.administrator="bold" fontSize.administrator="11" color.managers="#000000" fontSize.managers="11" fontWeight.managers="bold" color.loggedOut="#000000" fontSize.loggedOut="11" fontWeight.loggedOut="bold" text.loggedOut="First Vision Employee Portal" color.processor="#000000" fontSize.processor="11" fontWeight.processor="bold" color.clientRelations="#000000" fontSize.clientRelations="11" fontWeight.clientRelations="bold"/>
 		<mx:Spacer height="13" width="90%"/>
-		<s:TextInput includeIn="managers" contentBackgroundColor="#FFFFFF" id="searchBox"/>
-		<s:Button label="Settings" height="15" color="#000000" fontSize="10" includeIn="State1,administrator,managers,processor" chromeColor.managers="#406A95" color.managers="#FFFFFF" label.managers="Search" click.managers="findFile();"/>
-		<s:Button label="Settings" height="15" color="#000000" fontSize="10" includeIn="managers"/>
-		<s:Button label="Logout" height="15" color="#000000" fontSize="10" includeIn="State1,administrator,managers,processor" click.managers="logoutUser();clearLogin();" click.processor="logoutUser();clearLogin();" click.administrator="clearLogin();"/>
+		<s:TextInput includeIn="clientRelations,managers" contentBackgroundColor="#FFFFFF" id="searchBox"/>
+		<s:Button label="Settings" height="15" color="#000000" fontSize="10" includeIn="State1,administrator,clientRelations,managers,processor" chromeColor.managers="#406A95" color.managers="#FFFFFF" label.managers="Search" click.managers="findFile();" chromeColor.clientRelations="#406A95" click.clientRelations="findFile();" color.clientRelations="#FFFFFF" label.clientRelations="Search"/>
+		<s:Button label="Settings" height="15" color="#000000" fontSize="10" includeIn="clientRelations,managers"/>
+		<s:Button label="Logout" height="15" color="#000000" fontSize="10" includeIn="State1,administrator,clientRelations,managers,processor" click.managers="logoutUser();clearLogin();" click.processor="logoutUser();clearLogin();" click.administrator="clearLogin();" click.clientRelations="logoutUser();clearLogin();"/>
 	</s:controlBarContent>
 	
 	
@@ -314,9 +329,12 @@
 	<s:layout.processor>
 		<s:BasicLayout/>
 	</s:layout.processor>
-	<mx:MenuBar styleName="footerBar" bottom="0" width="100%" height="30" x.administrator="0" x.State1="0" x.login="0" x.loggedOut="0" bottom.managers="0" horizontalCenter.managers="0" bottom.processor="0" horizontalCenter.processor="0"></mx:MenuBar>
+	<s:layout.clientRelations>
+		<s:BasicLayout/>
+	</s:layout.clientRelations>
+	<mx:MenuBar styleName="footerBar" bottom="0" width="100%" height="30" x.administrator="0" x.State1="0" x.login="0" x.loggedOut="0" bottom.managers="0" horizontalCenter.managers="0" bottom.processor="0" horizontalCenter.processor="0" bottom.clientRelations="0" horizontalCenter.clientRelations="0"></mx:MenuBar>
 	<s:Label text="2015 Copyright. All Rights Reserved. First Title &amp; Escrow Inc." color="#020202" fontWeight="normal" fontFamily="Verdana" bottom="5" left="5"/>
-	<mx:Image y="0" width="463" height="90" source.State1="assets/FTLogo.png" source.administrator="assets/FTLogo2.png" source.login="assets/FTLogo2.png" y.login="12" horizontalCenter.login="0" left.State1="0" horizontalCenter.administrator="0" horizontalCenter.managers="0" source.managers="assets/FTLogo2.png" horizontalCenter.loggedOut="0" source.loggedOut="assets/FTLogo2.png" y.loggedOut="12" horizontalCenter.processor="0" source.processor="assets/FTLogo2.png"/>
+	<mx:Image y="0" width="463" height="90" source.State1="assets/FTLogo.png" source.administrator="assets/FTLogo2.png" source.login="assets/FTLogo2.png" y.login="12" horizontalCenter.login="0" left.State1="0" horizontalCenter.administrator="0" horizontalCenter.managers="0" source.managers="assets/FTLogo2.png" horizontalCenter.loggedOut="0" source.loggedOut="assets/FTLogo2.png" y.loggedOut="12" horizontalCenter.processor="0" source.processor="assets/FTLogo2.png" horizontalCenter.clientRelations="0" source.clientRelations="assets/FTLogo2.png"/>
 	<mx:TabNavigator includeIn="administrator" width="876.3" height="477" cornerRadius="8" y="126.35" right="91.95001" id="managersTabs">
 		<s:NavigatorContent label="Dashboard" width="100%" height="100%">
 			<s:TileGroup y="21" width="880" height="437" x="10">
@@ -416,35 +434,37 @@
 		<s:Button y="120" label="Login" horizontalCenter="0" cornerRadius="-6" click="loginUserOnClick(event); clearLogin();" keyDown="loginUser(event)"/>
 		<s:Label x="124" y="153" text="New User? Click here." fontSize="11" fontWeight="bold" color="#F1F1F1" click="contactAdmin();"/>
 	</s:Panel>
-	<s:Label includeIn="managers,processor" text="Welcome to the Manager Dashboard" y="79" color="#000000" textDecoration="underline" fontWeight="bold" fontSize="11" left="103"/>
-	<mx:TabNavigator cornerRadius="8" id="managersTabs0" includeIn="managers,processor" width="85%" height="80%" y="116" horizontalCenter="0" width.processor="977" horizontalCenter.processor="30">
+	<s:Label includeIn="clientRelations,managers,processor" text="Welcome to the Manager Dashboard" y="79" color="#000000" textDecoration="underline" fontWeight="bold" fontSize="11" left="103"/>
+	<mx:TabNavigator cornerRadius="8" id="managersTabs0" includeIn="clientRelations,managers,processor" width="85%" height="80%" y="116" horizontalCenter="0" width.processor="977" horizontalCenter.processor="30">
 		<s:NavigatorContent label="Dashboard" width="100%" height="100%">
 			<s:TileGroup y="21" width="816" height="412" horizontalCenter="-1">
-				<s:Panel width="267" height="187" title="First Vision" skinClass="spark.skins.spark.PanelSkin" chromeColor="#221E1E" controlBarVisible="true">
+				<s:Panel width="267" height="187" title="First Vision" skinClass="spark.skins.spark.PanelSkin" chromeColor="#221E1E" controlBarVisible="true" title.clientRelations="Sales Relations">
 					<s:controlBarContent>
 					
 					</s:controlBarContent>
 					<s:Button label="Launch First Vision" cornerRadius="15" chromeColor="#9B0000" y="0" left="0"/>
 					<s:Button click="callCreateNewUser();" width="110" label="+ Add New User" cornerRadius="15" chromeColor="#9B0000" bottom="0" right="0"/>
 					<s:Button y="0" label="- Remove User" width="108" cornerRadius="15" chromeColor="#9B0000" right="0"/>
-					<s:Button x="61" label="Suspend User Account" width="151" cornerRadius="15" chromeColor="#9B0000" verticalCenter="0" chromeColor.managers="#221E1E"/>
+					<s:Button x="61" label="Suspend User Account" width="151" cornerRadius="15" chromeColor="#9B0000" verticalCenter="0" chromeColor.managers="#221E1E" chromeColor.clientRelations="#221E1E" label.clientRelations="Sales Team Dashboard"/>
 					<s:Button x="0" label="Report Assignment" cornerRadius="15" chromeColor="#9B0000" bottom="0"/>
 				</s:Panel>
 				<s:Panel width="250" height="200" title="Team Statistics" chromeColor="#221E1E">
 					<s:controlBarContent>
 					
 					</s:controlBarContent>
-					<s:Button y="62" label="Launch Statistics" horizontalCenter="0" label.managers="Launch Statistics Module" cornerRadius.managers="10" click.managers="launchStatsModule(event);"/>
-					<s:Button label="My Stats" chromeColor="#9B0000" left="0" top="0" width.managers="108"/>
-					<s:Button label="Monthly Stats" chromeColor="#9B0000" left="0" width="108" includeIn="managers" bottom="0"/>
-					<s:Button label="Quarterly Stats" chromeColor="#9B0000" includeIn="managers" right="0" width="108" top="130"/>
-					<s:Button label="Team Stats" chromeColor="#9B0000" right="0" width="108" top="0" includeIn="managers"/>
+					<s:Button y="62" label="Launch Statistics" horizontalCenter="0" includeIn="processor"/>
+					<s:Button label="My Stats" chromeColor="#9B0000" left="0" top="0" includeIn="processor"/>
+					<s:Button label="Monthly Stats" chromeColor="#9B0000" left="0" width="108" includeIn="clientRelations,managers" bottom="0" click.managers="launchMStats(event);"/>
+					<s:Button label="Quarterly Stats" chromeColor="#9B0000" includeIn="clientRelations,managers" right="0" width="108" top="130"/>
+					<s:Button label="Team Stats" chromeColor="#9B0000" right="0" width="108" top="0" includeIn="clientRelations,managers" click="openMyStats(event);"/>
+					<s:Button label="My Stats" chromeColor="#9B0000" width="108" click="openMyStats(event);" includeIn="clientRelations,managers" x="0" y="0"/>
+					<s:Button y="62" label="Launch Statistics Module" cornerRadius="10" click="launchStatsModule(event);" includeIn="clientRelations,managers" x="60"/>
 				</s:Panel>
 				<s:Panel width="250" height="200" title="TSS-Title Express" chromeColor="#221E1E">
 					<s:controlBarContent>
 					
 					</s:controlBarContent>
-					<s:Button y="62" label="Launch TSS" horizontalCenter="0" cornerRadius.managers="10"/>
+					<s:Button y="62" label="Launch TSS" horizontalCenter="0" cornerRadius.managers="10" cornerRadius.clientRelations="10"/>
 				</s:Panel>
 				<s:Panel width="224" height="200" title="Misc." chromeColor="#221E1E">
 					<s:controlBarContent>
@@ -459,13 +479,13 @@
 					<s:controlBarContent>
 					
 					</s:controlBarContent>
-					<s:Button label="Launch Quickbooks" chromeColor="#B21313" cornerRadius="10" verticalCenter="0" chromeColor.managers="#221E1E" label.managers="Module 5" x.processor="64" horizontalCenter.managers="0" verticalCenter.managers="0"/>
-					<s:Button label="Recent Orders" chromeColor="#9B0000" left="0" top="0" width="108" includeIn="managers"/>
-					<s:Button label="Team Stats" chromeColor="#9B0000" right="0" width="108" top="0" includeIn="managers"/>
-					<s:Button label="Quarterly Stats" chromeColor="#9B0000" right="0" width="108" top="130" includeIn="managers"/>
-					<s:Button label="Monthly Stats" chromeColor="#9B0000" left="0" width="108" bottom="0" includeIn="managers"/>
+					<s:Button label="Launch Quickbooks" chromeColor="#B21313" cornerRadius="10" verticalCenter="0" chromeColor.managers="#221E1E" label.managers="Module 5" x.processor="64" horizontalCenter.managers="0" verticalCenter.managers="0" chromeColor.clientRelations="#221E1E" horizontalCenter.clientRelations="0" label.clientRelations="Module 5" verticalCenter.clientRelations="0"/>
+					<s:Button label="Recent Orders" chromeColor="#9B0000" left="0" top="0" width="108" includeIn="clientRelations,managers"/>
+					<s:Button label="Team Stats" chromeColor="#9B0000" right="0" width="108" top="0" includeIn="clientRelations,managers"/>
+					<s:Button label="Quarterly Stats" chromeColor="#9B0000" right="0" width="108" top="130" includeIn="clientRelations,managers"/>
+					<s:Button label="Monthly Stats" chromeColor="#9B0000" left="0" width="108" bottom="0" includeIn="clientRelations,managers"/>
 				</s:Panel>
-				<s:Panel width="250" height="200" chromeColor="#221E1E" title="Quick Reports" title.managers="Quick Links">
+				<s:Panel width="250" height="200" chromeColor="#221E1E" title="Quick Reports" title.managers="Quick Links" title.clientRelations="Quick Links">
 					<s:controlBarContent>
 					
 					</s:controlBarContent>
@@ -496,7 +516,7 @@
 					<s:Label x="27" y="25" text="Filters:" fontSize="12" textDecoration="underline" fontWeight="bold"/>
 					<s:Label x="240" y="26" text="From:" fontSize="12" textDecoration="underline" fontWeight="normal"/>
 					<s:Label x="385" y="26" text="To:" fontSize="12" textDecoration="underline" fontWeight="normal"/>
-					<s:ComboBox x="92" y="18" borderVisible="true" contentBackgroundColor="#028CC0" contentBackgroundAlpha="1" toolTip="Select Order Type" alternatingItemColors.managers="['#871239', '#132854']">
+					<s:ComboBox x="92" y="18" borderVisible="true" contentBackgroundColor="#028CC0" contentBackgroundAlpha="1" toolTip="Select Order Type" alternatingItemColors.managers="['#871239', '#132854']" alternatingItemColors.clientRelations="['#871239', '#132854']">
 						<mx:ArrayList>
 							<fx:Object label="All" data=""/>
 							<fx:Object label="Property" data="P"/>
@@ -508,15 +528,15 @@
 					<s:Label x="520" y="5" text="Status:" fontWeight="bold" color="#6DC9D7" width="41"/>
 					<mx:DateField x="280" y="19" toolTip="Select Date Range"/>
 					<mx:DateField x="410" y="19" showToday="true"/>
-					<s:DropDownList x="519" y="18" prompt="Select Status" dataProvider.managers="{_orderStatusDP}"></s:DropDownList>
-					<s:Button includeIn="managers" x="651" y="17" label="Update" cornerRadius="10"/>
-					<s:Button includeIn="managers" x="745" y="17" label="Reset" cornerRadius="10"/>
-					<s:Button includeIn="managers" x="840" y="17" label="Expand Order" cornerRadius="10" width="104" id="exp" visible="false"/>
-					<s:Button x="840" y="17" label="Expand Order" cornerRadius="10" width="104" id="btn_expandOrder" includeIn="managers"/>
+					<s:DropDownList x="519" y="18" prompt="Select Status" dataProvider.managers="{_orderStatusDP}" dataProvider.clientRelations="{_orderStatusDP}"></s:DropDownList>
+					<s:Button includeIn="clientRelations,managers" x="651" y="17" label="Update" cornerRadius="10"/>
+					<s:Button includeIn="clientRelations,managers" x="745" y="17" label="Reset" cornerRadius="10"/>
+					<s:Button includeIn="clientRelations,managers" x="840" y="17" label="Expand Order" cornerRadius="10" width="104" id="exp" visible="false"/>
+					<s:Button x="840" y="17" label="Expand Order" cornerRadius="10" width="104" id="btn_expandOrder" includeIn="clientRelations,managers"/>
 					
 				</s:NavigatorContent>
 				<s:NavigatorContent label="New Orders" width="100%" height="100%">
-					<mx:DataGrid horizontalCenter="0" width="98%" height="87%" bottom="8" chromeColor="#000000" dropShadowVisible="true" includeIn="managers">
+					<mx:DataGrid horizontalCenter="0" width="98%" height="87%" bottom="8" chromeColor="#000000" dropShadowVisible="true" includeIn="clientRelations,managers">
 						<mx:columns>
 							<mx:DataGridColumn headerText="Order Type" dataField="col1" width="100"/>
 							<mx:DataGridColumn headerText="Order No." dataField="col2" width="100"/>
@@ -527,22 +547,22 @@
 							<mx:DataGridColumn headerText="Recent Notes" dataField="col3" minWidth="400"/>
 						</mx:columns>
 					</mx:DataGrid>
-					<mx:MenuBar y="0" chromeColor="#3A3939" width="98%" height="48" horizontalCenter="0" includeIn="managers"></mx:MenuBar>
-					<s:Label x="686" y="5" text="Search Condition" fontWeight="bold" color="#6DC9D7" width="100" includeIn="managers" textDecoration="underline"/>
-					<s:Label x="400" y="5" text="Client" fontWeight="bold" color="#6DC9D7" width="41" includeIn="managers"/>
-					<s:DropDownList x="400" y="18" prompt="Select Client" includeIn="managers"></s:DropDownList>
-					<s:Label x="550" y="5" text="Client" fontWeight="bold" color="#6DC9D7" width="41" includeIn="managers"/>
-					<s:DropDownList x="550" y="18" prompt="Select Client" includeIn="managers"></s:DropDownList>
-					<s:Label x="27" y="25" text="Filters:" fontSize="12" textDecoration="underline" fontWeight="bold" includeIn="managers"/>
-					<s:ComboBox x="92" y="18" borderVisible="true" contentBackgroundColor="#028CC0" contentBackgroundAlpha="1" labelField="Order Type" toolTip="Select Order Type" includeIn="managers"/>
-					<s:Label x="126" y="5" text="Order Type" fontWeight="bold" color="#6DC9D7" includeIn="managers"/>
-					<s:Label x="250" y="5" text="Status:" fontWeight="bold" color="#6DC9D7" width="41" includeIn="managers"/>
-					<s:DropDownList x="250" y="18" prompt="Select Status" includeIn="managers"></s:DropDownList>
-					<s:RadioButton includeIn="managers" x="729" y="18" label="And" groupName="conditionalGroup"/>
-					<s:RadioButton includeIn="managers" x="687" y="18" label="Or" groupName="conditionalGroup"/>
+					<mx:MenuBar y="0" chromeColor="#3A3939" width="98%" height="48" horizontalCenter="0" includeIn="clientRelations,managers"></mx:MenuBar>
+					<s:Label x="686" y="5" text="Search Condition" fontWeight="bold" color="#6DC9D7" width="100" includeIn="clientRelations,managers" textDecoration="underline"/>
+					<s:Label x="400" y="5" text="Client" fontWeight="bold" color="#6DC9D7" width="41" includeIn="clientRelations,managers" text.managers="Sales Rep." width.managers="100"/>
+					<s:DropDownList x="400" y="18" prompt="Select Client" includeIn="clientRelations,managers"></s:DropDownList>
+					<s:Label x="550" y="5" text="Client" fontWeight="bold" color="#6DC9D7" width="41" includeIn="clientRelations,managers"/>
+					<s:DropDownList x="550" y="18" prompt="Select Client" includeIn="clientRelations,managers"></s:DropDownList>
+					<s:Label x="27" y="25" text="Filters:" fontSize="12" textDecoration="underline" fontWeight="bold" includeIn="clientRelations,managers"/>
+					<s:ComboBox x="92" y="18" borderVisible="true" contentBackgroundColor="#028CC0" contentBackgroundAlpha="1" labelField="Order Type" toolTip="Select Order Type" includeIn="clientRelations,managers"/>
+					<s:Label x="126" y="5" text="Order Type" fontWeight="bold" color="#6DC9D7" includeIn="clientRelations,managers"/>
+					<s:Label x="250" y="5" text="Status:" fontWeight="bold" color="#6DC9D7" width="41" includeIn="clientRelations,managers"/>
+					<s:DropDownList x="250" y="18" prompt="Select Status" includeIn="clientRelations,managers"></s:DropDownList>
+					<s:RadioButton includeIn="clientRelations,managers" x="729" y="18" label="And" groupName="conditionalGroup"/>
+					<s:RadioButton includeIn="clientRelations,managers" x="687" y="18" label="Or" groupName="conditionalGroup"/>
 				</s:NavigatorContent>
 				<s:NavigatorContent label="W.I.P." width="100%" height="100%">
-					<mx:DataGrid horizontalCenter="0" width="98%" height="87%" bottom="8" chromeColor="#000000" dropShadowVisible="true" includeIn="managers">
+					<mx:DataGrid horizontalCenter="0" width="98%" height="87%" bottom="8" chromeColor="#000000" dropShadowVisible="true" includeIn="clientRelations,managers">
 						<mx:columns>
 							<mx:DataGridColumn headerText="Order Type" dataField="col1" width="100"/>
 							<mx:DataGridColumn headerText="Order No." dataField="col2" width="100"/>
@@ -553,17 +573,17 @@
 							<mx:DataGridColumn headerText="Recent Notes" dataField="col3" minWidth="400"/>
 						</mx:columns>
 					</mx:DataGrid>
-					<mx:MenuBar y="0" chromeColor="#3A3939" width="98%" height="48" horizontalCenter="0" includeIn="managers"></mx:MenuBar>
-					<s:Label x="265" y="5" text="Client" fontWeight="bold" color="#6DC9D7" includeIn="managers"/>
-					<s:DropDownList x="265" y="18" prompt="Select Client" includeIn="managers"></s:DropDownList>
-					<s:Label x="435" y="5" text="Team" fontWeight="bold" color="#6DC9D7" width="41" includeIn="managers"/>
-					<s:DropDownList x="435" y="18" prompt="Select Client" includeIn="managers"></s:DropDownList>
-					<s:ComboBox x="92" y="18" borderVisible="true" contentBackgroundColor="#028CC0" contentBackgroundAlpha="1" labelField="Order Type" toolTip="Select Order Type" includeIn="managers"/>
-					<s:Label x="126" y="5" text="Order Type" fontWeight="bold" color="#6DC9D7" includeIn="managers"/>
-					<s:Label x="27" y="25" text="Filters:" fontSize="12" textDecoration="underline" fontWeight="bold" includeIn="managers"/>
+					<mx:MenuBar y="0" chromeColor="#3A3939" width="98%" height="48" horizontalCenter="0" includeIn="clientRelations,managers"></mx:MenuBar>
+					<s:Label x="265" y="5" text="Client" fontWeight="bold" color="#6DC9D7" includeIn="clientRelations,managers"/>
+					<s:DropDownList x="265" y="18" prompt="Select Client" includeIn="clientRelations,managers"></s:DropDownList>
+					<s:Label x="435" y="5" text="Team" fontWeight="bold" color="#6DC9D7" width="41" includeIn="clientRelations,managers"/>
+					<s:DropDownList x="435" y="18" prompt="Select Client" includeIn="clientRelations,managers"></s:DropDownList>
+					<s:ComboBox x="92" y="18" borderVisible="true" contentBackgroundColor="#028CC0" contentBackgroundAlpha="1" labelField="Order Type" toolTip="Select Order Type" includeIn="clientRelations,managers"/>
+					<s:Label x="126" y="5" text="Order Type" fontWeight="bold" color="#6DC9D7" includeIn="clientRelations,managers"/>
+					<s:Label x="27" y="25" text="Filters:" fontSize="12" textDecoration="underline" fontWeight="bold" includeIn="clientRelations,managers"/>
 				</s:NavigatorContent>
 				<s:NavigatorContent label="C.T.C" width="100%" height="100%">
-					<mx:DataGrid horizontalCenter="0" width="98%" height="87%" bottom="8" chromeColor="#000000" dropShadowVisible="true" includeIn="managers">
+					<mx:DataGrid horizontalCenter="0" width="98%" height="87%" bottom="8" chromeColor="#000000" dropShadowVisible="true" includeIn="clientRelations,managers">
 						<mx:columns>
 							<mx:DataGridColumn headerText="Order Type" dataField="col1" width="100"/>
 							<mx:DataGridColumn headerText="Order No." dataField="col2" width="100"/>
@@ -574,7 +594,7 @@
 							<mx:DataGridColumn headerText="Recent Notes" dataField="col3" minWidth="400"/>
 						</mx:columns>
 					</mx:DataGrid>
-					<mx:MenuBar y="0" chromeColor="#3A3939" width="98%" height="48" horizontalCenter="0" includeIn="managers"></mx:MenuBar>
+					<mx:MenuBar y="0" chromeColor="#3A3939" width="98%" height="48" horizontalCenter="0" includeIn="clientRelations,managers"></mx:MenuBar>
 				</s:NavigatorContent>
 				<s:NavigatorContent label="Schedule Closing" width="100%" height="100%">
 				</s:NavigatorContent>
@@ -678,20 +698,20 @@
 					<s:List y="0" horizontalCenter="0" width="100%" height="100%" contentBackgroundColor="#E7E8E8"></s:List>
 				</s:Panel>
 			</s:HGroup>
-			<mx:TabNavigator y="204" width="80%" height="215" cornerRadius="10" horizontalCenter="0" height.managers="228" y.managers="191" horizontalCenter.managers="0">
-				<s:NavigatorContent includeIn="managers" label="All Projects" width="100%" height="100%">
+			<mx:TabNavigator y="204" width="80%" height="215" cornerRadius="10" horizontalCenter="0" height.managers="228" y.managers="191" horizontalCenter.managers="0" height.clientRelations="228" horizontalCenter.clientRelations="0" y.clientRelations="191">
+				<s:NavigatorContent includeIn="clientRelations,managers" label="All Projects" width="100%" height="100%">
 				</s:NavigatorContent>
 				<s:NavigatorContent label="Current Projects" width="100%" height="100%">
 				</s:NavigatorContent>
-				<s:NavigatorContent includeIn="managers" label="Task Panel" width="100%" height="100%">
+				<s:NavigatorContent includeIn="clientRelations,managers" label="Task Panel" width="100%" height="100%">
 				</s:NavigatorContent>
-				<s:NavigatorContent includeIn="managers" label="Upcoming Projects" width="100%" height="100%">
+				<s:NavigatorContent includeIn="clientRelations,managers" label="Upcoming Projects" width="100%" height="100%">
 				</s:NavigatorContent>
-				<s:NavigatorContent includeIn="managers" label="Planned Projects" width="100%" height="100%">
+				<s:NavigatorContent includeIn="clientRelations,managers" label="Planned Projects" width="100%" height="100%">
 				</s:NavigatorContent>
-				<s:NavigatorContent includeIn="managers" label="Create Project" width="100%" height="100%">
+				<s:NavigatorContent includeIn="clientRelations,managers" label="Create Project" width="100%" height="100%">
 				</s:NavigatorContent>
-				<s:NavigatorContent includeIn="managers" label="Idea Board" width="100%" height="100%">
+				<s:NavigatorContent includeIn="clientRelations,managers" label="Idea Board" width="100%" height="100%">
 				</s:NavigatorContent>
 			</mx:TabNavigator>
 		</s:NavigatorContent>
@@ -740,12 +760,12 @@
 		<s:NavigatorContent label="Report Assignment" width="100%" height="100%">
 			<reportAssignment:reportAssignment height="50%" width="100%" />
 		</s:NavigatorContent>
-		<s:NavigatorContent label="Time Off Requests (TOR)" width="100%" height="100%" includeIn="managers">
+		<s:NavigatorContent label="Time Off Requests (TOR)" width="100%" height="100%" includeIn="clientRelations,managers">
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Help Desk Support" width="100%" height="100%">
 			<s:Group width="100%" height="38" horizontalCenter="1" y="0">
-				<mx:MenuBar width="100%" chromeColor="#AFAEAE" height="37" cornerRadius="15" x="0" y="0" width.processor="100%" x.processor="0" width.managers="905" x.managers="0"></mx:MenuBar>
-				<s:Group y="3" width="225" height="33" x="749" x.managers="663" y.managers="3">
+				<mx:MenuBar width="100%" chromeColor="#AFAEAE" height="37" cornerRadius="15" x="0" y="0" width.processor="100%" x.processor="0" width.managers="905" x.managers="0" width.clientRelations="905" x.clientRelations="0"></mx:MenuBar>
+				<s:Group y="3" width="225" height="33" x="749" x.managers="663" y.managers="3" x.clientRelations="663" y.clientRelations="3">
 					<mx:Image x="23" y="2" source="assets/add.fw.png" width="30" height="32" click="callCreateNewUser();" rollOver="{rollOverColor.selectedColor}"/>
 					<mx:Image x="93" y="3" source="assets/subtract.fw.png" width="30" height="28"/>
 					<mx:Image x="164" y="1" source="assets/pencil.png" width="30" height="30"/>

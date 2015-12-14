@@ -9,6 +9,12 @@
 			import mx.managers.PopUpManager;
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
+				
+			//Initialize the component on creation
+			private function initComp():void{
+				//Trigger the update stats method on component cretion complete event.
+				updateStats();
+			}
 			
 			//close the component
 			private function closeWindow():void{
@@ -20,9 +26,10 @@
 			private function updateStats():void{
 				//remote object call to update the stats
 				//Connects to the stats.cfc controller
-				
+				statsRO.getStats();
 			}
-
+			
+			//Result event of the stats remote object call. 
 			protected function statsRO_faultHandler(event:FaultEvent):void
 			{
 				//Notify user of failed Remote Object call
@@ -34,11 +41,12 @@
 			protected function notifyAdmin():void{
 				//remote object call to notify admin of failed remote object call.
 				//connects to stats.cfc controller, notifyadmin method.
-				
+				statsRO.alertAdmin();
 			}
 			
 			//Bindable variable to result handler event
 			private var myStatsDP:Object;
+			
 			//Get Stats result handler method
 			private function getStats_ResultHandler(event:ResultEvent):void{
 				//Returned result is comprised of a struct with an array of objects.
@@ -46,20 +54,51 @@
 				myStatsDP = event.result;
 				
 			}
+			
+			//Export PDF method
+			private function exportToPDF(obj:Object):void{
+				
+			}
+			
 		]]>
 	</fx:Script>
+	<s:states>
+		<s:State name="State1"/>
+		<s:State name="charting"/>
+		<s:State name="processorStats"/>
+		<s:State name="starting"/>
+	</s:states>
 	<fx:Declarations>
-		<s:RemoteObject name="statsRO" concurrency="multiple" destination="ColdFusion" fault="statsRO_faultHandler(event)" source="controller.stats.statsController" >
+		<s:RemoteObject id="statsRO" concurrency="multiple" destination="ColdFusion" fault="statsRO_faultHandler(event)" source="controller.stats.statsController" >
 	       <s:method name="getStats" concurrency="multiple" fault="mx.controls.Alert.show(event.fault.faultString)" result="" />
+		   <s:method name="alertAdmin" concurrency="multiple" fault="mx.controls.Alert.show(event.fault.faultString)" result="mx.controls.Alert.show('System administrator has been notified of error')" />
 		</s:RemoteObject>
 		<s:RadioButtonGroup id="myStatsRG"/>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<s:controlBarContent>
 		<s:Button label="Export PDF" color="#000000"/>
-		<s:Button label="Update" color="#000000"/>
-		<s:RadioButton label="Report" groupName="myStatsRG" chromeColor="#727272" color="#000000"/>
-		<s:RadioButton label="Graph" groupName="myStatsRG" chromeColor="#727272" color="#000000"/>
+		<s:DropDownList includeIn="State1,starting" prompt="Select Stats" color="#000000"></s:DropDownList>
+		<s:Button label="Update" color="#000000" click.charting="updateStats();" click.processorStats="updateStats();" click.State1="updateStats();" click.starting="updateStats();"/>
+		<s:RadioButton label="Report" groupName="myStatsRG" chromeColor="#727272" color="#000000" selected.State1="true" click.charting="currentState='State1'" click.processorStats="currentState='State1'" selected.starting="true"/>
+		<s:RadioButton label="Graph" groupName="myStatsRG" chromeColor="#727272" color="#000000" selected.charting="true" click.State1="currentState='charting'" selected.processorStats="true" click.starting="currentState='charting'"/>
 	
 	</s:controlBarContent>
+	<s:BorderContainer includeIn="State1,starting" x="10" y="10" width="528" height="290" backgroundAlpha="0.3">
+		<s:Label x="52" y="10" text="Welcome To Your Stats Panel" width="154" fontWeight="bold" textDecoration="underline" includeIn="State1"/>
+		<s:RichText x="55" y="47" text="This window contains your personal statistics for files and closings for informative purposes. To understand what this window does, hover over the elements below to learn how they work.&#xd;" height="49" width="427" fontSize="13" includeIn="State1"/>
+		<s:Button label="Export PDF" color="#000000" x="54" y="170" includeIn="State1" toolTip="Export your latests stats in the current view in a pdf file. "/>
+		<s:DropDownList prompt="Select Stats" color="#000000" x="54" y="106" includeIn="State1" toolTip="Select the perspective you wish to explore.  Stats are tailored to each user's roles and analytics."></s:DropDownList>
+		<s:Button label="Update" color="#000000" x="54" y="138" includeIn="State1" toolTip="Problem with auto refresh. Hit update!"/>
+		<s:RadioButton label="Report" groupName="myStatsRG" chromeColor="#727272" color="#000000" selected="true" x="57" y="200" includeIn="State1"/>
+		<s:RadioButton label="Graph" groupName="myStatsRG" chromeColor="#727272" color="#000000" x="57" y="224" selected="true" includeIn="State1"/>
+		<s:VGroup x="182" y="106" width="305" height="108" includeIn="State1">
+			<s:Label text="Select the stats perspective you wish to  view by selecting   from the options in this control." width="292" fontWeight="bold" textDecoration="underline"/>
+			<mx:Spacer height="3"/>
+			<s:Label text="If your stats don't automatically refresh, simply click update and you will see your latest statistics." width="300" fontWeight="bold" textDecoration="underline"/>
+			<mx:Spacer height="1"/>
+			<s:Label text="PDF export capability enables you to export the statistics in the current view into a pdf file for download." width="304" fontWeight="bold" textDecoration="underline"/>
+		</s:VGroup>
+		<s:Button x="246" y="236" label="Enter Stats" chromeColor="#292B2B" cornerRadius="12" width="105" height="26" click="currentState='starting'" includeIn="State1"/>
+	</s:BorderContainer>
 </s:TitleWindow>
