@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="800" height="800" title="Purchase Processing Dept. Document QC Checklist" height.endorsement="1120">
+	<s:states>
+		<s:State name="State1"/>
+		<s:State name="endorsement"/>
+	</s:states>
+	<fx:Script>
+		<![CDATA[
+			
+			
+			
+			//Close Dashboard
+			private function closeWindow():void{
+				PopUpManager.removePopUp(this);
+				
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:RadioButtonGroup id="RBGroup_Insurer"/>
+		<s:RadioButtonGroup id="radiogroup1"/>
+		<s:RadioButtonGroup id="radiogroup2"/>
+		<s:RadioButtonGroup id="endorsement_RBGroup"/>
+		<s:RadioButtonGroup id="radiogroup3"/>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:controlBarContent>
+	
+	</s:controlBarContent>
+	<s:HGroup y="7" width="50%" height="32" left="10">
+		<mx:FormItem label="File #" width="172">
+			<s:TextInput width="122"/>
+		</mx:FormItem>
+		<mx:FormItem label="Loan #" width="200">
+			<s:TextInput width="144"/>
+		</mx:FormItem>
+	</s:HGroup>
+	<s:HGroup x="10" y="35" width="305" height="24">
+		<s:Label text="TITLE INSURER:" paddingTop="5" fontSize="12" fontWeight="bold" textDecoration="underline"/>
+		<s:RadioButton label="NATC" groupName="RBGroup_Insurer"/>
+		<s:RadioButton label="FATICO" groupName="RBGroup_Insurer"/>
+		<s:RadioButton label="STGC" groupName="RBGroup_Insurer"/>
+		<s:RadioButton label="WFG" groupName="RBGroup_Insurer"/>
+	</s:HGroup>
+	<s:HGroup x="11" y="60" width="305" height="23">
+		<s:Label text="Classification:" paddingTop="5" fontSize="12" fontWeight="bold" textDecoration="underline"/>
+		<s:RadioButton label="OO" groupName="RBGroup_Insurer"/>
+		<s:RadioButton label="2nd Home" groupName="RBGroup_Insurer"/>
+		<s:RadioButton label="Invest" groupName="RBGroup_Insurer"/>
+		<s:RadioButton label="FTHB" groupName="RBGroup_Insurer"/>
+	</s:HGroup>
+	<s:HGroup x="11" y="87" width="445" height="38">
+		<mx:FormItem label="Closing Date:">
+			<mx:DateField width="138"/>
+		</mx:FormItem>
+		<mx:FormItem label="Time:">
+			<s:ComboBox/>
+		</mx:FormItem>
+	</s:HGroup>
+	<mx:FormItem label="County" x="10" y="155">
+		<s:DropDownList></s:DropDownList>
+	</mx:FormItem>
+	<s:HGroup y="130" width="100%" height="27" left="10">
+		<mx:FormItem label="Property Address:" width="323">
+			<s:TextInput width="221"/>
+		</mx:FormItem>
+		<mx:FormItem label="City">
+			<s:TextInput/>
+		</mx:FormItem>
+		<mx:FormItem label="State:">
+			<s:DropDownList></s:DropDownList>
+		</mx:FormItem>
+	</s:HGroup>
+	<s:Label x="10" y="193" text="Type of Policy:" textDecoration="none" fontWeight="bold" fontSize="12"/>
+	<s:ComboBox x="185" y="215"/>
+	<s:ComboBox x="185" y="188"/>
+	<s:ComboBox x="336" y="215"/>
+	<s:RadioButton x="99" y="190" label="Owners" groupName="radiogroup1"/>
+	<s:RadioButton x="99" y="215" label="Lenders" groupName="radiogroup1"/>
+	<s:ComboBox x="336" y="188"/>
+	<s:Label x="10" y="258" text="CPL/ICL State:" fontSize="12" fontWeight="bold"/>
+	<s:RadioButton label="Yes" groupName="radiogroup2" x="102" y="254"/>
+	<s:RadioButton label="No" groupName="radiogroup2" x="146" y="254"/>
+	<s:Label x="10" y="278" text="Endorsements?:" fontWeight="bold" fontSize="12"/>
+	<s:RadioButton x="112" y="274" label="Yes" groupName="endorsement_RBGroup" click.State1="currentState='endorsement'"/>
+	<s:RadioButton x="168" y="274" label="No" groupName="endorsement_RBGroup"/>
+	<mx:FormItem includeIn="endorsement" label="What Endorsements are to be collected per instructions? " x="10" y="298" width="452">
+		<s:DropDownList width="168"></s:DropDownList>
+	</mx:FormItem>
+	<s:Label includeIn="endorsement" x="470" y="304" text="(If ALTA 7 make sure requirements are cleared)." fontSize="12"/>
+	<s:BorderContainer includeIn="endorsement,State1" y="369" width="80%" height="200" horizontalCenter="0" backgroundColor="#F4F1F1" height.endorsement="251" horizontalCenter.endorsement="0">
+		<s:Label y="5" text="Seller's Information" color="#000000" left="10" fontWeight="bold" fontSize="12" textDecoration="underline"/>
+		<mx:FormItem label="CLEAR TO CLOSE Date:" x="10" y="25" color="#000000">
+			<mx:DateField width="138"/>
+		</mx:FormItem>
+		<mx:FormItem label="Effective Date:" x="10" y="48" color="#000000">
+			<mx:DateField width="138"/>
+		</mx:FormItem>
+		<s:Label x="242" y="55" text="(EXPIRES AFTER 90 Days)" color="#000000" fontSize="11" fontWeight="bold"/>
+		<mx:FormItem label="Seller(s):" width="548" x="10" y="76" color="#000000">
+			<s:TextInput width="451"/>
+		</mx:FormItem>
+		<mx:FormItem label="Address:" width="284" x="10" y="102" color="#000000" includeIn="endorsement">
+			<s:TextInput width="219"/>
+		</mx:FormItem>
+		<mx:FormItem label="Phone:" width="152" x="299" y="102" color="#000000">
+			<s:TextInput width="89"/>
+		</mx:FormItem>
+		<mx:FormItem label="Email:" width="174" x="452" y="101" color="#000000">
+			<s:TextInput width="120"/>
+		</mx:FormItem>
+		<s:RadioButton label="Yes" groupName="radiogroup3" x="512" y="50" color="#000000"/>
+		<s:RadioButton label="No" groupName="radiogroup3" x="563" y="51" color="#000000"/>
+		<s:Label x="417" y="53" text="Update Ordered?:" color="#000000" fontWeight="normal" fontSize="11"/>
+		<s:RadioButton label="Yes" groupName="radiogroup3" x="120" y="130" color="#000000" includeIn="endorsement"/>
+		<s:RadioButton label="No" groupName="radiogroup3" x="165" y="130" color="#000000" includeIn="endorsement"/>
+		<s:Label x="9" y="133" text="Is Property in a Trust?" color="#000000" fontWeight="normal" fontSize="11" includeIn="endorsement"/>
+		<s:RadioButton label="Yes" groupName="radiogroup3" x="245" y="130" color="#000000" includeIn="endorsement"/>
+		<s:RadioButton label="No" groupName="radiogroup3" x="290" y="130" color="#000000" includeIn="endorsement"/>
+		<s:Label x="208" y="134" text="POA?:" color="#000000" fontWeight="normal" fontSize="11" includeIn="endorsement"/>
+		<mx:FormItem id="fm_poaNameField" label="If Yes - POA:" width="275" x="333" y="129" color="#000000" includeIn="endorsement" visible="true">
+			<s:TextInput width="190"/>
+		</mx:FormItem>
+		<mx:FormItem label="Listing Agent:" width="284" x="14" y="152" color="#000000" includeIn="endorsement">
+			<s:TextInput width="219"/>
+		</mx:FormItem>
+		<mx:FormItem label="with" width="284" x="302" y="152" color="#000000" includeIn="endorsement">
+			<s:TextInput width="219"/>
+		</mx:FormItem>
+		<mx:FormItem label="Address:" width="281" x="13" y="178" color="#000000" includeIn="endorsement">
+			<s:TextInput width="216"/>
+		</mx:FormItem>
+		<mx:FormItem label="Phone:" width="152" x="299" y="177" color="#000000" includeIn="endorsement">
+			<s:TextInput width="89"/>
+		</mx:FormItem>
+		<mx:FormItem label="Email:" width="174" x="452" y="177" color="#000000" includeIn="endorsement">
+			<s:TextInput width="120"/>
+		</mx:FormItem>
+		<mx:FormItem label="Commission:" width="167" x="5" y="211" color="#000000" includeIn="endorsement">
+			<s:TextInput width="76" contentBackgroundColor="#419CC6"/>
+		</mx:FormItem>
+		<mx:FormItem label="Admin Fee:" width="148" x="196" y="211" color="#000000" includeIn="endorsement">
+			<s:TextInput width="65" contentBackgroundColor="#419CC6"/>
+		</mx:FormItem>
+		<mx:FormItem label="Phone:" width="152" color="#000000" x.endorsement="376" y.endorsement="211" label.endorsement="Seller Credit:" width.endorsement="159">
+			<s:TextInput width="89" contentBackgroundColor.endorsement="#419CC6" width.endorsement="77"/>
+		</mx:FormItem>
+	</s:BorderContainer>
+	<s:BorderContainer y="632" width="80%" backgroundColor="#F4F1F1" height="251" horizontalCenter="1" includeIn="endorsement">
+		<s:Label y="5" text="Buyer's Information" color="#000000" left="10" fontWeight="bold" fontSize="12" textDecoration="underline"/>
+		<mx:FormItem label="Buyer(s):" x="10" y="25" color="#000000">
+			<s:TextInput width="451"/>
+		</mx:FormItem>
+		<mx:FormItem label="Address:" width="286" x="9" y="49" color="#000000">
+			<s:TextInput width="220"/>
+		</mx:FormItem>
+		<mx:FormItem label="Phone:" width="152" x="299" y="50" color="#000000">
+			<s:TextInput width="89"/>
+		</mx:FormItem>
+		<mx:FormItem label="Email:" width="174" x="452" y="50" color="#000000">
+			<s:TextInput width="120"/>
+		</mx:FormItem>
+		<s:RadioButton label="Yes" groupName="radiogroup3" x="121" y="72" color="#000000"/>
+		<s:RadioButton label="No" groupName="radiogroup3" x="166" y="72" color="#000000"/>
+		<s:Label x="10" y="75" text="Is Property in a Trust?" color="#000000" fontWeight="normal" fontSize="11"/>
+		<s:RadioButton label="Yes" groupName="radiogroup3" x="246" y="72" color="#000000"/>
+		<s:RadioButton label="No" groupName="radiogroup3" x="291" y="72" color="#000000"/>
+		<s:Label x="209" y="76" text="POA?:" color="#000000" fontWeight="normal" fontSize="11"/>
+		<mx:FormItem id="fm_poaNameField0" label="If Yes - POA:" width="275" x="334" y="71" color="#000000" visible="true">
+			<s:TextInput width="190"/>
+		</mx:FormItem>
+		<mx:FormItem label="Selling Agent:" width="284" x="11" y="95" color="#000000">
+			<s:TextInput width="219"/>
+		</mx:FormItem>
+		<mx:FormItem label="with" width="284" x="299" y="95" color="#000000">
+			<s:TextInput width="219"/>
+		</mx:FormItem>
+		<mx:FormItem label="Address:" width="281" x="10" y="121" color="#000000">
+			<s:TextInput width="216"/>
+		</mx:FormItem>
+		<mx:FormItem label="Phone:" width="152" x="296" y="120" color="#000000">
+			<s:TextInput width="89"/>
+		</mx:FormItem>
+		<mx:FormItem label="Email:" width="174" x="449" y="120" color="#000000">
+			<s:TextInput width="120"/>
+		</mx:FormItem>
+		<mx:FormItem label="Commission:" width="171" x="8" y="147" color="#000000">
+			<s:TextInput width="89" contentBackgroundColor="#419CC6"/>
+		</mx:FormItem>
+		<mx:FormItem label="Admin Fee:" width="143" x="199" y="147" color="#000000">
+			<s:TextInput width="65" contentBackgroundColor="#419CC6"/>
+		</mx:FormItem>
+		<mx:FormItem color="#000000" x="353" y="148" label="EMD:" width="108">
+			<s:TextInput width="60" contentBackgroundColor="#419CC6"/>
+		</mx:FormItem>
+		<mx:FormItem color="#000000" x="8" y="175" label="Who's holding it?:" width="269">
+			<s:TextInput width="168" contentBackgroundColor="#419CC6"/>
+		</mx:FormItem>
+	</s:BorderContainer>
+</s:TitleWindow>
