@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx" width="800" height="800" title="Purchase Processing Dept. Document QC Checklist" height.endorsement="1120">
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="800" height="800" title="Purchase Processing Dept. Document QC Checklist" height.endorsement="1644">
 	<s:states>
 		<s:State name="State1"/>
 		<s:State name="endorsement"/>
@@ -9,7 +9,18 @@
 	<fx:Script>
 		<![CDATA[
 			
+			//initialize component
+			private function initComp(event:Event):void{
+				//make sure component is clear and no residual data exists
+				clearForm();
+				//obtain user's ID from the main application.
+				getUserID();
+			}
 			
+			//Pass in the user's ID when the component is initialized.
+			private function getUserID():void{
+				
+			}
 			
 			//Close Dashboard
 			private function closeWindow():void{
@@ -28,6 +39,7 @@
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<s:controlBarContent>
+		<s:Label includeIn="endorsement" text="(C) 2015 First Title &amp; Escrow. All Rights Reserved. " color="#000000"/>
 	
 	</s:controlBarContent>
 	<s:HGroup y="7" width="50%" height="32" left="10">
@@ -63,7 +75,7 @@
 	<mx:FormItem label="County" x="10" y="155">
 		<s:DropDownList></s:DropDownList>
 	</mx:FormItem>
-	<s:HGroup y="130" width="100%" height="27" left="10">
+	<s:HGroup y="130" width="100%" height="27" left="10" width.endorsement="646" left.endorsement="10">
 		<mx:FormItem label="Property Address:" width="323">
 			<s:TextInput width="221"/>
 		</mx:FormItem>
@@ -91,7 +103,7 @@
 		<s:DropDownList width="168"></s:DropDownList>
 	</mx:FormItem>
 	<s:Label includeIn="endorsement" x="470" y="304" text="(If ALTA 7 make sure requirements are cleared)." fontSize="12"/>
-	<s:BorderContainer includeIn="endorsement,State1" y="369" width="80%" height="200" horizontalCenter="0" backgroundColor="#F4F1F1" height.endorsement="251" horizontalCenter.endorsement="0">
+	<s:BorderContainer includeIn="endorsement,State1" y="369" width="80%" height="200" horizontalCenter="0" backgroundColor="#F4F1F1" height.endorsement="251" horizontalCenter.endorsement="0" y.endorsement="350" width.endorsement="90%">
 		<s:Label y="5" text="Seller's Information" color="#000000" left="10" fontWeight="bold" fontSize="12" textDecoration="underline"/>
 		<mx:FormItem label="CLEAR TO CLOSE Date:" x="10" y="25" color="#000000">
 			<mx:DateField width="138"/>
@@ -149,7 +161,7 @@
 			<s:TextInput width="89" contentBackgroundColor.endorsement="#419CC6" width.endorsement="77"/>
 		</mx:FormItem>
 	</s:BorderContainer>
-	<s:BorderContainer y="632" width="80%" backgroundColor="#F4F1F1" height="251" horizontalCenter="1" includeIn="endorsement">
+	<s:BorderContainer y="612" width="90%" backgroundColor="#F4F1F1" height="216" horizontalCenter="1" includeIn="endorsement">
 		<s:Label y="5" text="Buyer's Information" color="#000000" left="10" fontWeight="bold" fontSize="12" textDecoration="underline"/>
 		<mx:FormItem label="Buyer(s):" x="10" y="25" color="#000000">
 			<s:TextInput width="451"/>
@@ -198,6 +210,143 @@
 		</mx:FormItem>
 		<mx:FormItem color="#000000" x="8" y="175" label="Who's holding it?:" width="269">
 			<s:TextInput width="168" contentBackgroundColor="#419CC6"/>
+		</mx:FormItem>
+	</s:BorderContainer>
+	<s:BorderContainer y="840" width="90%" backgroundColor="#F4F1F1" height="169" horizontalCenter="1" includeIn="endorsement">
+		<s:Label y="5" text="Payment Information" color="#000000" left="10" fontWeight="bold" fontSize="12" textDecoration="underline"/>
+		<mx:FormItem label="Purchase Price:" x="10" y="25" color="#000000">
+			<s:TextInput width="136"/>
+		</mx:FormItem>
+		<mx:FormItem label="Lender/Broker:" width="408" x="10" y="82" color="#000000">
+			<s:TextInput width="317"/>
+		</mx:FormItem>
+		<mx:FormItem id="fm_poaNameField1" label="Loan Officer:" width="260" y="104" color="#000000" visible="true" x="11">
+			<s:TextInput width="170"/>
+		</mx:FormItem>
+		<mx:FormItem label="Processor:" width="250" x="12" y="128" color="#000000">
+			<s:TextInput width="219"/>
+		</mx:FormItem>
+		<mx:FormItem label="Phone:" width="152" x="295" y="104" color="#000000">
+			<s:TextInput width="89"/>
+		</mx:FormItem>
+		<mx:FormItem label="Email:" width="174" x="452" y="104" color="#000000">
+			<s:TextInput width="120"/>
+		</mx:FormItem>
+		<s:RadioButton label="Cash" groupName="radiogroup3" x="338" y="25" color="#000000"/>
+		<s:RadioButton label="Finance" groupName="radiogroup3" x="388" y="25" color="#000000"/>
+		<s:Label x="249" y="29" text="Cash or Finance?" color="#000000" fontWeight="normal" fontSize="11"/>
+		<mx:FormItem label="1st Loan:" width="152" x="10" y="52" color="#000000">
+			<s:TextInput width="89"/>
+		</mx:FormItem>
+		<mx:FormItem label="2nd Loan:" width="170" x="172" y="52" color="#000000">
+			<s:TextInput width="99"/>
+		</mx:FormItem>
+		<mx:FormItem label="Phone:" width="152" x="295" y="127" color="#000000">
+			<s:TextInput width="89"/>
+		</mx:FormItem>
+		<mx:FormItem label="Email:" width="174" color="#000000" x="453" y="127">
+			<s:TextInput width="120"/>
+		</mx:FormItem>
+	</s:BorderContainer>
+	<s:BorderContainer y="1022" width="90%" backgroundColor="#F4F1F1" height="90" horizontalCenter="0" includeIn="endorsement">
+		<s:Label y="5" text="Payoff Information" color="#000000" left="10" fontWeight="bold" fontSize="12" textDecoration="underline"/>
+		<mx:FormItem label="Lender:" x="10" y="25" color="#000000">
+			<s:TextInput width="131"/>
+		</mx:FormItem>
+		<mx:FormItem label="GTD:" width="156" x="413" y="54" color="#000000">
+			<s:TextInput width="105"/>
+		</mx:FormItem>
+		<mx:FormItem label="Payoff Amount: ($)" width="204" x="10" y="52" color="#000000">
+			<s:TextInput width="89"/>
+		</mx:FormItem>
+		<mx:FormItem label="Loan #:" width="172" x="206" y="24" color="#000000">
+			<s:TextInput width="113"/>
+		</mx:FormItem>
+		<mx:FormItem label="Phone:" width="149" x="386" y="24" color="#000000">
+			<s:TextInput width="94"/>
+		</mx:FormItem>
+		<mx:FormItem label="Days Interest Collected:" width="185" x="220" y="52" color="#000000">
+			<s:NumericStepper x="89" y="1"/>
+		</mx:FormItem>
+		<mx:FormItem label="Fax:" width="157" x="540" y="24" color="#000000" includeIn="endorsement">
+			<s:TextInput width="101"/>
+		</mx:FormItem>
+		<s:Label x="575" y="58" text="DO NOT USE EXP. PO'S" color="#000000" fontWeight="bold" fontSize="11"/>
+	</s:BorderContainer>
+	<s:BorderContainer y="1125" width="90%" backgroundColor="#F4F1F1" height="102" horizontalCenter="0" includeIn="endorsement">
+		<s:Label y="5" text="Real Property Tax Information" color="#000000" left="10" fontWeight="bold" fontSize="12" textDecoration="underline"/>
+		<mx:FormItem label="Tax ID:" x="10" y="25" color="#000000">
+			<s:TextInput width="131"/>
+		</mx:FormItem>
+		<mx:FormItem label="GTD:" width="156" x="10" y="78" color="#000000">
+			<s:TextInput width="105"/>
+		</mx:FormItem>
+		<mx:FormItem label="Base Tax Amount: ($)" width="211" x="10" y="52" color="#000000">
+			<s:TextInput width="89"/>
+		</mx:FormItem>
+		<mx:FormItem label="Tax Year:" width="141" x="206" y="24" color="#000000">
+			<s:ComboBox x="65" y="-1" width="69"/>
+		</mx:FormItem>
+		<mx:FormItem label="Dates Covered:" width="213" x="368" y="24" color="#000000">
+			<s:TextInput width="119"/>
+		</mx:FormItem>
+		<s:RadioButton label="Cash" groupName="radiogroup3" x="310" y="54" color="#000000"/>
+		<s:RadioButton label="Finance" groupName="radiogroup3" x="365" y="54" color="#000000"/>
+		<s:Label x="230" y="58" text="PAID/UNPAID:" color="#000000" fontWeight="bold" fontSize="11"/>
+		<mx:FormItem label="Total Due:" width="156" x="432" y="54" color="#000000">
+			<s:TextInput width="105"/>
+		</mx:FormItem>
+	</s:BorderContainer>
+	<s:BorderContainer y="1239" width="90%" backgroundColor="#F4F1F1" height="176" horizontalCenter="1" includeIn="endorsement">
+		<s:Label y="5" text="Water &amp; Sewer Information" color="#000000" left="10" fontWeight="bold" fontSize="12" textDecoration="underline"/>
+		<mx:FormItem label="Company:" x="10" y="25" color="#000000">
+			<s:TextInput width="136"/>
+		</mx:FormItem>
+		<mx:FormItem label="Company:" width="234" x="9" y="119" color="#000000">
+			<s:TextInput width="158"/>
+		</mx:FormItem>
+		<mx:FormItem id="fm_poaNameField2" label="Dues:" width="133" y="140" color="#000000" visible="true" x="9">
+			<s:TextInput width="77"/>
+		</mx:FormItem>
+		<mx:FormItem label="Periods Covered:" width="174" x="507" y="143" color="#000000">
+			<s:TextInput width="67"/>
+		</mx:FormItem>
+		<mx:FormItem label="Prev. Bill Amt:" width="178" x="357" y="52" color="#000000">
+			<s:TextInput width="89"/>
+		</mx:FormItem>
+		<mx:FormItem label="Fax:" width="174" x="428" y="120" color="#000000">
+			<s:TextInput width="120"/>
+		</mx:FormItem>
+		<s:RadioButton label="Yes" groupName="radiogroup3" x="316" y="77" color="#000000"/>
+		<s:RadioButton label="No" groupName="radiogroup3" x="355" y="78" color="#000000"/>
+		<s:RadioButton label="Inside" groupName="radiogroup3" x="54" y="75" color="#000000"/>
+		<s:RadioButton label="Outside" groupName="radiogroup3" x="107" y="76" color="#000000"/>
+		<s:Label x="177" y="80" text="Set up final water reading:" color="#000000" fontWeight="normal" fontSize="11"/>
+		<s:Label x="11" y="79" text="Meter:" color="#000000" fontWeight="bold" fontSize="11"/>
+		<mx:FormItem label="Amount Owed:" width="152" x="10" y="52" color="#000000">
+			<s:TextInput width="89"/>
+		</mx:FormItem>
+		<mx:FormItem label="Periods Covered:" width="170" x="172" y="52" color="#000000">
+			<s:TextInput width="99"/>
+		</mx:FormItem>
+		<mx:FormItem label="Phone:" width="152" x="256" y="119" color="#000000">
+			<s:TextInput width="89"/>
+		</mx:FormItem>
+		<mx:FormItem label="Paid  per:" width="174" color="#000000" x="157" y="142">
+			<s:TextInput width="120"/>
+		</mx:FormItem>
+		<mx:FormItem label="Phone:" width="152" x="229" y="26" color="#000000">
+			<s:TextInput width="89"/>
+		</mx:FormItem>
+		<mx:FormItem label="Account #:" width="226" x="380" y="26" color="#000000">
+			<s:TextInput width="143"/>
+		</mx:FormItem>
+		<mx:FormItem label="Escrow Amt. Collected:" width="254" x="411" y="76" color="#000000">
+			<s:TextInput width="120"/>
+		</mx:FormItem>
+		<s:Label x="12" y="104" text="FFB Information" color="#000000" fontWeight="bold" fontSize="11"/>
+		<mx:FormItem label="Amt. Owed:" width="159" x="337" y="143" color="#000000">
+			<s:TextInput width="70"/>
 		</mx:FormItem>
 	</s:BorderContainer>
 </s:TitleWindow>
