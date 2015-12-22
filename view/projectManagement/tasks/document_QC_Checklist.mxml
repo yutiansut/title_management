@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx" width="800" height="800" title="Purchase Processing Dept. Document QC Checklist" height.endorsement="1644">
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="800" height="800" title="Purchase Processing Dept. Document QC Checklist" height.endorsement="1702">
 	<s:states>
 		<s:State name="State1"/>
 		<s:State name="endorsement"/>
@@ -9,6 +9,7 @@
 	<fx:Script>
 		<![CDATA[
 			
+			//~~~~~~~~~~~~~~~~~~Initialization of the component ~~~~~~~~~~~~~~~~~~//
 			//initialize component
 			private function initComp(event:Event):void{
 				//make sure component is clear and no residual data exists
@@ -22,10 +23,31 @@
 				
 			}
 			
-			//Close Dashboard
-			private function closeWindow():void{
-				PopUpManager.removePopUp(this);
+			//~~~~~~~~~~~~~ Save Form field methods & Submit Methods~~~~~~~~~~~~//
+			private function saveProgress():void{
+				//Send the form progress to the the database
+				ro_SaveDoc.saveDoc();
+				//Notify user of success
+			Alert.show('Progress successfully saved!');
+			}
+			
+			private function saveSubmit(b:MouseEvent):void{
+				//Validate the form and ensure everything is properly completed and compliant
 				
+			   //Submit the completed document to the database.
+				
+				Alert.show('Succesfully Saved!');
+			}
+			
+			//Close Component.
+			private function closeWindow():void{
+				//Check for non null fields in the form before closing.
+				//If not null, notify user before allowing form to be closed. 
+				if (){}
+				//else if the form is empty, allow the close window method to close the window.
+				else {
+				PopUpManager.removePopUp(this);
+				}
 			}
 		]]>
 	</fx:Script>
@@ -39,7 +61,10 @@
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<s:controlBarContent>
-		<s:Label includeIn="endorsement" text="(C) 2015 First Title &amp; Escrow. All Rights Reserved. " color="#000000"/>
+		<s:Label includeIn="endorsement" text="(C) 2015 First Title &amp; Escrow. All Rights Reserved. " color="#000000" height="20" paddingTop="7"/>
+		<mx:Spacer includeIn="endorsement" height="17" width="324"/>
+		<s:Button includeIn="endorsement" label="Save" right="0" chromeColor="#061423"/>
+		<s:Button includeIn="endorsement" label="Save &amp; Submit" chromeColor="#016C0D"/>
 	
 	</s:controlBarContent>
 	<s:HGroup y="7" width="50%" height="32" left="10">
@@ -57,11 +82,11 @@
 		<s:RadioButton label="STGC" groupName="RBGroup_Insurer"/>
 		<s:RadioButton label="WFG" groupName="RBGroup_Insurer"/>
 	</s:HGroup>
-	<s:HGroup x="11" y="60" width="305" height="23">
+	<s:HGroup x="11" y="60" width="305" height="23" width.endorsement="341">
 		<s:Label text="Classification:" paddingTop="5" fontSize="12" fontWeight="bold" textDecoration="underline"/>
 		<s:RadioButton label="OO" groupName="RBGroup_Insurer"/>
 		<s:RadioButton label="2nd Home" groupName="RBGroup_Insurer"/>
-		<s:RadioButton label="Invest" groupName="RBGroup_Insurer"/>
+		<s:RadioButton label="Invest" groupName="RBGroup_Insurer" label.endorsement="Investment"/>
 		<s:RadioButton label="FTHB" groupName="RBGroup_Insurer"/>
 	</s:HGroup>
 	<s:HGroup x="11" y="87" width="445" height="38">
@@ -75,15 +100,15 @@
 	<mx:FormItem label="County" x="10" y="155">
 		<s:DropDownList></s:DropDownList>
 	</mx:FormItem>
-	<s:HGroup y="130" width="100%" height="27" left="10" width.endorsement="646" left.endorsement="10">
+	<s:HGroup y="130" width="100%" height="27" left="10" width.endorsement="578" left.endorsement="10">
 		<mx:FormItem label="Property Address:" width="323">
 			<s:TextInput width="221"/>
 		</mx:FormItem>
 		<mx:FormItem label="City">
 			<s:TextInput/>
 		</mx:FormItem>
-		<mx:FormItem label="State:">
-			<s:DropDownList></s:DropDownList>
+		<mx:FormItem label="State:" width.endorsement="95">
+			<s:DropDownList width.endorsement="46"></s:DropDownList>
 		</mx:FormItem>
 	</s:HGroup>
 	<s:Label x="10" y="193" text="Type of Policy:" textDecoration="none" fontWeight="bold" fontSize="12"/>
@@ -194,7 +219,7 @@
 			<s:TextInput width="216"/>
 		</mx:FormItem>
 		<mx:FormItem label="Phone:" width="152" x="296" y="120" color="#000000">
-			<s:TextInput width="89"/>
+			<s:TextInput width="89" contentBackgroundColor="#80A3C6"/>
 		</mx:FormItem>
 		<mx:FormItem label="Email:" width="174" x="449" y="120" color="#000000">
 			<s:TextInput width="120"/>
@@ -349,4 +374,62 @@
 			<s:TextInput width="70"/>
 		</mx:FormItem>
 	</s:BorderContainer>
+	<s:VGroup includeIn="endorsement" x="588" y="10" width="200" height="200">
+		<s:Label text="FT Full Out of Footprint" width="100%" paddingLeft="50" fontSize="12" fontWeight="bold" fontFamily="Times" paddingTop="5"/>
+		<s:Button label="Hawaii"/>
+		<s:Button label="Oregon"/>
+		<s:Button label="Nevada"/>
+		<s:Button label="New Mexico"/>
+		<s:Button label="South Dakota"/>
+		<s:Button label="Hawaii"/>
+	</s:VGroup>
+	<s:BorderContainer y="1428" width="90%" backgroundColor="#F4F1F1" height="139" horizontalCenter="1" includeIn="endorsement">
+		<s:Label y="5" text="HOA Information" color="#000000" left="10" fontWeight="bold" fontSize="12" textDecoration="underline"/>
+		<mx:FormItem label="Managememt Company:" x="10" y="25" color="#000000">
+			<s:TextInput width="136"/>
+		</mx:FormItem>
+		<mx:FormItem label="Resale Pkg:" width="173" x="181" y="81" color="#000000">
+			<s:TextInput width="96"/>
+		</mx:FormItem>
+		<mx:FormItem id="fm_poaNameField3" label="If Ordered Online, website:" width="309" y="110" color="#000000" visible="true" left="10">
+			<s:TextInput width="156"/>
+		</mx:FormItem>
+		<mx:FormItem label="Amt. Owed:" width="178" x="357" y="52" color="#000000">
+			<s:TextInput width="89"/>
+		</mx:FormItem>
+		<mx:FormItem label="New Owner / Set Up Fee:" width="220" x="362" y="81" color="#000000">
+			<s:TextInput width="80"/>
+		</mx:FormItem>
+		<mx:FormItem label="Dues:" width="152" x="10" y="52" color="#000000">
+			<s:TextInput width="89"/>
+		</mx:FormItem>
+		<mx:FormItem label="Paid Per:" width="170" x="172" y="52" color="#000000">
+			<s:TextInput width="99"/>
+		</mx:FormItem>
+		<mx:FormItem label="Transfer Fee:" width="152" x="543" y="52" color="#000000">
+			<s:TextInput width="89"/>
+		</mx:FormItem>
+		<mx:FormItem label="Reimburse to FT:" width="174" color="#000000" x="328" y="109">
+			<s:TextInput width="120"/>
+		</mx:FormItem>
+		<mx:FormItem label="Phone:" width="152" x="300" y="26" color="#000000">
+			<s:TextInput width="89"/>
+		</mx:FormItem>
+		<mx:FormItem label="Account #:" width="226" x="460" y="26" color="#000000">
+			<s:TextInput width="143"/>
+		</mx:FormItem>
+		<mx:FormItem label="Periods Covered:" width="160" x="10" y="80" color="#000000">
+			<s:ComboBox x="65" y="-1" width="56"/>
+		</mx:FormItem>
+	</s:BorderContainer>
+	<s:RadioButton label="Yes" groupName="radiogroup3" color="#FFFFFF" includeIn="endorsement" x="200" y="1570"/>
+	<s:RadioButton label="No" groupName="radiogroup3" color="#FFFFFF" includeIn="endorsement" x="246" y="1570"/>
+	<s:Label text="Escrow handled by other?" color="#FFFFFF" fontWeight="bold" fontSize="11" includeIn="endorsement" x="41" y="1575"/>
+	<s:Label text="If YES - " color="#FFFFFF" fontWeight="bold" fontSize="11" x="290" y="1575" includeIn="endorsement"/>
+	<mx:FormItem label="Reimburse to FT:" width="174" color="#000000" x.endorsement="334" y.endorsement="1566" color.endorsement="#FFFFFF" height.endorsement="31" paddingTop.endorsement="4" label.endorsement="Sub-Escrow Fee: $" width.endorsement="230" fontWeight.endorsement="bold">
+		<s:TextInput width="120"/>
+	</mx:FormItem>
+	<mx:FormItem x="565" y="1566" color="#FFFFFF" height="31" paddingTop="4" label="Vendor:" width="179" fontWeight="bold" includeIn="endorsement">
+		<s:TextInput width="120"/>
+	</mx:FormItem>
 </s:TitleWindow>
