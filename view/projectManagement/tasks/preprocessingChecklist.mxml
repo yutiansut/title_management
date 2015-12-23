@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="600" height="500" title="Pre-Processing Checklist.">
+	<fx:Declarations>
+		<s:RadioButtonGroup id="welcomRBGroup"/>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:controlBarContent>
+		<s:Label text="(C) 2015 First Title &amp; Escrow Inc. All Rights Reserved." color="#000000" fontSize="11" fontWeight="bold"/>
+	
+	</s:controlBarContent>
+	<mx:FormItem label="FIle Number:" x="10" y="10">
+		<s:TextInput/>
+	</mx:FormItem>
+	<mx:FormItem label="Title Status" x="10" y="38">
+		<s:DropDownList></s:DropDownList>
+	</mx:FormItem>
+	<s:RadioButton label="Yes" groupName="welcomRBGroup" x="125" y="68"/>
+	<s:RadioButton label="No" groupName="welcomRBGroup" x="165" y="68"/>
+	<s:Label x="10" y="73" text="Welcome Letter Sent?&#xd;"/>
+	<mx:FormItem label="Payoff Ordered?" x="11" y="95">
+		<s:DropDownList></s:DropDownList>
+	</mx:FormItem>
+	<s:RadioButton label="Yes" groupName="welcomRBGroup" x="295" y="99"/>
+	<s:RadioButton label="No" groupName="welcomRBGroup" x="335" y="99"/>
+	<s:Label x="257" y="105" text="HOA?&#xd;"/>
+	<s:ComboBox x="432" y="95"/>
+	<s:Label x="386" y="102" text="Status:" fontSize="11"/>
+	<mx:FormItem label="Contact Agent's Commission" x="12" y="125">
+		<s:DropDownList></s:DropDownList>
+	</mx:FormItem>
+	<mx:FormItem label="Pre-HUD" x="12" y="154">
+		<s:DropDownList></s:DropDownList>
+	</mx:FormItem>
+	<mx:FormItem label="Deed" x="216" y="154">
+		<s:DropDownList></s:DropDownList>
+	</mx:FormItem>
+	<mx:FormItem label="Water" x="401" y="153">
+		<s:DropDownList></s:DropDownList>
+	</mx:FormItem>
+	<mx:FormItem label="Closing Date" x="10" y="190">
+		<mx:DateChooser/>
+	</mx:FormItem>
+	<mx:FormItem label="Offer Date" x="260" y="190">
+		<mx:DateChooser/>
+	</mx:FormItem>
+	<mx:FormItem label="Title Required" x="11" y="388" width="162">
+		<s:DropDownList width="72"></s:DropDownList>
+	</mx:FormItem>
+</s:TitleWindow>
