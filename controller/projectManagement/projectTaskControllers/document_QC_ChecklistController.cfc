@@ -61,9 +61,15 @@
      <cfargument name="fm_SellAgtFee" type="string" required="yes">
      <cfargument name="fm_SellAgtEMD" type="string" required="yes">
 	<cfargument name="isHolding" type="string" required="yes">	
+<<<<<<< HEAD
     
 		
 		<cfset myResult="foo">
 		<cfreturn myResult>
 	</cffunction>
 </cfcomponent>
+=======
+   
+	</cffunction>
+</cfcomponent>
+>>>>>>> origin/master

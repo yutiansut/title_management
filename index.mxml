@@ -45,7 +45,10 @@
 			import view.dashboard.statsComps.teamStats;
 			import view.projectManagement.newProject;
 			import view.projectManagement.projectManagementLoader;
+<<<<<<< HEAD
 			import view.projectManagement.reactivateProject;
+=======
+>>>>>>> origin/master
 			import view.projectManagement.suspendProject;
 			import view.projectManagement.tasks.newTask;
 			
@@ -321,11 +324,14 @@
 				
 			}
 			
+<<<<<<< HEAD
 			//Get Net one week tasks
 			private function getNetSevenTasks(evt:Event):void{
 				
 			}
 			
+=======
+>>>>>>> origin/master
 			
 			//Get the recently closed tasks
 			public function recClosedTasks(event:MouseEvent):void{
@@ -360,6 +366,7 @@
 				PopUpManager.centerPopUp(sProjWin);
 				//Pass the projStatus into the db via remote object call.
 				
+<<<<<<< HEAD
 				//Hide the default close button. 
 				sProjWin.closeButton.visible = false;
 				
@@ -371,6 +378,10 @@
 			PopUpManager.centerPopUp(rActProj);
 				
 			}
+=======
+			}
+			//Reactivate a project
+>>>>>>> origin/master
 			//Upon invoking method, make the suspended project list component visible.
 			//On selection of the project to reactivate, invoke a reactivation method.
 			private function dispSuspendProj(evt:Event):void{
@@ -567,7 +578,11 @@
 		<s:Button y="120" label="Login" horizontalCenter="0" cornerRadius="-6" click="loginUserOnClick(event); clearLogin();" keyDown="loginUser(event)"/>
 		<s:Label x="124" y="153" text="New User? Click here." fontSize="11" fontWeight="bold" color="#F1F1F1" click="contactAdmin();"/>
 	</s:Panel>
+<<<<<<< HEAD
 	<s:Label includeIn="clientRelations,managers,processor" text="Welcome to the Manager Dashboard" y="79" color="#000000" textDecoration="underline" fontWeight="bold" fontSize="11" left="103" y.processor="79" left.processor="228" text.processor="Welcome to the Processor Dashboard"/>
+=======
+	<s:Label includeIn="clientRelations,managers,processor" text="Welcome to the Manager Dashboard" y="79" color="#000000" textDecoration="underline" fontWeight="bold" fontSize="11" left="103"/>
+>>>>>>> origin/master
 	<mx:TabNavigator cornerRadius="8" id="managersTabs0" includeIn="clientRelations,managers,processor" width="85%" height="80%" y="116" horizontalCenter="0" width.processor="977" horizontalCenter.processor="30" height.managers="700" y.managers="107" horizontalCenter.managers="0">
 		<s:NavigatorContent label="Dashboard" width="100%" height="100%">
 			<s:TileGroup y="21" width="816" height="412" horizontalCenter="-1">
@@ -784,7 +799,10 @@
 			</mx:MenuBar>
 			<s:TextArea x="9" y="31" text="Reporting structure:&#xd;&#xd;      Exec Level reports&#xd;              manager level reports&#xd;                  employee level reports" contentBackgroundColor="#C0D9F2" color="#000000" includeIn="managers" width="207"/>
 			<s:TextArea x="230" y="30" text="Features:&#xd;&#xd;      Exec Level reports&#xd;              manager level:&#xd;                        New report request ticketing&#xd;                        Report export to PDF&#xd;                        reporting drill down &amp; filters&#xd;" contentBackgroundColor="#C0D9F2" color="#000000" width="226" includeIn="managers"/>
+<<<<<<< HEAD
 			<s:Button includeIn="managers" y="0" label="Request New Report" chromeColor="#983A3A" cornerRadius="10" right="10" click="reqNewReport(event);"/>
+=======
+>>>>>>> origin/master
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Onboarding &amp; Personnel Managemrnt" width="100%" height="100%">
 			<s:Button x="49" y="10" label="Add New Employee" cornerRadius="10" color="#000000" click="callCreateNewUser();"/>
@@ -824,7 +842,11 @@
 			<s:TextArea includeIn="managers" x="93" y="295" text="Profile Mirroring&#xd;&#xd;Reporting Assignment Mirroring" contentBackgroundColor="#C0D9F2" color="#000000"/>
 		</s:NavigatorContent>
 		<s:NavigatorContent width="100%" height="100%" label="Project Management" click.processor="currentState='login';">
+<<<<<<< HEAD
 			<s:HGroup y="22" width="720" height="149" horizontalCenter="0" includeIn="clientRelations">
+=======
+			<s:HGroup y="22" width="720" height="149" horizontalCenter="0" includeIn="clientRelations,processor">
+>>>>>>> origin/master
 				<s:Panel width="354" height="100%" title="Upcoming Tasks Due" skinClass="spark.skins.spark.PanelSkin" chromeColor="#221E1E" controlBarVisible="true" cornerRadius="5">
 					<s:controlBarContent>
 					
@@ -832,6 +854,7 @@
 					<s:List y="0" horizontalCenter="0" width="100%" height="100%" contentBackgroundColor="#E7E8E8"></s:List>
 				</s:Panel>
 			</s:HGroup>
+<<<<<<< HEAD
 			<mx:TabNavigator width="80%" cornerRadius="10" height="228" horizontalCenter="0" y="191" includeIn="clientRelations">
 				<s:NavigatorContent label="All Projects" width="100%" height="100%">
 				</s:NavigatorContent>
@@ -849,6 +872,25 @@
 				</s:NavigatorContent>
 			</mx:TabNavigator>
 			<s:Panel width="354" height="100%" title="First Vision" skinClass="spark.skins.spark.PanelSkin" chromeColor="#221E1E" controlBarVisible="true" cornerRadius="5" includeIn="clientRelations">
+=======
+			<mx:TabNavigator y="204" width="80%" height="215" cornerRadius="10" horizontalCenter="0" height.clientRelations="228" horizontalCenter.clientRelations="0" y.clientRelations="191" includeIn="clientRelations,processor">
+				<s:NavigatorContent includeIn="clientRelations" label="All Projects" width="100%" height="100%">
+				</s:NavigatorContent>
+				<s:NavigatorContent label="Current Projects" width="100%" height="100%">
+				</s:NavigatorContent>
+				<s:NavigatorContent includeIn="clientRelations" label="Task Panel" width="100%" height="100%">
+				</s:NavigatorContent>
+				<s:NavigatorContent includeIn="clientRelations" label="Upcoming Projects" width="100%" height="100%">
+				</s:NavigatorContent>
+				<s:NavigatorContent includeIn="clientRelations" label="Planned Projects" width="100%" height="100%">
+				</s:NavigatorContent>
+				<s:NavigatorContent includeIn="clientRelations" label="Create Project" width="100%" height="100%">
+				</s:NavigatorContent>
+				<s:NavigatorContent includeIn="clientRelations" label="Idea Board" width="100%" height="100%">
+				</s:NavigatorContent>
+			</mx:TabNavigator>
+			<s:Panel width="354" height="100%" title="First Vision" skinClass="spark.skins.spark.PanelSkin" chromeColor="#221E1E" controlBarVisible="true" cornerRadius="5" includeIn="clientRelations,processor">
+>>>>>>> origin/master
 				<s:controlBarContent>
 				
 				</s:controlBarContent>
@@ -869,6 +911,7 @@
 						</mx:AdvancedDataGrid>
 					</s:NavigatorContent>
 					<s:NavigatorContent label="Current Tasks" width="100%" height="100%">
+<<<<<<< HEAD
 						<mx:AdvancedDataGrid id="adg2" designViewDataType="tree" width="100%" height="269" y="28">
 							<mx:columns>
 								<mx:AdvancedDataGridColumn headerText="Task" dataField="col1"/>
@@ -917,15 +960,28 @@
 							
 							</s:controlBarContent>
 						</s:Panel>
+=======
+					</s:NavigatorContent>
+					<s:NavigatorContent label="Pending Projects" width="100%" height="100%">
+					</s:NavigatorContent>
+					<s:NavigatorContent label="Idea Board" width="100%" height="100%">
+>>>>>>> origin/master
 					</s:NavigatorContent>
 				</mx:TabNavigator>
 			</s:SkinnableContainer>
 			<s:Panel width="49%" height="200" chromeColor="#221E1E" includeIn="managers" y="40" title="Current Tasks" left="10" id="taskPanel" contentBackgroundColor="#113357" backgroundColor="#205489">
 				<s:controlBarContent>
+<<<<<<< HEAD
 					<s:RadioButton label="All" click="getAllTasks(event)" chromeColor="#02A806" includeIn="managers"/>
 					<s:RadioButton label="New Tasks" includeIn="managers" chromeColor="#02A806" click="newTasks(event);"/>
 					<s:RadioButton label="Pending" click="pendingTasks()" chromeColor="#777373"/>
 					<s:RadioButton label="Net 7" click="getNetSevenTasks(event);" enabled="true" includeIn="managers" chromeColor="#D2FF00"/>
+=======
+					<s:RadioButton label="All" click="pendingTasks()" chromeColor="#02A806" includeIn="managers"/>
+					<s:RadioButton label="New Tasks" includeIn="managers" chromeColor="#02A806" click="newTasks(event);"/>
+					<s:RadioButton label="Pending" click="pendingTasks()" chromeColor="#777373"/>
+					<s:RadioButton label="Net 7" click="recClosedTasks(event);" enabled="true" includeIn="managers" chromeColor="#D2FF00"/>
+>>>>>>> origin/master
 					<s:RadioButton label="Late" chromeColor="#A31E1E" click="lateTasks(event);"/>
 					<s:RadioButton label="Recently Closed" click="recClosedTasks(event);" enabled="true" chromeColor="#777373"/>
 				
@@ -944,9 +1000,14 @@
 				<s:Label y="-25" text="Task Type" paddingBottom="5" fontSize="11" right="142"/>
 				<s:Label y="-26" text="Team Member:" paddingBottom="5" fontSize="11" horizontalCenter="-97"/>
 				<s:ComboBox y="-31" enabled="true" right="204" chromeColor="#0D496F" contentBackgroundColor="#969BA1" horizontalCenter="6"/>
+<<<<<<< HEAD
 				<s:Label y="76" text="No Current Tasks Assigned" horizontalCenter="0"/>
 			</s:Panel>
 			<s:Panel width="250" height="200" chromeColor="#221E1E" y.managers="40" title.managers="Upcoming Projects" right.managers="10" width.managers="49%" id="projectPanel" includeIn="clientRelations,managers">
+=======
+			</s:Panel>
+			<s:Panel width="250" height="200" chromeColor="#221E1E" y.managers="40" title.managers="Upcoming Projects" right.managers="10" width.managers="49%" id="projectPanel">
+>>>>>>> origin/master
 				<s:controlBarContent>
 					<s:RadioButton label="All" click="pendingTasks()" chromeColor="#02A806" includeIn="managers"/>
 					<s:RadioButton label="New Projects" chromeColor="#02A806" includeIn="managers"/>
@@ -956,7 +1017,11 @@
 					<s:RadioButton label="Project Past Due" chromeColor="#A31E1E" includeIn="managers"/>
 				
 				</s:controlBarContent>
+<<<<<<< HEAD
 				<s:Button y="62" horizontalCenter="0" cornerRadius="10" label="Misc." includeIn="clientRelations"/>
+=======
+				<s:Button y="62" horizontalCenter="0" cornerRadius="10" label="Misc." includeIn="clientRelations,processor"/>
+>>>>>>> origin/master
 				<mx:DataGrid y="0" horizontalCenter="0" width="100%" includeIn="managers" height="100%">
 					<mx:columns>
 						<mx:DataGridColumn headerText="Project Name" dataField="col1"/>
@@ -969,11 +1034,18 @@
 				</mx:DataGrid>
 				<s:ComboBox y="-31" enabled="true" right="10" chromeColor="#0D496F" contentBackgroundColor="#969BA1" includeIn="managers"/>
 				<s:Label y="-25" text="By Department" paddingBottom="5" fontSize="11" right="142" includeIn="managers"/>
+<<<<<<< HEAD
 				<s:Label y="76" text="No Current Projects Assigned" includeIn="managers" horizontalCenter="0"/>
 			</s:Panel>
 			<s:SkinnableContainer x="462" y="17" width="200" height="47" backgroundColor="#0D5B71" x.managers="0" y.managers="0" width.managers="100%" height.managers="40" backgroundColor.managers="#DADADA" includeIn="clientRelations,managers">
 				<mx:MenuBar includeIn="managers" y="4" width="100%" height="32"></mx:MenuBar>
 				<s:Button x="282" y="9" label="Reactivate Project" chromeColor="#0C0D0C" cornerRadius="12" includeIn="managers" click="reActProj();"/>
+=======
+			</s:Panel>
+			<s:SkinnableContainer x="462" y="17" width="200" height="47" backgroundColor="#0D5B71" x.managers="0" y.managers="0" width.managers="100%" height.managers="40" backgroundColor.managers="#DADADA">
+				<mx:MenuBar includeIn="managers" y="4" width="100%" height="32"></mx:MenuBar>
+				<s:Button x="282" y="9" label="Reactivate Project" chromeColor="#0C0D0C" cornerRadius="12" includeIn="managers"/>
+>>>>>>> origin/master
 				<s:Button x="175" y="9" label="Suspend Project" chromeColor="#970707" cornerRadius="12" includeIn="managers" click="suspendProj(event);"/>
 				<s:Button x="90" y="9" label="New Project" chromeColor="#5A5A5A" includeIn="managers" cornerRadius="12" click="createNewProject(event);"/>
 				<s:Button includeIn="managers" x="10" y="9" label="New Task" chromeColor="#5A5A5A" cornerRadius="12" click="createNewTask(event);"/>

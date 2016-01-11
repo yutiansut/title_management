@@ -54,12 +54,19 @@
 	
 	<fx:Declarations>
 		<s:RadioButtonGroup id="RBGroup_Insurer"/>
+<<<<<<< HEAD
 		<s:RadioButtonGroup id="classification_Group"/>
+=======
+		<s:RadioButtonGroup id="radiogroup1"/>
+>>>>>>> origin/master
 		<s:RadioButtonGroup id="radiogroup2"/>
 		<s:RadioButtonGroup id="endorsement_RBGroup"/>
 		<s:RadioButtonGroup id="radiogroup3"/>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
+<<<<<<< HEAD
 		
+=======
+>>>>>>> origin/master
 	</fx:Declarations>
 	<s:controlBarContent>
 		<s:Label includeIn="endorsement" text="(C) 2015 First Title &amp; Escrow. All Rights Reserved. " color="#000000" height="20" paddingTop="7"/>
@@ -70,9 +77,15 @@
 	</s:controlBarContent>
 	<s:HGroup y="7" width="50%" height="32" left="10">
 		<mx:FormItem label="File #" width="172">
+<<<<<<< HEAD
 			<s:TextInput width="122" id="fm_fileName"/>
 		</mx:FormItem>
 		<mx:FormItem label="Loan #" width="200" id="fm_LoanNum">
+=======
+			<s:TextInput width="122"/>
+		</mx:FormItem>
+		<mx:FormItem label="Loan #" width="200">
+>>>>>>> origin/master
 			<s:TextInput width="144"/>
 		</mx:FormItem>
 	</s:HGroup>
@@ -85,6 +98,7 @@
 	</s:HGroup>
 	<s:HGroup x="11" y="60" width="305" height="23" width.endorsement="341">
 		<s:Label text="Classification:" paddingTop="5" fontSize="12" fontWeight="bold" textDecoration="underline"/>
+<<<<<<< HEAD
 		<s:RadioButton label="OO" groupName="classification_Group"/>
 		<s:RadioButton label="2nd Home" groupName="classification_Group"/>
 		<s:RadioButton label="Invest" groupName="classification_Group" label.endorsement="Investment"/>
@@ -96,6 +110,19 @@
 		</mx:FormItem>
 		<mx:FormItem label="Time:">
 			<s:ComboBox id="fm_ClosingTime"/>
+=======
+		<s:RadioButton label="OO" groupName="RBGroup_Insurer"/>
+		<s:RadioButton label="2nd Home" groupName="RBGroup_Insurer"/>
+		<s:RadioButton label="Invest" groupName="RBGroup_Insurer" label.endorsement="Investment"/>
+		<s:RadioButton label="FTHB" groupName="RBGroup_Insurer"/>
+	</s:HGroup>
+	<s:HGroup x="11" y="87" width="445" height="38">
+		<mx:FormItem label="Closing Date:">
+			<mx:DateField width="138"/>
+		</mx:FormItem>
+		<mx:FormItem label="Time:">
+			<s:ComboBox/>
+>>>>>>> origin/master
 		</mx:FormItem>
 	</s:HGroup>
 	<mx:FormItem label="County" x="10" y="155">
@@ -103,7 +130,11 @@
 	</mx:FormItem>
 	<s:HGroup y="130" width="100%" height="27" left="10" width.endorsement="578" left.endorsement="10">
 		<mx:FormItem label="Property Address:" width="323">
+<<<<<<< HEAD
 			<s:TextInput width="221" id="fm_PropAddr"/>
+=======
+			<s:TextInput width="221"/>
+>>>>>>> origin/master
 		</mx:FormItem>
 		<mx:FormItem label="City">
 			<s:TextInput/>
