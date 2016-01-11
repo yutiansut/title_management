@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="450" height="636" title="Maryland Docs Need W/Purchase Deed">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:controlBarContent>
+		<s:Label text="(C) 2015 First Title &amp; Escrow. All Rights Reserved." color="#000000" fontWeight="bold"/>
+	
+	</s:controlBarContent>
+	<s:VGroup x="10" width="431" height="495" y="74">
+		<s:CheckBox label="DEED" fontSize="14"/>
+		<mx:Spacer height="10"/>
+		<s:CheckBox label="FORM WH-AR:" fontSize="14"/>
+		<s:Label text="Certification of Exemption from Withholding upon disposition of Maryland Real Estate Affidavit of Residence or Principal Residence." width="392" fontStyle="italic" fontSize="12"/>
+		<s:CheckBox label="FORM MW506NRS:" fontSize="14"/>
+		<s:Label text="Maryland Return of Income Tax Withiolding for Nonresident Sale of Real Property." width="392" fontStyle="italic" fontSize="12"/>
+		<s:CheckBox label="AFFIDAVIT OF GRANTEE AS FIRST-TIME MARYLAND HOME BUYER" fontSize="14" width="365" height="34"/>
+		<mx:Spacer height="10"/>
+		<s:CheckBox label="PRINCIPAL RESIDENCE FORM" fontSize="14"/>
+		<s:p>Simple bulleted list:</s:p>
+		<s:list id="countyList" listStylePosition="outside">
+			<s:li>Montgomery: </s:li>
+			<s:li>Prince George:</s:li>
+			<s:li>Baltimore City:</s:li>
+		</s:list>
+		<mx:Spacer height="10"/>
+		<s:CheckBox label="FINAL WATER BILL" fontSize="14"/>
+		<mx:Spacer height="10"/>
+		<s:CheckBox label="LIEN CERTIFICATE" fontSize="14"/>
+		<mx:Spacer height="10"/>
+		<s:Label text="CHECK NEEDED TO GO WITH PURCHASE DEED" fontWeight="bold" fontSize="14" textDecoration="underline"/>
+		<s:CheckBox label="COUNTY PROPERTY TAX PAYMENT" fontSize="14"/>
+		<mx:Spacer height="5"/>
+		<s:CheckBox label="CITY/TOWN PROPERTY TAX PAYMENT" fontSize="14"/>
+		<mx:Spacer height="5"/>
+		<s:CheckBox label="WATER PAYMENT" fontSize="14"/>
+	</s:VGroup>
+	<mx:Form y="0" width="100%" horizontalCenter="0" height="56">
+		<mx:FormItem label="File Number:" width="207">
+			<s:TextInput width="126" chromeColor="#E7E7E7" contentBackgroundColor="#E0E0E0" color="#000000"/>
+		</mx:FormItem>
+	</mx:Form>
+</s:TitleWindow>

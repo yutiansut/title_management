@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="600" height="376" close="closeWindow();" title="Create New Project">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			
+			
+			
+			
+			
+			
+			//Close Dashboard
+			private function closeWindow():void{
+				PopUpManager.removePopUp(this);
+				
+			}
+			
+		]]>
+	</fx:Script>
+	<!-- Future feature. Task Creation and assigment right within the new project window -->
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:controlBarContent>
+		<s:Label text="(C) 2016 First Title &amp; Escrow, Inc. All Rights Reserved." color="#000000"/>
+	
+	</s:controlBarContent>
+	<mx:FormItem label="Project Name:" x="3" y="6">
+		<s:TextInput/>
+	</mx:FormItem>
+	<mx:FormItem label="Short Description:" x="3" y="34" width="343">
+		<s:TextInput width="237"/>
+	</mx:FormItem>
+	<mx:FormItem label="Manager" x="374" y="10">
+		<s:DropDownList></s:DropDownList>
+	</mx:FormItem>
+	<mx:FormItem label="Project Desription:" x="3" y="62" direction="vertical" width="100">
+	</mx:FormItem>
+	<s:TextArea direction="ltr" y="85" width="588" height="155" horizontalCenter="0"/>
+	<mx:FormItem label="Start Date:" x="10" y="252" width="203">
+		<mx:DateField width="133"/>
+	</mx:FormItem>
+	<mx:FormItem label="End Date:" x="230" y="252" width="203">
+		<mx:DateField width="133"/>
+	</mx:FormItem>
+	<s:Button x="28" label="Go Back" cornerRadius="10" chromeColor="#D1D1D1" bottom="0" color="#000000" click="currentState='State1'"/>
+	<s:Button x="110" label="Submit" cornerRadius="10" chromeColor="#D1D1D1" bottom="0" color="#000000" click="currentState='State1'"/>
+	<mx:FormItem label="Department" x="374" y="36">
+		<s:DropDownList></s:DropDownList>
+	</mx:FormItem>
+</s:TitleWindow>

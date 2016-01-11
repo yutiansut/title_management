@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="600" height="344" title="Suspend Project" creationComplete="init();">
+	<fx:Script>
+		<![CDATA[
+			import flash.events.Event;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.List;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			//initialization method
+			private function init():void{
+				//execute component data retrieval method. 
+				getActiveProjects();
+			}
+			//Component data retrieval
+			private function getActiveProjects():void{
+				//Run remote object to get data from db
+				roGetActiveProj.getActiveProject();
+			}
+			//Project element DP
+			[Bindable]
+			private var ProjListDP;
+			
+			//result handler for getActiveProject method
+			private function activeProj_ResultHandler(event:ResultEvent):void{
+				//bind combo box component to returned data set. 
+			   cmbox_ProjList.dataProvider = event.result as ArrayCollection;
+			}
+			//Close window
+			private function closeWindow():void{
+				PopUpManager.removePopUp(this);
+				
+			}
+			
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<s:RemoteObject id="roGetActiveProj" concurrency="multiple" source="FirstTitleEnterpriseApp.controller.projectManagement.suspendProj" destination="ColdFusion" fault="mx.controls.Alert.show(event.fault.faultString)">
+			<s:method name="getActiveProject" concurrency="multiple" fault="mx.controls.Alert.show(event.fault.faultString)" result="activeProj_ResultHandler(event)" />
+		</s:RemoteObject>
+	</fx:Declarations>
+	<s:controlBarContent>
+		<s:Label text="(C) 2016 First Title &amp; Escrow, Inc. All Rights Reserved." color="#000000"/>
+	
+	</s:controlBarContent>
+	<mx:FormItem label="Project" x="10" y="23" width="214">
+		<s:ComboBox width="160" id="cmbox_ProjList"/>
+	</mx:FormItem>
+	<mx:FormItem label="Explanation:" x="10" y="89" width="578">
+		<s:TextArea width="499"/>
+	</mx:FormItem>
+	<s:Button x="10" label="Submit Suspension" color="#F9F9F9" cornerRadius="10" bottom="5" chromeColor="#B10B0B"/>
+	<s:Button x="139" label="Cancel" cornerRadius="10" color="#000000" bottom="5" click="closeWindow();"/>
+	<mx:FormItem label="Effective Reason" x="13" y="58" width="214">
+		<s:ComboBox width="160"/>
+	</mx:FormItem>
+	
+
+</s:TitleWindow>

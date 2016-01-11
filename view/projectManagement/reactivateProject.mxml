@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="276" height="186" title="Reactivate Project" creationComplete="init();" cornerRadius="5" close="closeWindow();">
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Label;
+			import mx.rpc.events.ResultEvent;
+			import mx.managers.PopUpManager;
+			import org.osmf.layout.AbsoluteLayoutFacet;
+			
+			
+			
+			//Initialization function
+			private function init():void{
+				//instantiate the get suspended project method
+				getSuspendedProj();
+			}
+			//Suspended Project data provider
+			[Bindable]
+			private var _sProjDP;
+			
+			// remote object function to get suspended projects
+			private function getSuspendedProj():void {
+				//instantiate the remote object to get the suspended project
+				roProjData.getSuspendedProjects();
+			} 
+			
+			//Reactive the selected project
+			private function makeProjActive():void{
+				//create variable to pass active status into controller.
+				var _setActive = '1';
+				var reactivationSuccess:Label;
+				reactivationSuccess.visible = false;
+				//instantiate remote object ot make the project status active now.
+			    roProjData.makeActive(_setActive);
+				//notify user of success.
+				reactivationSuccess.text = 'Project Successfully Reactivated!';
+			    reactivationSuccess.visible = true;
+			}
+			//reactivate project result handler
+			private function rActiveProj_ResultHandler(evt:ResultEvent):void{
+				
+			}
+			
+			//get currently suspended projects result handler
+			private function getSuspendedProj_ResultHandler(event):void{
+				
+			}
+			
+			//close the window.
+			private function closeWindow():void{
+				PopUpManager.removePopUp(this);
+				
+			} 
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<s:RemoteObject id="roProjData" source="FirstTitleEnterpriseApp.controller.suspendProj" destination="ColdFusion" fault="mx.controls.Alert.show(event.fault.faultString)" concurrency="multiple">
+			<s:method name="getSuspendedProjects" fault="mx.controls.Alert.show(event.fault.faultString)" result="getSuspendedProj_ResultHandler(event)" concurrency="multiple"/>
+			<s:method name="reactivateProject" fault="mx.controls.Alert.show(event.fault.faultString)" result="rActiveProj_ResultHandler(event)" concurrency="multiple" />
+		</s:RemoteObject>
+	</fx:Declarations>
+	<s:controlBarContent>
+	
+	</s:controlBarContent>
+	<mx:FormItem label="Select Project" x="15" y="16">
+		<s:ComboBox/>
+	</mx:FormItem>
+	<s:Button x="76" y="81" label="Reactivate Project" width="115" height="28" chromeColor="#1F9C3D" color="#FFFFFF"/>
+</s:TitleWindow>

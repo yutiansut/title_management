@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="1052" height="776" title="File Notes">
+	<fx:Declarations>
+		<s:RadioButtonGroup id="radiogroup1"/>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:controlBarContent>
+	
+	</s:controlBarContent>
+	<s:HGroup y="20" width="100%" height="37" horizontalCenter="0">
+		<s:Button label="All" chromeColor="#E0EC23" color="#000000"/>
+		<s:Button label="VRM" chromeColor="#E0EC23" color="#000000"/>
+		<s:Button label="Pre-Processing" chromeColor="#E0EC23" color="#000000"/>
+		<s:Button label="Title Review" chromeColor="#E0EC23" color="#000000"/>
+		<s:Button label="Title Clearance" chromeColor="#E0EC23" color="#000000"/>
+		<s:Button label="Processing" chromeColor="#E0EC23" color="#000000"/>
+		<s:Button label="Scheduling" chromeColor="#E0EC23" color="#000000"/>
+		<s:Button label="Post-Closing/Shipping" chromeColor="#E0EC23" color="#000000"/>
+		<s:Button label="Funding" chromeColor="#E0EC23" color="#000000"/>
+		<s:Button label="Recording" chromeColor="#E0EC23" color="#000000"/>
+		<s:Button label="Policy" chromeColor="#E0EC23" color="#000000"/>
+		<s:Button label="Customer Service" chromeColor="#E0EC23" color="#000000"/>
+	</s:HGroup>
+	<s:Label x="10" y="5" text="Filter By Department:" fontWeight="bold" color="#CAEB16"/>
+	<s:Label x="13" y="69" text="Filter By Age:" fontWeight="bold" color="#CAEB16"/>
+	<s:HGroup y="82" width="310" height="37" left="0">
+		<s:RadioButton label="All" groupName="radiogroup1" direction="ltr"/>
+		<s:RadioButton label="&lt; 30 Days" groupName="radiogroup1" direction="ltr"/>
+		<s:RadioButton label="30 Days" groupName="radiogroup1" direction="ltr"/>
+		<s:RadioButton label="60 Days" groupName="radiogroup1" direction="ltr"/>
+		<s:RadioButton label="90 Days" groupName="radiogroup1" direction="ltr"/>
+	</s:HGroup>
+	<s:BorderContainer x="12" y="273" width="1030" height="413" backgroundColor="#817B7B">
+		<mx:DataGrid y="0" width="98%" height="98%" contentBackgroundColor="#FFFFFF" chromeColor="#FFFFFF" color="#000000" editable="false" horizontalCenter="0">
+			<mx:columns>
+				<mx:DataGridColumn headerText="Column 1" dataField="col1"/>
+				<mx:DataGridColumn headerText="Column 2" dataField="col2"/>
+				<mx:DataGridColumn headerText="Column 3" dataField="col3"/>
+			</mx:columns>
+		</mx:DataGrid>
+	</s:BorderContainer>
+</s:TitleWindow>

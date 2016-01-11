@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="1158" height="526" title="SimpliFile Online Recording">
+	
+	<fx:Script>
+		<![CDATA[
+			//Import all libraries for the component.
+			
+			
+			
+			
+			
+			
+			//Submit the form to the database.
+			private function sendDats(event:Event):void{
+				//
+			}
+			
+			
+			//Close Dashboard
+			private function closeWindow():void{
+				PopUpManager.removePopUp(this);
+				
+			}
+			
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:controlBarContent>
+	
+	</s:controlBarContent>
+	<mx:TabNavigator y="131" width="100%" height="284" horizontalCenter="0">
+		<s:NavigatorContent label="Check 1 PAYABLE TO: First Title &amp; Escrow-Recording" width="100%" height="100%">
+			<s:HGroup x="10" y="10" width="501" height="32">
+				<mx:FormItem label="In the amount of $" width="233">
+					<s:TextInput width="130" contentBackgroundColor="#DEDEDE"/>
+				</mx:FormItem>
+				<s:Label text="RECORDING FEE MTGF / DEED / SUB/ REL /POA" height="19" paddingTop="7"/>
+			</s:HGroup>
+			<s:HGroup x="10" y="53" width="501" height="32">
+				<mx:FormItem label="In the amount of $" width="233">
+					<s:TextInput width="130" contentBackgroundColor="#DEDEDE"/>
+				</mx:FormItem>
+				<s:Label text="RECORDING FEE MTGF / DEED / SUB/ REL /POA" height="19" paddingTop="7"/>
+			</s:HGroup>
+			<s:HGroup x="10" y="95" width="501" height="32">
+				<mx:FormItem label="In the amount of $" width="233">
+					<s:TextInput width="130" contentBackgroundColor="#DEDEDE"/>
+				</mx:FormItem>
+				<s:Label text="RECORDING FEE MTGF / DEED / SUB/ REL /POA" height="19" paddingTop="7"/>
+			</s:HGroup>
+			<mx:FormItem label="CHECK 1 TOTAL: $" width="333" x="10" y="138">
+				<s:TextInput width="216" contentBackgroundColor="#DEDEDE"/>
+			</mx:FormItem>
+		</s:NavigatorContent>
+		<s:NavigatorContent label="CHECK 2 PAYABLE TO: First Title &amp; Escrow-Recording" width="100%" height="100%">
+			<s:HGroup x="10" y="10" width="501" height="32">
+				<mx:FormItem label="In the amount of $" width="233">
+					<s:TextInput width="130" contentBackgroundColor="#DEDEDE"/>
+				</mx:FormItem>
+				<s:Label text="RECORDING FEE MTGF / DEED / SUB/ REL /POA" height="19" paddingTop="7"/>
+			</s:HGroup>
+			<s:HGroup x="10" y="53" width="501" height="32">
+				<mx:FormItem label="In the amount of $" width="233">
+					<s:TextInput width="130" contentBackgroundColor="#DEDEDE"/>
+				</mx:FormItem>
+				<s:Label text="RECORDING FEE MTGF / DEED / SUB/ REL /POA" height="19" paddingTop="7"/>
+			</s:HGroup>
+			<s:HGroup x="10" y="95" width="501" height="32">
+				<mx:FormItem label="In the amount of $" width="233">
+					<s:TextInput width="130" contentBackgroundColor="#DEDEDE"/>
+				</mx:FormItem>
+				<s:Label text="RECORDING FEE MTGF / DEED / SUB/ REL /POA" height="19" paddingTop="7"/>
+			</s:HGroup>
+			<mx:FormItem label="CHECK 2 TOTAL: $" width="333" x="10" y="138">
+				<s:TextInput width="216" contentBackgroundColor="#DEDEDE"/>
+			</mx:FormItem>
+		</s:NavigatorContent>
+		<s:NavigatorContent label="CHECK 3 PAYABLE TO: First Title &amp; Escrow-Recording" width="100%" height="100%">
+			<s:HGroup x="10" y="10" width="501" height="32">
+				<mx:FormItem label="In the amount of $" width="233">
+					<s:TextInput width="130" contentBackgroundColor="#DEDEDE"/>
+				</mx:FormItem>
+				<s:Label text="RECORDING FEE MTGF / DEED / SUB/ REL /POA" height="19" paddingTop="7"/>
+			</s:HGroup>
+			<s:HGroup x="10" y="53" width="501" height="32">
+				<mx:FormItem label="In the amount of $" width="233">
+					<s:TextInput width="130" contentBackgroundColor="#DEDEDE"/>
+				</mx:FormItem>
+				<s:Label text="RECORDING FEE MTGF / DEED / SUB/ REL /POA" height="19" paddingTop="7"/>
+			</s:HGroup>
+			<s:HGroup x="10" y="95" width="501" height="32">
+				<mx:FormItem label="In the amount of $" width="233">
+					<s:TextInput width="130" contentBackgroundColor="#DEDEDE"/>
+				</mx:FormItem>
+				<s:Label text="RECORDING FEE MTGF / DEED / SUB/ REL /POA" height="19" paddingTop="7"/>
+			</s:HGroup>
+			<mx:FormItem label="CHECK 3 TOTAL: $" width="333" x="10" y="138">
+				<s:TextInput width="216" contentBackgroundColor="#DEDEDE"/>
+			</mx:FormItem>
+		</s:NavigatorContent>
+		<s:NavigatorContent label="CHECK 4 PAYABLE TO: First Title &amp; Escrow-Recording" width="100%" height="100%">
+			<s:HGroup x="10" y="10" width="501" height="32">
+				<mx:FormItem label="In the amount of $" width="233">
+					<s:TextInput width="130" contentBackgroundColor="#DEDEDE"/>
+				</mx:FormItem>
+				<s:Label text="RECORDING FEE MTGF / DEED / SUB/ REL /POA" height="19" paddingTop="7"/>
+			</s:HGroup>
+			<s:HGroup x="10" y="53" width="501" height="32">
+				<mx:FormItem label="In the amount of $" width="233">
+					<s:TextInput width="130" contentBackgroundColor="#DEDEDE"/>
+				</mx:FormItem>
+				<s:Label text="RECORDING FEE MTGF / DEED / SUB/ REL /POA" height="19" paddingTop="7"/>
+			</s:HGroup>
+			<s:HGroup x="10" y="95" width="501" height="32">
+				<mx:FormItem label="In the amount of $" width="233">
+					<s:TextInput width="130" contentBackgroundColor="#DEDEDE"/>
+				</mx:FormItem>
+				<s:Label text="RECORDING FEE MTGF / DEED / SUB/ REL /POA" height="19" paddingTop="7"/>
+			</s:HGroup>
+			<mx:FormItem label="CHECK 2 TOTAL: $" width="333" x="10" y="138">
+				<s:TextInput width="216" contentBackgroundColor="#DEDEDE"/>
+			</mx:FormItem>
+		</s:NavigatorContent>
+		<s:NavigatorContent label="CHECK 5 PAYABLE TO: First Title &amp; Escrow-Recording" width="100%" height="100%">
+			<s:HGroup x="10" y="10" width="501" height="32">
+				<mx:FormItem label="In the amount of $" width="233">
+					<s:TextInput width="130" contentBackgroundColor="#DEDEDE"/>
+				</mx:FormItem>
+				<s:Label text="RECORDING FEE MTGF / DEED / SUB/ REL /POA" height="19" paddingTop="7"/>
+			</s:HGroup>
+			<s:HGroup x="10" y="53" width="501" height="32">
+				<mx:FormItem label="In the amount of $" width="233">
+					<s:TextInput width="130" contentBackgroundColor="#DEDEDE"/>
+				</mx:FormItem>
+				<s:Label text="RECORDING FEE MTGF / DEED / SUB/ REL /POA" height="19" paddingTop="7"/>
+			</s:HGroup>
+			<s:HGroup x="10" y="95" width="501" height="32">
+				<mx:FormItem label="In the amount of $" width="233">
+					<s:TextInput width="130" contentBackgroundColor="#DEDEDE"/>
+				</mx:FormItem>
+				<s:Label text="RECORDING FEE MTGF / DEED / SUB/ REL /POA" height="19" paddingTop="7"/>
+			</s:HGroup>
+			<mx:FormItem label="CHECK 5 TOTAL: $" width="333" x="10" y="138">
+				<s:TextInput width="216" contentBackgroundColor="#DEDEDE"/>
+			</mx:FormItem>
+		</s:NavigatorContent>
+		<s:NavigatorContent label="Net Totals TO: First Title &amp; Escrow-Recording" width="100%" height="100%">
+			<mx:FormItem label="Check 1:" x="10" y="40" fontSize="11" fontWeight="bold">
+				<s:TextInput/>
+			</mx:FormItem>
+			<s:Label x="10" y="21" text="Checks:" fontWeight="bold" fontSize="12" textDecoration="underline"/>
+			<s:Label x="246" y="21" text="Checks Subtotal:" fontWeight="bold" fontSize="12" textDecoration="underline"/>
+			<mx:FormItem label="Check 2:" x="10" y="70" fontSize="11" fontWeight="bold">
+				<s:TextInput/>
+			</mx:FormItem>
+			<mx:FormItem label="Check 3:" x="10" y="100" fontSize="11" fontWeight="bold">
+				<s:TextInput/>
+			</mx:FormItem>
+			<mx:FormItem label="Check 4:" fontSize="11" fontWeight="bold" x="10" y="130">
+				<s:TextInput/>
+			</mx:FormItem>
+			<mx:FormItem label="Check 5:" x="10" y="160" fontSize="11" fontWeight="bold">
+				<s:TextInput/>
+			</mx:FormItem>
+			<s:TextInput x="243" y="40" contentBackgroundColor="#F0F0F0"/>
+			<s:TextInput x="243" y="70" contentBackgroundColor="#F0F0F0"/>
+			<s:TextInput x="243" y="100" contentBackgroundColor="#F0F0F0"/>
+			<s:TextInput x="243" y="130" contentBackgroundColor="#F0F0F0"/>
+			<s:TextInput x="243" y="160" contentBackgroundColor="#F0F0F0"/>
+			<mx:FormItem label="Grand Total of Checks:                              $" width="233" x="10" y="196" fontSize="12" fontWeight="bold">
+			</mx:FormItem>
+			<s:TextInput x="244" y="196" contentBackgroundColor="#F0F0F0"/>
+		</s:NavigatorContent>
+	</mx:TabNavigator>
+	<s:HGroup y="46" width="50%" height="30" left="10">
+		<mx:FormItem label="DOCS TO RECORD IN STATE:" fontWeight="bold" fontSize="11" width="311">
+			<s:DropDownList width="138"></s:DropDownList>
+		</mx:FormItem>
+		<mx:Spacer height="19" width="17"/>
+		<mx:FormItem label="COUNTY:" fontWeight="bold" fontSize="12">
+			<s:TextInput/>
+		</mx:FormItem>
+	</s:HGroup>
+	<mx:FormItem label="FILE:" x="9" y="84" fontSize="11" fontWeight="bold">
+		<s:TextInput/>
+	</mx:FormItem>
+	<s:Label y="10" text="SimpliFile Online Recording" horizontalCenter="0" width="219" fontSize="15" fontWeight="bold" textDecoration="underline" fontFamily="Verdana"/>
+</s:TitleWindow>

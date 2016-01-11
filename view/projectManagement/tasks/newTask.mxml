@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="234" height="182" title="Create New Task" width.sTask="744" height.sTask="390" height.pTask="474" width.pTask="678" title.pTask="Create New Project Task" close.State1="closeWindow();" close.sTask="closeWindow();" close.pTask="closeWindow();">
+	<s:states>
+		<s:State name="State1"/>
+		<s:State name="sTask"/>
+		<s:State name="pTask"/>
+	</s:states>
+	
+	<fx:Script>
+		<![CDATA[
+			 import mx.managers.PopUpManager;
+			 import mx.binding.utils.ChangeWatcher;
+			 import flash.events.Event;
+			//~~~~~~~~~~~~P Task view methods ~~~~~~~~~~~~~//
+			private function createNewPTask(e:MouseEvent):void{
+				//instantiate the remote object and pass in the task for values.
+				
+			}
+			
+			//update the tasks
+			private function getPTaskData(f:Event):void{
+				//Get the task data fromt the db. 
+				
+			}
+			//save the updated p task.
+			private function savePTask(g:Event):void{
+				
+			}
+			
+			//~~~~~~~~~~~ S Task view methods ~~~~~~~~~~//
+			private function createNewSTask(a:Event):void{
+				//instantiate the remote object and method for s tasks. 
+				//Pass in the s task form values
+				
+				
+			}
+			
+			//update the s task
+			private function getSTaskData(b:Event):void{
+				//instantiate the remote object and update methods for the s tasks.
+				
+			}
+			
+			//save the updated s task
+			private function saveSTask(c:Event):void{
+				
+			}
+			
+			//~~~~~~~~~~~~~Bind task to project methods~~~~~~~~~~~~~~~~//
+			
+			//associate the task to a project. 
+			private function makeProjTask(a:Event):void{
+				//pass the task and project name into the project tasks table
+				//remove task from the tasks table.
+				
+			}
+			
+			//Close Dashboard
+			private function closeWindow():void{
+				PopUpManager.removePopUp(this);
+				
+			} 
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:RadioButtonGroup id="radiogroup1"/>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:controlBarContent>
+		<s:Label includeIn="pTask,sTask" text="(C) 2016 First Title &amp; Escrow Inc. All Rights Reserved." color="#000000" fontWeight="bold"/>
+	
+	</s:controlBarContent>
+	<s:RadioButton x="60" y="27" label="Single Task" groupName="radiogroup1" click="currentState='sTask'" includeIn="State1"/>
+	<s:RadioButton x="60" y="53" label="Project Task" groupName="radiogroup1" click="currentState='pTask'" includeIn="State1"/>
+	<s:RadioButton x="60" y="79" label="Merge Task To Project" groupName="radiogroup1" click="currentState='bindTask'" includeIn="State1"/>
+	<mx:FormItem x.sTask="33" y.sTask="9" label.sTask="Task Name" width.sTask="226" label.pTask="Task Name" width.pTask="347" x.pTask="27" y.pTask="72" includeIn="pTask,sTask">
+		<s:TextInput width.sTask="153" width.pTask="274"/>
+	</mx:FormItem>
+	<mx:FormItem x.sTask="33" y.sTask="37" label.sTask="Select Employee" label.pTask="Select Employee" x.pTask="27" y.pTask="100" includeIn="pTask,sTask">
+		<s:ComboBox/>
+	</mx:FormItem>
+	<mx:FormItem x="312" y="24" label="Department" includeIn="pTask,sTask" x.pTask="250" y.pTask="40" x.sTask="296" y.sTask="6">
+		<s:ComboBox/>
+	</mx:FormItem>
+	<mx:FormItem x.sTask="30" y.sTask="140" label.sTask="Description" width.sTask="639" height.sTask="161" height.pTask="161" label.pTask="Description" width.pTask="597" x.pTask="27" y.pTask="191" includeIn="pTask,sTask" cornerRadius.sTask="5">
+		<s:TextArea width.sTask="561" height.sTask="160" height.pTask="159" width.pTask="490"/>
+	</mx:FormItem>
+	<mx:FormItem x.sTask="33" y.sTask="72" label.sTask="Start Date" width.sTask="184" label.pTask="Start Date" width.pTask="184" x.pTask="27" y.pTask="135" includeIn="pTask,sTask">
+		<mx:DateField width.sTask="115" width.pTask="115"/>
+	</mx:FormItem>
+	<mx:FormItem x="230" y="90" label="End Date" width="184" includeIn="pTask,sTask" x.pTask="224" y.pTask="135" x.sTask="230" y.sTask="72">
+		<mx:DateField width="115"/>
+	</mx:FormItem>
+	<mx:FormItem x.sTask="33" y.sTask="101" label.sTask="Priority" width.sTask="227" label.pTask="Priority" width.pTask="227" x.pTask="27" y.pTask="164" includeIn="pTask,sTask">
+		<s:HSlider width.sTask="172" height.sTask="13" chromeColor.sTask="#AC0A0A" chromeColor.pTask="#AC0A0A" height.pTask="13" width.pTask="172" minimum.sTask="1" maximum.sTask="5" stepSize.sTask="1" value.sTask="0" minimum.pTask="1" maximum.pTask="5" stepSize.pTask="1" value.pTask="0" liveDragging.pTask="true"/>
+	</mx:FormItem>
+	<mx:FormItem label="Project" includeIn="pTask" x="27" y="41">
+		<s:ComboBox/>
+	</mx:FormItem>
+	<s:Label includeIn="State1" x="64" y="9" text="Select Task Type" fontSize="11" fontWeight="bold" textDecoration="underline"/>
+	<s:Button includeIn="sTask" x="28" label="Go Back" cornerRadius="10" chromeColor="#D1D1D1" bottom="0" color="#000000" click="currentState='State1'"/>
+	<s:Button x="110" label="Submit" cornerRadius="10" chromeColor="#D1D1D1" bottom="0" color="#000000" click="createNewSTask(event);" includeIn="sTask"/>
+	<s:Button x="28" label="Go Back" cornerRadius="10" chromeColor="#D1D1D1" bottom="0" color="#000000" click="currentState='State1'" includeIn="pTask"/>
+	<s:Button x="110" label="Submit" cornerRadius="10" chromeColor="#D1D1D1" bottom="0" color="#000000" click="createNewPTask(event);" includeIn="pTask"/>
+</s:TitleWindow>

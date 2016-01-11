@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" pageTitle="First Title &amp; Escrow - First Vision" backgroundColor="#8DAAC6"  width="100%" height="100%" currentState="login" height.managers="100%"
-			   xmlns:view="*" xmlns:reportAssignment="view.reportAssignment.*" height.processor="100%" creationComplete="initApplication();" height.clientRelations="100%">
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" pageTitle="First Title &amp; Escrow - First Vision" backgroundColor="#8DAAC6"  width="100%" height="100%" height.managers="100%"
+			   xmlns:view="*" xmlns:reportAssignment="view.reportAssignment.*" height.processor="100%" height.clientRelations="100%" currentState="managers">
 	<fx:Style source="index_1.css"/>
 	<fx:Style source="index.css"/>
 	<s:states>
@@ -18,36 +18,48 @@
 		<![CDATA[
 			import flash.events.MouseEvent;
 			import flash.utils.flash_proxy;
+			
 			import mx.collections.ArrayCollection;
 			import mx.collections.ArrayList;
 			import mx.containers.TitleWindow;
 			import mx.controls.Alert;
+			import mx.controls.Text;
 			import mx.core.mx_internal;
 			import mx.events.FlexEvent;
 			import mx.events.MenuEvent;
 			import mx.managers.PopUpManager;
+			import mx.rpc.events.AbstractEvent;
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
+			
+			import org.osmf.layout.AbsoluteLayoutFacet;
+			
 			import spark.components.Group;
 			import spark.components.Panel;
 			import spark.components.TitleWindow;
+			
 			import view.accountManagement.createNewUser;
 			import view.accountManagement.suspendEmployeeProfile;
 			import view.dashboard.*;
 			import view.dashboard.statsComps.monthlyClosingStats;
 			import view.dashboard.statsComps.teamStats;
+			import view.projectManagement.newProject;
 			import view.projectManagement.projectManagementLoader;
+			import view.projectManagement.reactivateProject;
+			import view.projectManagement.suspendProject;
+			import view.projectManagement.tasks.newTask;
 			
 			
 			//Application Initializer
 			private function initApplication():void{
-			
+			getOrderDataRec();
 				
 			}
 			
 			//~~~~~~~~~~~~~~~~~ Order Data Getters ~~~~~~~~~~~~~~~~~~~~~//
-			private function getOrderData():void{
+			private function getOrderDataRec():void{
 				//remote object to populate order datagrid
+				getDataRO.getOrderData()
 				
 			}
 			//Get the order status list
@@ -70,7 +82,7 @@
 				_orderStatusDP = e.result;
 			}
 			//Order data Result Event. Populates the Order Management tab with order data.
-			private function OrderData_ResultEvent(evt:ResultEvent):void{
+			private function getOrderData_ResultEvent(evt:ResultEvent):void{
 			        _orderDataDP = evt.result;
 			}
 			
@@ -120,7 +132,7 @@
 			private function login_ResultHandler(evt:ResultEvent):void{
 				sessionDP = evt.result;
 				if (sessionDP.LOGGEDIN == '1') {
-					currentState = 'managers';
+					currentState = 'executiveView';
 					_sessionStatus = '1';
 					
 				}
@@ -134,7 +146,7 @@
 			//Alert user variable
 			private var notifyUser;
 			
-			//timer 
+			//timer to terminate session after inactivity. 
 			private var aTimer:Timer;
 			//timer function
 			private function timerFunc():void{
@@ -185,6 +197,15 @@
 					currentState = 'loggedOut';
 				
 			}
+			
+			private function reqNewReport(event:Event):void{
+				//call report request window
+				
+				//call report notification method in controller
+				
+				
+				//submit the request to the newReportRequest db table. 
+			}
 			//~~~~~~~~~~~~~~~Onboarding Tab Methods ~~~~~~~~~~~~~~~~//
 			//Populate new hire display
 			private function newHires():void{
@@ -218,6 +239,7 @@
 			}
 			
 			//file search DP Variable
+			[Bindable]
 			private var fileSearchResult;
 			
 			//Find File Result event
@@ -269,7 +291,118 @@
 			private function launchTStats(event:MouseEvent):void{
 				//Cast new instance of the team stats component.
 				var newTStatsWin:teamStats = PopUpManager.createPopUp(this, teamStats, true) as teamStats;
-				PopUpManager.centerPopUp(teamStats);
+				PopUpManager.centerPopUp(newTStatsWin);
+			}
+			
+			//~~~~~~~~~~~~~~~~~~~~ Project Management Methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+		
+			//Get newly assigned tasks.
+			private function newTasks(event:MouseEvent):void{
+				taskPanel.title = "Recently Created Tasks";
+				//Get the newly assigned tasks. 
+				
+			}
+			//set pending Task DP 
+			[Bindable]
+			public var pTaskDP;
+			//Get the pending tasks
+			private function pendingTasks():void{
+				taskPanel.title = "Current Pending Tasks";
+			
+			}
+			
+			//set all tasks DP
+			[Bindable]
+			public var aTaskDP;
+			//Get all tasks. 
+			private function getAllTasks(evt:Event):void{
+				taskPanel.title = "All Tasks";
+				//remote object call to get all tasks. 
+				
+			}
+			
+			//Get Net one week tasks
+			private function getNetSevenTasks(evt:Event):void{
+				
+			}
+			
+			
+			//Get the recently closed tasks
+			public function recClosedTasks(event:MouseEvent):void{
+				taskPanel.title = "Recently Completed Tasks";
+				//Remote object call to retrieve all recently closed tasks
+			}
+			 //Late tasks
+			public function lateTasks(event:MouseEvent):void{
+				taskPanel.title = "Tasks Out of Bound";
+				//Get the tasks that are out of bound
+			}
+			//Call the new task component. 
+			private function createNewTask(event:MouseEvent):void{
+				//Let invoke the new task component. 
+				var newTaskWindow:newTask = PopUpManager.createPopUp(this, newTask, true) as newTask;
+				PopUpManager.centerPopUp(newTaskWindow);
+				
+			}
+			
+			//Call the new project component.
+			private function createNewProject(event:MouseEvent):void{
+				//Let invoke the new project creation component
+				var newProjWindow:newProject = PopUpManager.createPopUp(this, newProject, true) as newProject;
+				PopUpManager.centerPopUp(newProjWindow);
+			}
+			
+			//Suspend a project
+			private function suspendProj(e:Event):void{
+				var projStatus:String = "Suspended";
+				//Call the suspend project window.
+				var sProjWin:suspendProject = PopUpManager.createPopUp(this, suspendProject, true) as suspendProject;
+				PopUpManager.centerPopUp(sProjWin);
+				//Pass the projStatus into the db via remote object call.
+				
+				//Hide the default close button. 
+				sProjWin.closeButton.visible = false;
+				
+			}
+			//Reactivate a project
+			private function reActProj():void{
+					// Call the reactivate window
+		    var rActProj:reactivateProject = PopUpManager.createPopUp(this, reactivateProject, true) as reactivateProject;
+			PopUpManager.centerPopUp(rActProj);
+				
+			}
+			//Upon invoking method, make the suspended project list component visible.
+			//On selection of the project to reactivate, invoke a reactivation method.
+			private function dispSuspendProj(evt:Event):void{
+				cb_suspendedProjects.visible = "true";
+				
+			}
+			//~~~~~~~~~~~~~~~~~~~~ Multiple file uploads block ~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+			private var uploadFileList:FileReferenceList;
+			private var uploadFile:FileReference;
+			private var uploadTarget:URLRequest = new URLRequest("fileUploadController.cfm");
+			
+			//File Upload Method
+			private function initUpload():void{
+				//uploadFileList = new FileReferenceList();
+				//uploadFileList.addEventListener(Event.SELECT,fileListSelected);
+				
+				//uploadFile = new FileReference();
+				//uploadFile.addEventListener(Event.SELECT,fileSelected);
+				
+			}
+			
+			private function fileListBrowse():void{
+				//Filter allowable uploads by type. In this case, images and documents.
+				var imageFilter:FileFilter = new FileFilter("Image", "*.jpg;*.jpeg")
+				//	uploadFileList.browse([imageFiler]);
+				
+			}
+			
+			private function fileBrowse():void{
+				//Filter allowable uploads by type. In this case, images and documents.
+				var imageFilter:FileFilter = new FileFilter("Image", "*.jpg;*.jpeg")
+					uploadFile.browse([imageFilter]);618
 			}
 			
 			
@@ -285,7 +418,7 @@
 		<!-- Data Population Remote object -->
 		<s:RemoteObject id="getDataRO" destination="ColdFusion" source="FirstTitleEnterpriseApp.controller.orderManagement.orderManagement" concurrency="multiple" fault="mx.controls.Alert.show(event.fault.faultCode);mx.controls.Alert.show(event.fault.faultDetail);">
 			<s:method name="getNewHires" fault="mx.controls.Alert.show(event.fault.faultString)" result="newHire_ResultHandler(event)" concurrency="multiple" />
-			<s:method name="getOrderData" fault="mx.controls.Alert.show(event.fault.faultString)" />
+			<s:method name="getOrderData" fault="mx.controls.Alert.show(event.fault.faultString)" result="getOrderData_ResultEvent(event)" />
 			<s:method name="getOrderStatusList" fault="mx.controls.Alert.show(event.fault.faultString)" result="StatusList_ResultEvent(event)" concurrency="multiple"/>
 		</s:RemoteObject>		
 		
@@ -333,7 +466,7 @@
 		<s:BasicLayout/>
 	</s:layout.clientRelations>
 	<mx:MenuBar styleName="footerBar" bottom="0" width="100%" height="30" x.administrator="0" x.State1="0" x.login="0" x.loggedOut="0" bottom.managers="0" horizontalCenter.managers="0" bottom.processor="0" horizontalCenter.processor="0" bottom.clientRelations="0" horizontalCenter.clientRelations="0"></mx:MenuBar>
-	<s:Label text="2015 Copyright. All Rights Reserved. First Title &amp; Escrow Inc." color="#020202" fontWeight="normal" fontFamily="Verdana" bottom="5" left="5"/>
+	<s:Label text="2015 Copyright. All Rights Reserved. First Title &amp; Escrow Inc." color="#020202" fontWeight="normal" fontFamily="Verdana" bottom="5" left="5" text.managers="2016 Copyright. All Rights Reserved. First Title &amp; Escrow Inc."/>
 	<mx:Image y="0" width="463" height="90" source.State1="assets/FTLogo.png" source.administrator="assets/FTLogo2.png" source.login="assets/FTLogo2.png" y.login="12" horizontalCenter.login="0" left.State1="0" horizontalCenter.administrator="0" horizontalCenter.managers="0" source.managers="assets/FTLogo2.png" horizontalCenter.loggedOut="0" source.loggedOut="assets/FTLogo2.png" y.loggedOut="12" horizontalCenter.processor="0" source.processor="assets/FTLogo2.png" horizontalCenter.clientRelations="0" source.clientRelations="assets/FTLogo2.png"/>
 	<mx:TabNavigator includeIn="administrator" width="876.3" height="477" cornerRadius="8" y="126.35" right="91.95001" id="managersTabs">
 		<s:NavigatorContent label="Dashboard" width="100%" height="100%">
@@ -434,15 +567,15 @@
 		<s:Button y="120" label="Login" horizontalCenter="0" cornerRadius="-6" click="loginUserOnClick(event); clearLogin();" keyDown="loginUser(event)"/>
 		<s:Label x="124" y="153" text="New User? Click here." fontSize="11" fontWeight="bold" color="#F1F1F1" click="contactAdmin();"/>
 	</s:Panel>
-	<s:Label includeIn="clientRelations,managers,processor" text="Welcome to the Manager Dashboard" y="79" color="#000000" textDecoration="underline" fontWeight="bold" fontSize="11" left="103"/>
-	<mx:TabNavigator cornerRadius="8" id="managersTabs0" includeIn="clientRelations,managers,processor" width="85%" height="80%" y="116" horizontalCenter="0" width.processor="977" horizontalCenter.processor="30">
+	<s:Label includeIn="clientRelations,managers,processor" text="Welcome to the Manager Dashboard" y="79" color="#000000" textDecoration="underline" fontWeight="bold" fontSize="11" left="103" y.processor="79" left.processor="228" text.processor="Welcome to the Processor Dashboard"/>
+	<mx:TabNavigator cornerRadius="8" id="managersTabs0" includeIn="clientRelations,managers,processor" width="85%" height="80%" y="116" horizontalCenter="0" width.processor="977" horizontalCenter.processor="30" height.managers="700" y.managers="107" horizontalCenter.managers="0">
 		<s:NavigatorContent label="Dashboard" width="100%" height="100%">
 			<s:TileGroup y="21" width="816" height="412" horizontalCenter="-1">
-				<s:Panel width="267" height="187" title="First Vision" skinClass="spark.skins.spark.PanelSkin" chromeColor="#221E1E" controlBarVisible="true" title.clientRelations="Sales Relations">
+				<s:Panel width="267" height="187" title="First Vision" skinClass="spark.skins.spark.PanelSkin" chromeColor="#221E1E" controlBarVisible="true" title.clientRelations="Sales Relations" title.managers="User Profiles">
 					<s:controlBarContent>
 					
 					</s:controlBarContent>
-					<s:Button label="Launch First Vision" cornerRadius="15" chromeColor="#9B0000" y="0" left="0"/>
+					<s:Button label="Launch First Vision" cornerRadius="15" chromeColor="#9B0000" y="0" left="0" label.managers="Update User" width.managers="108" left.managers="0"/>
 					<s:Button click="callCreateNewUser();" width="110" label="+ Add New User" cornerRadius="15" chromeColor="#9B0000" bottom="0" right="0"/>
 					<s:Button y="0" label="- Remove User" width="108" cornerRadius="15" chromeColor="#9B0000" right="0"/>
 					<s:Button x="61" label="Suspend User Account" width="151" cornerRadius="15" chromeColor="#9B0000" verticalCenter="0" chromeColor.managers="#221E1E" chromeColor.clientRelations="#221E1E" label.clientRelations="Sales Team Dashboard"/>
@@ -456,15 +589,15 @@
 					<s:Button label="My Stats" chromeColor="#9B0000" left="0" top="0" includeIn="processor"/>
 					<s:Button label="Monthly Stats" chromeColor="#9B0000" left="0" width="108" includeIn="clientRelations,managers" bottom="0" click.managers="launchMStats(event);"/>
 					<s:Button label="Quarterly Stats" chromeColor="#9B0000" includeIn="clientRelations,managers" right="0" width="108" top="130"/>
-					<s:Button label="Team Stats" chromeColor="#9B0000" right="0" width="108" top="0" includeIn="clientRelations,managers" click="openMyStats(event);"/>
+					<s:Button label="Team Stats" chromeColor="#9B0000" right="0" width="108" top="0" includeIn="clientRelations,managers" click.clientRelations="openMyStats(event);"/>
 					<s:Button label="My Stats" chromeColor="#9B0000" width="108" click="openMyStats(event);" includeIn="clientRelations,managers" x="0" y="0"/>
 					<s:Button y="62" label="Launch Statistics Module" cornerRadius="10" click="launchStatsModule(event);" includeIn="clientRelations,managers" x="60"/>
 				</s:Panel>
-				<s:Panel width="250" height="200" title="TSS-Title Express" chromeColor="#221E1E">
+				<s:Panel width="250" height="200" chromeColor="#221E1E" title.clientRelations="TSS-Title Express" title.processor="TSS-Title Express">
 					<s:controlBarContent>
 					
 					</s:controlBarContent>
-					<s:Button y="62" label="Launch TSS" horizontalCenter="0" cornerRadius.managers="10" cornerRadius.clientRelations="10"/>
+					<s:Button y="62" label="Launch TSS" horizontalCenter="0" cornerRadius.managers="10" cornerRadius.clientRelations="10" label.managers="Misc."/>
 				</s:Panel>
 				<s:Panel width="224" height="200" title="Misc." chromeColor="#221E1E">
 					<s:controlBarContent>
@@ -475,7 +608,7 @@
 					<s:Button label="- Remove User" width="108" chromeColor="#9B0000" right="0" top="0"/>
 					<s:Button label="Suspend User" width="108" chromeColor="#9B0000" right="0" bottom="0"/>
 				</s:Panel>
-				<s:Panel width="250" height="200" title="Quickbooks" chromeColor="#221E1E" controlBarVisible="true">
+				<s:Panel width="250" height="200" chromeColor="#221E1E" controlBarVisible="true" title.clientRelations="Quickbooks" title.processor="Quickbooks">
 					<s:controlBarContent>
 					
 					</s:controlBarContent>
@@ -535,7 +668,7 @@
 					<s:Button x="840" y="17" label="Expand Order" cornerRadius="10" width="104" id="btn_expandOrder" includeIn="clientRelations,managers"/>
 					
 				</s:NavigatorContent>
-				<s:NavigatorContent label="New Orders" width="100%" height="100%">
+				<s:NavigatorContent label="New Orders" width="100%" height="100%" creationComplete.managers="initApplication();">
 					<mx:DataGrid horizontalCenter="0" width="98%" height="87%" bottom="8" chromeColor="#000000" dropShadowVisible="true" includeIn="clientRelations,managers">
 						<mx:columns>
 							<mx:DataGridColumn headerText="Order Type" dataField="col1" width="100"/>
@@ -545,12 +678,13 @@
 							<mx:DataGridColumn headerText="Sales Rep" dataField="col3" width="150"/>
 							<mx:DataGridColumn headerText="Status" dataField="col3" width="100"/>
 							<mx:DataGridColumn headerText="Recent Notes" dataField="col3" minWidth="400"/>
+							<mx:DataGridColumn headerText="Up" dataField="col3" minWidth="400"/>
 						</mx:columns>
 					</mx:DataGrid>
 					<mx:MenuBar y="0" chromeColor="#3A3939" width="98%" height="48" horizontalCenter="0" includeIn="clientRelations,managers"></mx:MenuBar>
 					<s:Label x="686" y="5" text="Search Condition" fontWeight="bold" color="#6DC9D7" width="100" includeIn="clientRelations,managers" textDecoration="underline"/>
 					<s:Label x="400" y="5" text="Client" fontWeight="bold" color="#6DC9D7" width="41" includeIn="clientRelations,managers" text.managers="Sales Rep." width.managers="100"/>
-					<s:DropDownList x="400" y="18" prompt="Select Client" includeIn="clientRelations,managers"></s:DropDownList>
+					<s:DropDownList x="400" y="18" prompt="Select Client" includeIn="clientRelations,managers" prompt.managers="Select Rep"></s:DropDownList>
 					<s:Label x="550" y="5" text="Client" fontWeight="bold" color="#6DC9D7" width="41" includeIn="clientRelations,managers"/>
 					<s:DropDownList x="550" y="18" prompt="Select Client" includeIn="clientRelations,managers"></s:DropDownList>
 					<s:Label x="27" y="25" text="Filters:" fontSize="12" textDecoration="underline" fontWeight="bold" includeIn="clientRelations,managers"/>
@@ -648,11 +782,14 @@
 					</menuitem>
 				</fx:XMLList>
 			</mx:MenuBar>
+			<s:TextArea x="9" y="31" text="Reporting structure:&#xd;&#xd;      Exec Level reports&#xd;              manager level reports&#xd;                  employee level reports" contentBackgroundColor="#C0D9F2" color="#000000" includeIn="managers" width="207"/>
+			<s:TextArea x="230" y="30" text="Features:&#xd;&#xd;      Exec Level reports&#xd;              manager level:&#xd;                        New report request ticketing&#xd;                        Report export to PDF&#xd;                        reporting drill down &amp; filters&#xd;" contentBackgroundColor="#C0D9F2" color="#000000" width="226" includeIn="managers"/>
+			<s:Button includeIn="managers" y="0" label="Request New Report" chromeColor="#983A3A" cornerRadius="10" right="10" click="reqNewReport(event);"/>
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Onboarding &amp; Personnel Managemrnt" width="100%" height="100%">
 			<s:Button x="49" y="10" label="Add New Employee" cornerRadius="10" color="#000000" click="callCreateNewUser();"/>
 			<s:Button x="177" y="10" label="Revoke User Account" cornerRadius="10" color="#000000" click="callRevokeRights();"/>
-			<mx:ViewStack y="57" id="hr_viewStack" width="50%" height="195" left="30">
+			<mx:ViewStack y="57" id="hr_viewStack" width="50%" height="195" left="30" width.managers="767" left.managers="30">
 				<s:NavigatorContent label="View 1" width="100%" height="100%" id="recent_Pane">
 					<s:BorderContainer width="100%" height="136" cornerRadius="6" x="0" verticalCenter="11" backgroundColor="#08A6E8" backgroundAlpha="0.65">
 						<mx:DataGrid y="0" width="90%" horizontalCenter="0" height="100%" chromeColor="#BAB9B9" color="#000000">
@@ -679,42 +816,173 @@
 					</s:BorderContainer>
 				</s:NavigatorContent>
 			</mx:ViewStack>
-			<s:RadioButton x="46" y="39" label="Recent Hires" groupName="HR_RadioGroup" selected="true" value="0"/>
-			<s:RadioButton x="137" y="39" label="90 Day New Hires" groupName="HR_RadioGroup" value="1"/>
-			<s:RadioButton x="267" y="39" label="180 Day New Hires" groupName="HR_RadioGroup"  value="2"/>
+			<s:RadioButton x="46" y="39" label="Recent Hires" groupName="HR_RadioGroup" selected="true" value="0" y.managers="37"/>
+			<s:RadioButton x="100" y="39" label="60 Day New Hires" groupName="HR_RadioGroup" value="1" x.managers="138" y.managers="37"/>
+			<s:RadioButton x="137" y="39" label="90 Day New Hires" groupName="HR_RadioGroup" value="1" x.managers="258" y.managers="37"/>
+			<s:RadioButton x="267" y="39" label="180 Day New Hires" groupName="HR_RadioGroup"  value="2" x.managers="388" y.managers="37"/>
+			<s:RadioButton x="267" y="39" label="Hires within last years" groupName="HR_RadioGroup"  value="3" x.managers="510" y.managers="37" label.managers="Hires within last year"/>
+			<s:TextArea includeIn="managers" x="93" y="295" text="Profile Mirroring&#xd;&#xd;Reporting Assignment Mirroring" contentBackgroundColor="#C0D9F2" color="#000000"/>
 		</s:NavigatorContent>
 		<s:NavigatorContent width="100%" height="100%" label="Project Management" click.processor="currentState='login';">
-			<s:HGroup y="22" width="720" height="149" horizontalCenter="0">
+			<s:HGroup y="22" width="720" height="149" horizontalCenter="0" includeIn="clientRelations">
 				<s:Panel width="354" height="100%" title="Upcoming Tasks Due" skinClass="spark.skins.spark.PanelSkin" chromeColor="#221E1E" controlBarVisible="true" cornerRadius="5">
 					<s:controlBarContent>
 					
 					</s:controlBarContent>
 					<s:List y="0" horizontalCenter="0" width="100%" height="100%" contentBackgroundColor="#E7E8E8"></s:List>
 				</s:Panel>
-				<s:Panel width="354" height="100%" title="First Vision" skinClass="spark.skins.spark.PanelSkin" chromeColor="#221E1E" controlBarVisible="true" cornerRadius="5">
-					<s:controlBarContent>
-					
-					</s:controlBarContent>
-					<s:List y="0" horizontalCenter="0" width="100%" height="100%" contentBackgroundColor="#E7E8E8"></s:List>
-				</s:Panel>
 			</s:HGroup>
-			<mx:TabNavigator y="204" width="80%" height="215" cornerRadius="10" horizontalCenter="0" height.managers="228" y.managers="191" horizontalCenter.managers="0" height.clientRelations="228" horizontalCenter.clientRelations="0" y.clientRelations="191">
-				<s:NavigatorContent includeIn="clientRelations,managers" label="All Projects" width="100%" height="100%">
+			<mx:TabNavigator width="80%" cornerRadius="10" height="228" horizontalCenter="0" y="191" includeIn="clientRelations">
+				<s:NavigatorContent label="All Projects" width="100%" height="100%">
 				</s:NavigatorContent>
 				<s:NavigatorContent label="Current Projects" width="100%" height="100%">
 				</s:NavigatorContent>
-				<s:NavigatorContent includeIn="clientRelations,managers" label="Task Panel" width="100%" height="100%">
+				<s:NavigatorContent label="Task Panel" width="100%" height="100%">
 				</s:NavigatorContent>
-				<s:NavigatorContent includeIn="clientRelations,managers" label="Upcoming Projects" width="100%" height="100%">
+				<s:NavigatorContent label="Upcoming Projects" width="100%" height="100%">
 				</s:NavigatorContent>
-				<s:NavigatorContent includeIn="clientRelations,managers" label="Planned Projects" width="100%" height="100%">
+				<s:NavigatorContent label="Planned Projects" width="100%" height="100%">
 				</s:NavigatorContent>
-				<s:NavigatorContent includeIn="clientRelations,managers" label="Create Project" width="100%" height="100%">
+				<s:NavigatorContent label="Create Project" width="100%" height="100%">
 				</s:NavigatorContent>
-				<s:NavigatorContent includeIn="clientRelations,managers" label="Idea Board" width="100%" height="100%">
+				<s:NavigatorContent label="Idea Board" width="100%" height="100%">
 				</s:NavigatorContent>
 			</mx:TabNavigator>
+			<s:Panel width="354" height="100%" title="First Vision" skinClass="spark.skins.spark.PanelSkin" chromeColor="#221E1E" controlBarVisible="true" cornerRadius="5" includeIn="clientRelations">
+				<s:controlBarContent>
+				
+				</s:controlBarContent>
+				<s:List y="0" horizontalCenter="0" width="100%" height="100%" contentBackgroundColor="#E7E8E8"></s:List>
+			</s:Panel>
+			<s:SkinnableContainer includeIn="managers" width="100%" height="50%" backgroundColor="#DBDBDB" bottom="0" horizontalCenter="0">
+				<mx:TabNavigator includeIn="managers" x="3" y="5" width="100%" height="100%" color="#000000">
+					<s:NavigatorContent label="Current Projects" width="100%" height="100%" color="#000000">
+						<mx:AdvancedDataGrid id="adg1" designViewDataType="flat" width="100%" height="100%">
+							<mx:columns>
+								<mx:AdvancedDataGridColumn headerText="Project Name" dataField="col1"/>
+								<mx:AdvancedDataGridColumn headerText="Department" dataField="col2"/>
+								<mx:AdvancedDataGridColumn headerText="Start Date" dataField="col3"/>
+								<mx:AdvancedDataGridColumn headerText="End Date" dataField="col3"/>
+								<mx:AdvancedDataGridColumn headerText="Progress" dataField="col3"/>
+								<mx:AdvancedDataGridColumn headerText="Update" dataField="col3"/>
+							</mx:columns>
+						</mx:AdvancedDataGrid>
+					</s:NavigatorContent>
+					<s:NavigatorContent label="Current Tasks" width="100%" height="100%">
+						<mx:AdvancedDataGrid id="adg2" designViewDataType="tree" width="100%" height="269" y="28">
+							<mx:columns>
+								<mx:AdvancedDataGridColumn headerText="Task" dataField="col1"/>
+								<mx:AdvancedDataGridColumn headerText="Assigned To" dataField="col2"/>
+								<mx:AdvancedDataGridColumn headerText="Due Date" dataField="col3"/>
+							</mx:columns>
+						</mx:AdvancedDataGrid>
+						<s:HGroup includeIn="managers" x="1" y="4" width="391" height="23">
+							<s:Label includeIn="managers" color="#FFFFFF" text="Task Type" paddingTop="7" fontWeight="bold"/>
+							<s:ComboBox contentBackgroundColor="#C8CFD5"/>
+							<s:Label text="Priority" color="#FFFFFF" paddingTop="7"/>
+							<s:Group width="150" height="100%" height.managers="20">
+								<s:HSlider chromeColor="#BE0000" height="12" x.managers="10" y="5" width="130"/>
+							</s:Group>
+						</s:HGroup>
+					</s:NavigatorContent>
+					<s:NavigatorContent label="Pending Projects" width="100%" height="100%">
+						<mx:DataGrid horizontalCenter="0" width="100%" height="100%">
+							<mx:columns>
+								<mx:DataGridColumn headerText="Project Name" dataField="col1" backgroundColor="#0099e6" />
+								<mx:DataGridColumn headerText="Scheduled Start Date" dataField="col2" backgroundColor="#0099e6"/>
+								<mx:DataGridColumn headerText="Anticipated Finish Date" dataField="col3" backgroundColor="#0099e6"/>
+								<mx:DataGridColumn headerText="Project Description" dataField="col3" backgroundColor="#0099e6"/>
+								<mx:DataGridColumn headerText="Priority Rating" dataField="col3" backgroundColor="#0099e6"/>
+							</mx:columns>
+						</mx:DataGrid>
+					</s:NavigatorContent>
+					<s:NavigatorContent label="Idea Board" width="100%" height="100%">
+						<s:Panel width="250" height="166" chromeColor="#2199C0" title="Board #1" y="0" x="0">
+							<s:controlBarContent>
+							
+							</s:controlBarContent>
+						</s:Panel>
+						<s:Panel width="250" height="166" chromeColor="#2199C0" title="Board #2" y="0" x="295">
+							<s:controlBarContent>
+							
+							</s:controlBarContent>
+						</s:Panel>
+						<s:Panel width="250" height="166" chromeColor="#2199C0" title="Board #3" y="0" x="589">
+							<s:controlBarContent>
+							
+							</s:controlBarContent>
+						</s:Panel>
+						<s:Panel width="250" height="166" chromeColor="#2199C0" title="Board #4" y="0" x="867" includeIn="managers">
+							<s:controlBarContent>
+							
+							</s:controlBarContent>
+						</s:Panel>
+					</s:NavigatorContent>
+				</mx:TabNavigator>
+			</s:SkinnableContainer>
+			<s:Panel width="49%" height="200" chromeColor="#221E1E" includeIn="managers" y="40" title="Current Tasks" left="10" id="taskPanel" contentBackgroundColor="#113357" backgroundColor="#205489">
+				<s:controlBarContent>
+					<s:RadioButton label="All" click="getAllTasks(event)" chromeColor="#02A806" includeIn="managers"/>
+					<s:RadioButton label="New Tasks" includeIn="managers" chromeColor="#02A806" click="newTasks(event);"/>
+					<s:RadioButton label="Pending" click="pendingTasks()" chromeColor="#777373"/>
+					<s:RadioButton label="Net 7" click="getNetSevenTasks(event);" enabled="true" includeIn="managers" chromeColor="#D2FF00"/>
+					<s:RadioButton label="Late" chromeColor="#A31E1E" click="lateTasks(event);"/>
+					<s:RadioButton label="Recently Closed" click="recClosedTasks(event);" enabled="true" chromeColor="#777373"/>
+				
+				</s:controlBarContent>
+				<mx:DataGrid y="0" horizontalCenter="0" width="100%" height="100%">
+					<mx:columns>
+						<mx:DataGridColumn headerText="Task" dataField="col1"/>
+						<mx:DataGridColumn headerText="Master Project" dataField="col2"/>
+						<mx:DataGridColumn headerText="Assigned To" dataField="col3"/>
+						<mx:DataGridColumn headerText="Assigned To" dataField="col3"/>
+						<mx:DataGridColumn headerText="Date Assigned" dataField="col3"/>
+						<mx:DataGridColumn headerText="Date Due" dataField="col3"/>
+					</mx:columns>
+				</mx:DataGrid>
+				<s:ComboBox y="-31" enabled="true" right="10" chromeColor="#0D496F" contentBackgroundColor="#969BA1"/>
+				<s:Label y="-25" text="Task Type" paddingBottom="5" fontSize="11" right="142"/>
+				<s:Label y="-26" text="Team Member:" paddingBottom="5" fontSize="11" horizontalCenter="-97"/>
+				<s:ComboBox y="-31" enabled="true" right="204" chromeColor="#0D496F" contentBackgroundColor="#969BA1" horizontalCenter="6"/>
+				<s:Label y="76" text="No Current Tasks Assigned" horizontalCenter="0"/>
+			</s:Panel>
+			<s:Panel width="250" height="200" chromeColor="#221E1E" y.managers="40" title.managers="Upcoming Projects" right.managers="10" width.managers="49%" id="projectPanel" includeIn="clientRelations,managers">
+				<s:controlBarContent>
+					<s:RadioButton label="All" click="pendingTasks()" chromeColor="#02A806" includeIn="managers"/>
+					<s:RadioButton label="New Projects" chromeColor="#02A806" includeIn="managers"/>
+					<s:RadioButton label="Net 30" click="pendingTasks()" chromeColor="#777373" includeIn="managers"/>
+					<s:RadioButton label="Net 60" click="pendingTasks()" chromeColor="#777373" includeIn="managers"/>
+					<s:RadioButton label="Coming Due" click="pendingTasks()" chromeColor="#D2FF00" includeIn="managers"/>
+					<s:RadioButton label="Project Past Due" chromeColor="#A31E1E" includeIn="managers"/>
+				
+				</s:controlBarContent>
+				<s:Button y="62" horizontalCenter="0" cornerRadius="10" label="Misc." includeIn="clientRelations"/>
+				<mx:DataGrid y="0" horizontalCenter="0" width="100%" includeIn="managers" height="100%">
+					<mx:columns>
+						<mx:DataGridColumn headerText="Project Name" dataField="col1"/>
+						<mx:DataGridColumn headerText="Department" dataField="col2"/>
+						<mx:DataGridColumn headerText="Manager" dataField="col3"/>
+						<mx:DataGridColumn headerText="Start Date" dataField="col3"/>
+						<mx:DataGridColumn headerText="End Date" dataField="col3"/>
+						<mx:DataGridColumn headerText="Resources" dataField="col3"/>
+					</mx:columns>
+				</mx:DataGrid>
+				<s:ComboBox y="-31" enabled="true" right="10" chromeColor="#0D496F" contentBackgroundColor="#969BA1" includeIn="managers"/>
+				<s:Label y="-25" text="By Department" paddingBottom="5" fontSize="11" right="142" includeIn="managers"/>
+				<s:Label y="76" text="No Current Projects Assigned" includeIn="managers" horizontalCenter="0"/>
+			</s:Panel>
+			<s:SkinnableContainer x="462" y="17" width="200" height="47" backgroundColor="#0D5B71" x.managers="0" y.managers="0" width.managers="100%" height.managers="40" backgroundColor.managers="#DADADA" includeIn="clientRelations,managers">
+				<mx:MenuBar includeIn="managers" y="4" width="100%" height="32"></mx:MenuBar>
+				<s:Button x="282" y="9" label="Reactivate Project" chromeColor="#0C0D0C" cornerRadius="12" includeIn="managers" click="reActProj();"/>
+				<s:Button x="175" y="9" label="Suspend Project" chromeColor="#970707" cornerRadius="12" includeIn="managers" click="suspendProj(event);"/>
+				<s:Button x="90" y="9" label="New Project" chromeColor="#5A5A5A" includeIn="managers" cornerRadius="12" click="createNewProject(event);"/>
+				<s:Button includeIn="managers" x="10" y="9" label="New Task" chromeColor="#5A5A5A" cornerRadius="12" click="createNewTask(event);"/>
+				<s:ComboBox y="-31" enabled="true" chromeColor="#0D496F" contentBackgroundColor="#969BA1" x.managers="440" y.managers="9" visible.managers="false" id="cb_suspendedProjects"/>
+				<s:HSlider includeIn="managers" x="451" y="18" chromeColor="#DD1536" width="129"/>
+				<s:Label includeIn="managers" x="403" y="17" text="Priority:" color="#000000" fontWeight="bold" fontSize="11"/>
+			</s:SkinnableContainer>
 		</s:NavigatorContent>
+		
 		<s:NavigatorContent label="Teams" width="100%" height="100%">
 			<s:BorderContainer y="50" width="90%" height="80%" cornerRadius="8" horizontalCenter="0" backgroundColor="#BDBDBD">
 				<s:Panel x="17" y="10" width="250" height="200">
@@ -757,14 +1025,15 @@
 				</s:Group>
 			</s:Group>
 		</s:NavigatorContent>
+		
 		<s:NavigatorContent label="Report Assignment" width="100%" height="100%">
 			<reportAssignment:reportAssignment height="50%" width="100%" />
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Time Off Requests (TOR)" width="100%" height="100%" includeIn="clientRelations,managers">
 		</s:NavigatorContent>
-		<s:NavigatorContent label="Help Desk Support" width="100%" height="100%">
+		<s:NavigatorContent label="Help Desk Support" width="100%" height="100%" label.managers="Help Desk Support">
 			<s:Group width="100%" height="38" horizontalCenter="1" y="0">
-				<mx:MenuBar width="100%" chromeColor="#AFAEAE" height="37" cornerRadius="15" x="0" y="0" width.processor="100%" x.processor="0" width.managers="905" x.managers="0" width.clientRelations="905" x.clientRelations="0"></mx:MenuBar>
+				<mx:MenuBar chromeColor="#AFAEAE" height="37" cornerRadius="15" y="0" width.processor="100%" x.processor="0" width.managers="100%" x.managers="0" width.clientRelations="905" x.clientRelations="0"></mx:MenuBar>
 				<s:Group y="3" width="225" height="33" x="749" x.managers="663" y.managers="3" x.clientRelations="663" y.clientRelations="3">
 					<mx:Image x="23" y="2" source="assets/add.fw.png" width="30" height="32" click="callCreateNewUser();" rollOver="{rollOverColor.selectedColor}"/>
 					<mx:Image x="93" y="3" source="assets/subtract.fw.png" width="30" height="28"/>
