@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+	<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   xmlns:mx="library://ns.adobe.com/flex/mx"
+				   x="94" y="61" width="686" height="604" title="Post-Closing Checklist">
+		<fx:Declarations>
+			<s:RadioButtonGroup id="radiogroup0"/>
+			<!-- Place non-visual elements (e.g., services, value objects) here -->
+		</fx:Declarations>
+		<s:controlBarContent/>
+		<s:Label y="58" left="9" width="99" height="14" fontWeight="bold" text="Post Closing "/>
+		<s:Label y="283" left="10" width="99" height="14" fontWeight="bold" text="Policy"
+				 textDecoration="underline"/>
+		<s:FormItem x="10" y="6" width="216" label="File #">
+			<s:TextInput width="154"/>
+		</s:FormItem>
+		<s:FormItem x="234" y="5" width="150" label="State">
+			<s:TextInput width="87"/>
+		</s:FormItem>
+		<s:FormItem x="402" y="4" width="247" label="Processor">
+			<s:ComboBox/>
+		</s:FormItem>
+		<s:Label x="10" y="97" text="Received the executed packaged within 24-48  ?"/>
+		<s:RadioButton x="306" y="95" label="Yes" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="352" y="95" label="No" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="395" y="94" label="NA" fontWeight="bold" groupName="radiogroup1"/>
+		<s:Label x="10" y="123" text="Package received with funds due from borrower"/>
+		<s:RadioButton x="307" y="122" label="Yes" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="353" y="122" label="No" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="396" y="121" label="NA" fontWeight="bold" groupName="radiogroup1"/>
+		<s:Label x="8" y="149" text="Hit package received button in FT Web"/>
+		<s:RadioButton x="307" y="143" label="Yes" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="353" y="143" label="No" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="396" y="142" label="NA" fontWeight="bold" groupName="radiogroup1"/>
+		<s:Label x="8" y="173" text="All notary ACK's filled out correctly w/seal?"/>
+		<s:Label x="10" y="199" text="All Docs Executed Properly (sigs match typed name)"/>
+		<s:Label x="10" y="219" text="Critical documents or funding docs posted"/>
+		<s:Button x="15" y="527" label="Submit" cornerRadius="10"/>
+		<s:RadioButton x="308" y="169" label="Yes" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="354" y="169" label="No" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="397" y="168" label="NA" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="308" y="197" label="Yes" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="354" y="197" label="No" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="397" y="197" label="NA" fontWeight="bold" groupName="radiogroup1"/>
+		<s:Label x="10" y="239" text="Any documents or forms missing?"/>
+		<s:RadioButton x="308" y="217" label="Yes" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="354" y="217" label="No" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="397" y="217" label="NA" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="308" y="237" label="Yes" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="354" y="237" label="No" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="397" y="237" label="NA" fontWeight="bold" groupName="radiogroup1"/>
+		<s:Label x="10" y="259" text="Chase Notorial Evidence Completed?"/>
+		<s:RadioButton x="308" y="255" label="Yes" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="354" y="255" label="No" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="397" y="255" label="NA" fontWeight="bold" groupName="radiogroup1"/>
+		<s:Label x="10" y="309" text="Policy Accurate"/>
+		<s:RadioButton x="308" y="305" label="Yes" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="354" y="305" label="No" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="397" y="305" label="NA" fontWeight="bold" groupName="radiogroup1"/>
+		<s:Label x="10" y="333" text="Policy Prepared timely (shipped w/loandocs)?"/>
+		<s:RadioButton x="308" y="329" label="Yes" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="354" y="329" label="No" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="397" y="329" label="NA" fontWeight="bold" groupName="radiogroup1"/>
+		<s:Label x="10" y="361" text="Final policy uploaded in FT Web"/>
+		<s:RadioButton x="308" y="357" label="Yes" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="354" y="357" label="No" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="397" y="357" label="NA" fontWeight="bold" groupName="radiogroup1"/>
+		<s:Label x="8" y="390" text="Policy check sent to U/W  w/ copy of check"/>
+		<s:RadioButton x="306" y="386" label="Yes" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="352" y="386" label="No" fontWeight="bold" groupName="radiogroup1"/>
+		<s:RadioButton x="395" y="386" label="NA" fontWeight="bold" groupName="radiogroup1"/>
+	</s:TitleWindow>
